@@ -17,14 +17,15 @@ Los datos provienen de un conjunto histórico de perfiles financieros preprocesa
 | `LoanAmount` | Continuo | Monto total del préstamo solicitado en USD. |
 | `CreditScore` | Continuo | Puntuación crediticia histórica del cliente (escala estándar, valores < 600 representan alto riesgo). |
 | `YearsExperience` | Continuo | Años de experiencia laboral comprobable del solicitante. |
-| `Gender_*` | Binario (0/1) | Variable categórica codificada (One-Hot) sobre el género. |
-| `Education_*` | Binario (0/1) | Variable categórica codificada (One-Hot) sobre el nivel educativo máximo alcanzado. |
-| `City_*` | Binario (0/1) | Variable categórica codificada (One-Hot) sobre la ciudad de residencia. |
-| `EmploymentType_*` | Binario (0/1) | Variable categórica codificada (One-Hot) sobre la situación laboral actual. |
+| `Gender` | Binario (0/1) | Variable categórica codificada (One-Hot) sobre el género. |
+| `Education` | Binario (0/1) | Variable categórica codificada (One-Hot) sobre el nivel educativo máximo alcanzado. |
+| `City` | Binario (0/1) | Variable categórica codificada (One-Hot) sobre la ciudad de residencia. |
+| `EmploymentType` | Binario (0/1) | Variable categórica codificada (One-Hot) sobre la situación laboral actual. |
 | `LoanApproved` | Binario (0/1) | **Variable Objetivo (Target)**: Representa la aprobación (`1`) o el rechazo (`0`) del crédito. |
 
 ## 3. Diagrama de Flujo del Sistema
 El siguiente esquema ilustra la arquitectura de la solución, desde la ingesta de datos hasta la emisión del reporte generado por la IA.
+``mermaid
 graph TD
     A[1. Ingesta de Datos: Solicitud de Crédito] --> B[2. Preprocesamiento: Limpieza y Escalado]
     B --> C[3. Inferencia ML: Modelo Random Forest]
@@ -34,7 +35,7 @@ graph TD
     E --> G[4. Integración XAI: Prompt + Datos]
     F --> G[4. Integración XAI: Prompt + Datos]
     G --> H[API Google Gemini 2.5 Flash]
-    H --> I[5. Output Final: Veredicto + Reporte Gerencial]
+    H --> I[5. Output Final: Veredicto + Reporte Gerencial]``
 
 ## 4. Tarjeta del Modelo (Model Card)
 
