@@ -26,17 +26,8 @@ El conjunto de datos utilizado (`credit_risk_dataset.csv`) es un dataset tabular
 
 ## 3. Diagrama de Flujo del Sistema
 El siguiente esquema ilustra la arquitectura de la solución, desde la ingesta de datos hasta la emisión del reporte generado por la IA.
-``mermaid
-graph TD
-    A[1. Ingesta de Datos: Solicitud de Crédito] --> B[2. Preprocesamiento: Limpieza y Escalado]
-    B --> C[3. Inferencia ML: Modelo Random Forest]
-    C --> D{Probabilidad de Impago}
-    D -->|Alta Probabilidad| E[Decisión: Rechazado]
-    D -->|Baja Probabilidad| F[Decisión: Aprobado]
-    E --> G[4. Integración XAI: Prompt + Datos]
-    F --> G[4. Integración XAI: Prompt + Datos]
-    G --> H[API Google Gemini 2.5 Flash]
-    H --> I[5. Output Final: Veredicto + Reporte Gerencial]``
+
+![Diagrama de Flujo del Sistema](docs/diagrama_flujo.png)
 
 ## 4. Tarjeta del Modelo (Model Card)
 
@@ -85,4 +76,11 @@ python src/entrenamiento.py
 
 # 3. Simular la inferencia en producción (Evaluación + LLM)
 python src/prediccion.py
+```
 
+## 8. Conclusiones
+
+* **Eficacia del Enfoque Híbrido (ML + GenAI):** La combinación de un modelo clásico de Machine Learning (`RandomForestClassifier`) con un modelo de lenguaje fundacional (`Gemini 2.5 Flash`) demostró ser una arquitectura altamente viable para el sector financiero. Se logra solucionar el problema de la "caja negra" de los modelos complejos, traduciendo una certeza probabilística en un argumento de negocio legible y accionable (Explainable AI) en milisegundos.
+* **Robustez y Estabilidad de la Predicción:** El modelo predictivo alcanzó un desempeño óptimo en la fase offline con un F1-Score de 91.89% y un F1-Score medio de 93.31% bajo validación cruzada (K-Fold=5). Estos resultados confirman que el algoritmo es estructuralmente estable, mitiga el desbalance de clases mediante el ajuste de pesos (`class_weight='balanced'`) y no presenta síntomas de sobreajuste (*overfitting*).
+* **Determinación Contextual Coherente:** Mediante las pruebas cualitativas programadas en `prediccion.py`, se verificó que la API de Google Gemini respeta estrictamente las variables de entrada proporcionadas por el pipeline de datos (como el *CreditScore* y la relación ingreso/préstamo). El LLM contextualiza los factores financieros con coherencia corporativa y cero tolerancia a la alucinación de datos.
+* **Delimitación del Alcance Operativo:** Para la versión 1.0.0, el proyecto cumple exitosamente con el objetivo de automatizar de punta a punta el pipeline de datos, el entrenamiento parametrizado y la inferencia simulada mediante scripts estructurados en Programación Orientada a Objetos (POO). Al quedar fuera de alcance el despliegue en la nube, se establece una base técnica sólida para una futura migración hacia servicios gestionados y arquitectura de microservicios (Docker/Cloud).
