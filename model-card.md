@@ -35,6 +35,17 @@ El modelo fue evaluado utilizando métricas robustas para conjuntos de datos con
 * **F1-Score:** 91.89% - Media armónica que confirma el equilibrio general de la clasificación.
 * **Validación Cruzada:** El F1-Score promedio en un `K-Fold` de 5 particiones confirma la estabilidad paramétrica, descartando sobreajuste (overfitting) en la muestra particular de entrenamiento.
 
+## Evaluación Cualitativa (Explicabilidad - XAI)
+
+Para validar la integración del modelo de Machine Learning con el modelo de lenguaje generativo (Gemini 2.5 Flash), se realizó una prueba de inferencia simulando un perfil de cliente ficticio con las siguientes características clave: Edad de 35 años, Ingresos anuales de $85,000, Score Crediticio de 750 y 8 años de experiencia laboral.
+
+**Resultado del Modelo Predictivo:** * CRÉDITO APROBADO (Certeza matemática: 88.00%)
+
+**Reporte Generado por la IA (Output real del script `prediccion.py`):**
+> "El análisis del perfil del solicitante, con base en nuestros parámetros de evaluación, recomienda la aprobación del préstamo por $20,000. La relación entre el monto solicitado y los ingresos anuales de $85,000 es altamente favorable, representando una carga de deuda manejable y una sólida capacidad de repago. Si bien múltiples factores contribuyen a la decisión, el Score Crediticio de 750, que supera considerablemente el umbral de alto riesgo (<600), emerge como un indicador determinante de la excelente solvencia y comportamiento crediticio del solicitante. Este puntaje, combinado con una edad de 35 años y 8 años de experiencia laboral, sugiere estabilidad financiera y un bajo perfil de riesgo de incumplimiento, justificando la decisión de aprobación."
+
+**Conclusión de la prueba:** El sistema logra exitosamente el objetivo de Explainable AI. La API traduce correctamente el output probabilístico del Random Forest en una justificación de negocio coherente, utilizando las variables de entrada reales sin alucinaciones y manteniendo el tono corporativo requerido para un Comité de Créditos.
+
 ## Consideraciones Éticas y Limitaciones
 
 * **Equidad Algorítmica (Fairness):** Los datos históricos de instituciones financieras suelen contener sesgos latentes respecto al género o la ubicación geográfica. Aunque el algoritmo alcanzó altas métricas globales, se recomienda realizar auditorías de paridad demográfica en el futuro para asegurar que las tasas de falsos positivos y negativos no afecten desproporcionadamente a grupos específicos.

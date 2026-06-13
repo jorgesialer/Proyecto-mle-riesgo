@@ -8,7 +8,8 @@ Este proyecto propone e implementa un sistema automatizado de soporte a la toma 
 
 ## 2. Diccionario de Datos
 
-Los datos provienen de un conjunto histórico de perfiles financieros preprocesados. A continuación, se detalla la estructura del conjunto de datos limpio utilizado para el entrenamiento y la inferencia:
+**Descripción del Dataset:**
+El conjunto de datos utilizado (`credit_risk_dataset.csv`) es un dataset tabular diseñado para la clasificación binaria de riesgo financiero. Contiene información histórica de 5,000 solicitantes, incluyendo variables demográficas (edad, género, ciudad), situación laboral (experiencia, tipo de empleo) y métricas financieras clave (ingresos, monto del préstamo, historial de score crediticio). El objetivo principal es predecir la viabilidad de otorgar un crédito mitigando el riesgo de impago.
 
 | Variable | Tipo de Dato | Descripción |
 | :--- | :--- | :--- |
@@ -43,24 +44,26 @@ Para un análisis técnico exhaustivo sobre la arquitectura del modelo, los dato
 
 **[Ver Model Card Detallado](model-card.md)**
 
-## 5. Métricas de Evaluación
+## 5. Resultados y Métricas
 
-### 5.1 Pruebas Offline (Evaluación Estática)
-Las métricas presentadas a continuación fueron calculadas utilizando Validación Cruzada (`K-Fold CV`, $K=5$) y un conjunto de prueba aislado (20% del total) para garantizar la capacidad de generalización del modelo:
+El modelo fue evaluado utilizando un conjunto de datos de prueba (test set) que representa el 20% de los datos originales, obteniendo los siguientes resultados estáticos (offline):
 
-* **Accuracy (Exactitud):** 0.9640
-* **Precision (Precisión):** 0.9533
-* **Recall (Sensibilidad):** 0.8870
-* **F1-Score:** 0.9189
+* **Accuracy (Exactitud):** 96.40%
+* **Precision (Precisión):** 95.33%
+* **Recall (Sensibilidad):** 88.70%
+* **F1-Score:** 91.89%
+* **Validación Cruzada (K-Fold=5):** F1-Score promedio de 93.31%, lo que demuestra que el modelo es estable y no sufre de sobreajuste.
 
-### 5.2 Pruebas Online (Propuesta de Telemetría en Producción)
-Para el despliegue del modelo en un entorno de producción real, se propone implementar un esquema de despliegue progresivo (Canary Release o A/B Testing) monitoreando las siguientes métricas de negocio y de sistema:
+*Nota sobre el alcance:* Para la versión 1.0.0 de este proyecto, la evaluación se limita estrictamente a métricas estáticas (offline). La implementación de telemetría y métricas dinámicas (online) en un entorno de producción real queda fuera del alcance de esta entrega y se considerará para futuras iteraciones.
 
-1. **Tasa de Morosidad a 90 días (NPL):** Métrica fundamental de negocio para evaluar si la cartera aprobada por el modelo presenta un índice de incumplimiento menor al umbral histórico del banco.
-2. **Latencia de Inferencia:** Tiempo total de procesamiento desde el *request* HTTP hasta la entrega del *response* combinado (Predicción ML + Reporte LLM). El SLA objetivo para el componente de Machine Learning debe ser `< 100ms`.
-3. **Data Drift:** Monitoreo estadístico continuo (ej. mediante *Population Stability Index*) de las variables demográficas e ingresos para alertar sobre la necesidad de reentrenar el modelo.
+## 6. Estrategia de Git Utilizada
 
-## 6. Estructura del Repositorio y Ejecución
+Para el desarrollo de este proyecto se implementó un flujo de trabajo estructurado para el control de versiones:
+* Se mantuvo una rama `main` protegida que contiene únicamente el código estable y funcional.
+* El desarrollo iterativo (creación de notebooks, scripts de Python y redacción de documentación) se realizó en una rama paralela llamada `development`.
+* La integración de los cambios finales se ejecutó mediante un **Pull Request (PR)** hacia la rama `main`. Finalmente, se generó un *Release v1.0.0* para empaquetar la versión final del sistema.
+
+## 7. Estructura del Repositorio y Ejecución
 
 El proyecto sigue los principios SOLID y de Programación Orientada a Objetos. 
 
@@ -82,3 +85,4 @@ python src/entrenamiento.py
 
 # 3. Simular la inferencia en producción (Evaluación + LLM)
 python src/prediccion.py
+
