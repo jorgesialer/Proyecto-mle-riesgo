@@ -9,6 +9,7 @@ Este proyecto propone e implementa un sistema automatizado de soporte a la toma 
 ## 2. Diccionario de Datos
 
 **Descripción del Dataset:**
+
 El conjunto de datos utilizado (`credit_risk_dataset.csv`) es un dataset tabular diseñado para la clasificación binaria de riesgo financiero. Contiene información histórica de 5,000 solicitantes, incluyendo variables demográficas (edad, género, ciudad), situación laboral (experiencia, tipo de empleo) y métricas financieras clave (ingresos, monto del préstamo, historial de score crediticio). El objetivo principal es predecir la viabilidad de otorgar un crédito mitigando el riesgo de impago.
 
 | Variable | Tipo de Dato | Descripción |
@@ -81,6 +82,9 @@ python src/prediccion.py
 ## 8. Conclusiones
 
 * **Eficacia del Enfoque Híbrido (ML + GenAI):** La combinación de un modelo clásico de Machine Learning (`RandomForestClassifier`) con un modelo de lenguaje fundacional (`Gemini 2.5 Flash`) demostró ser una arquitectura altamente viable para el sector financiero. Se logra solucionar el problema de la "caja negra" de los modelos complejos, traduciendo una certeza probabilística en un argumento de negocio legible y accionable (Explainable AI) en milisegundos.
+
 * **Robustez y Estabilidad de la Predicción:** El modelo predictivo alcanzó un desempeño óptimo en la fase offline con un F1-Score de 91.89% y un F1-Score medio de 93.31% bajo validación cruzada (K-Fold=5). Estos resultados confirman que el algoritmo es estructuralmente estable, mitiga el desbalance de clases mediante el ajuste de pesos (`class_weight='balanced'`) y no presenta síntomas de sobreajuste (*overfitting*).
+
 * **Determinación Contextual Coherente:** Mediante las pruebas cualitativas programadas en `prediccion.py`, se verificó que la API de Google Gemini respeta estrictamente las variables de entrada proporcionadas por el pipeline de datos (como el *CreditScore* y la relación ingreso/préstamo). El LLM contextualiza los factores financieros con coherencia corporativa y cero tolerancia a la alucinación de datos.
+
 * **Delimitación del Alcance Operativo:** Para la versión 1.0.0, el proyecto cumple exitosamente con el objetivo de automatizar de punta a punta el pipeline de datos, el entrenamiento parametrizado y la inferencia simulada mediante scripts estructurados en Programación Orientada a Objetos (POO). Al quedar fuera de alcance el despliegue en la nube, se establece una base técnica sólida para una futura migración hacia servicios gestionados y arquitectura de microservicios (Docker/Cloud).
