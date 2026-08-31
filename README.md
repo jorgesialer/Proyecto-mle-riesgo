@@ -1,90 +1,166 @@
-# Sistema de Evaluación de Riesgo Crediticio
+# Sistema de Prediccion de Aprobacion Crediticia
 
-## 1. Definición del Problema y Contexto
+## 1. Definicion del problema
 
-En el sector financiero, la evaluación de solicitudes de crédito requiere un equilibrio estricto entre precisión analítica y velocidad de respuesta. Los métodos tradicionales basados únicamente en reglas manuales son susceptibles a cuellos de botella operativos y sesgos cognitivos. 
+Este proyecto implementa un baseline de Machine Learning para predecir la
+variable historica `LoanApproved`: `1` representa una solicitud aprobada y `0`
+una solicitud rechazada.
 
-Este proyecto propone e implementa un sistema automatizado de soporte a la toma de decisiones que utiliza un modelo predictivo de Machine Learning (`RandomForestClassifier`) para evaluar instantáneamente la probabilidad de impago de un cliente. Adicionalmente, el sistema integra capacidades de Inteligencia Artificial Generativa (`Google Gemini API`) como capa de explicabilidad (Explainable AI - XAI), traduciendo el output probabilístico en un reporte gerencial estructurado para la validación final del Comité de Créditos.
+El target describe una decision historica de aprobacion. No representa un
+impago observado y, por tanto, las probabilidades producidas por el modelo no
+deben interpretarse como probabilidades de default.
 
-## 2. Diccionario de Datos
+## 2. Dataset
 
-**Descripción del Dataset:**
+El conjunto de datos corresponde a un dataset tabular diseñado para la
+clasificacion binaria de aprobacion crediticia con 5,000 registros historicos de
+solicitantes, incluyendo variables demograficas, situacion laboral y metricas
+financieras clave.
 
-El conjunto de datos utilizado (`credit_risk_dataset.csv`) es un dataset tabular diseñado para la clasificación binaria de riesgo financiero. Contiene información histórica de 5,000 solicitantes, incluyendo variables demográficas (edad, género, ciudad), situación laboral (experiencia, tipo de empleo) y métricas financieras clave (ingresos, monto del préstamo, historial de score crediticio). El objetivo principal es predecir la viabilidad de otorgar un crédito mitigando el riesgo de impago.
+La entrada canonica de entrenamiento es
+`data/loan_risk_prediction_dataset.csv`, con 5,000 solicitudes y las siguientes
+variables:
 
-| Variable | Tipo de Dato | Descripción |
+| Variable | Tipo | Descripcion |
 | :--- | :--- | :--- |
-| `Age` | Continuo | Edad del solicitante en años. |
-| `Income` | Continuo | Ingresos netos anuales del solicitante expresados en USD. |
-| `LoanAmount` | Continuo | Monto total del préstamo solicitado en USD. |
-| `CreditScore` | Continuo | Puntuación crediticia histórica del cliente (escala estándar, valores < 600 representan alto riesgo). |
-| `YearsExperience` | Continuo | Años de experiencia laboral comprobable del solicitante. |
-| `Gender` | Binario (0/1) | Variable categórica codificada (One-Hot) sobre el género. |
-| `Education` | Binario (0/1) | Variable categórica codificada (One-Hot) sobre el nivel educativo máximo alcanzado. |
-| `City` | Binario (0/1) | Variable categórica codificada (One-Hot) sobre la ciudad de residencia. |
-| `EmploymentType` | Binario (0/1) | Variable categórica codificada (One-Hot) sobre la situación laboral actual. |
-| `LoanApproved` | Binario (0/1) | **Variable Objetivo (Target)**: Representa la aprobación (`1`) o el rechazo (`0`) del crédito. |
+| `Age` | Numerica | Edad del solicitante. |
+| `Income` | Numerica | Ingreso anual declarado. |
+| `LoanAmount` | Numerica | Monto solicitado. |
+| `CreditScore` | Numerica | Puntaje crediticio disponible en la solicitud. |
+| `YearsExperience` | Numerica | Anos de experiencia laboral. |
+| `Gender` | Categorica | Genero registrado. |
+| `Education` | Categorica | Nivel educativo registrado. |
+| `City` | Categorica | Ciudad registrada. |
+| `EmploymentType` | Categorica | Tipo de empleo registrado. |
+| `LoanApproved` | Binaria | Target: aprobada (`1`) o rechazada (`0`). |
 
-## 3. Diagrama de Flujo del Sistema
-El siguiente esquema ilustra la arquitectura de la solución, desde la ingesta de datos hasta la emisión del reporte generado por la IA.
+Los valores negativos de `Income` y `LoanAmount` se consideran invalidos y se
+convierten en valores faltantes. No se asume que sean errores de signo. La
+conversion es determinista y ocurre dentro del pipeline antes de la imputacion.
 
-![Diagrama de Flujo del Sistema](docs/diagrama_flujo.png)
+El archivo historico `data/credit_risk_dataset_limpio.csv` se conserva, pero ya
+no es una entrada del entrenamiento canonico.
 
-## 4. Tarjeta del Modelo (Model Card)
+## 3. Pipeline reproducible
 
-Para un análisis técnico exhaustivo sobre la arquitectura del modelo, los datos de entrenamiento, consideraciones éticas y limitaciones, por favor consulta el documento adjunto:
+El flujo actual es:
 
-**[Ver Model Card Detallado](model-card.md)**
+```text
+CSV crudo
+  -> split estratificado train/holdout
+  -> validacion cruzada sobre training data
+       -> invalidacion de negativos
+       -> imputacion numerica por mediana
+       -> imputacion categorica por moda
+       -> OneHotEncoder(handle_unknown="ignore")
+       -> RandomForestClassifier
+  -> ajuste del mismo pipeline con todo el training set
+  -> evaluacion unica en el holdout final
+  -> artifacts/pipeline_rf_baseline.pkl
+```
 
-## 5. Resultados y Métricas
+El `ColumnTransformer` y el `RandomForestClassifier` se guardan como un unico
+artefacto. Imputadores y encoder se ajustan exclusivamente con training data y,
+durante validacion cruzada, exclusivamente con el fold de entrenamiento.
+La inferencia exige exactamente las nueve columnas predictoras documentadas y
+rechaza columnas faltantes, duplicadas o inesperadas con un error de contrato.
 
-El modelo fue evaluado utilizando un conjunto de datos de prueba (test set) que representa el 20% de los datos originales, obteniendo los siguientes resultados estáticos (offline):
+Configuracion del baseline:
 
-* **Accuracy (Exactitud):** 96.40%
-* **Precision (Precisión):** 95.33%
-* **Recall (Sensibilidad):** 88.70%
-* **F1-Score:** 91.89%
-* **Validación Cruzada (K-Fold=5):** F1-Score promedio de 93.31%, lo que demuestra que el modelo es estable y no sufre de sobreajuste.
+- `RandomForestClassifier`
+- `n_estimators=100`
+- `class_weight="balanced"`
+- `random_state=42`
+- split estratificado 80/20
+- validacion cruzada estratificada de 5 folds sobre el 80% de training
 
-*Nota sobre el alcance:* Para la versión 1.0.0 de este proyecto, la evaluación se limita estrictamente a métricas estáticas (offline). La implementación de telemetría y métricas dinámicas (online) en un entorno de producción real queda fuera del alcance de esta entrega y se considerará para futuras iteraciones.
+`StandardScaler` no se utiliza porque el baseline es un Random Forest.
 
-## 6. Estrategia de Git Utilizada
+## 4. Resultados del baseline saneado
 
-Para el desarrollo de este proyecto se implementó un flujo de trabajo estructurado para el control de versiones:
-* Se mantuvo una rama `main` protegida que contiene únicamente el código estable y funcional.
-* El desarrollo iterativo (creación de notebooks, scripts de Python y redacción de documentación) se realizó en una rama paralela llamada `development`.
-* La integración de los cambios finales se ejecutó mediante un **Pull Request (PR)** hacia la rama `main`. Finalmente, se generó un *Release v1.0.0* para empaquetar la versión final del sistema.
+### Validacion cruzada sobre training data
 
-## 7. Estructura del Repositorio y Ejecución
+Valores medios y desviacion estandar de 5 folds:
 
-El proyecto sigue los principios SOLID y de Programación Orientada a Objetos. 
+| Metrica | Media | Desviacion estandar |
+| :--- | ---: | ---: |
+| Precision | 0.965650 | 0.018981 |
+| Recall | 0.904495 | 0.025861 |
+| F1 | 0.933760 | 0.015653 |
+| ROC-AUC | 0.955381 | 0.014626 |
+| PR-AUC | 0.918558 | 0.027800 |
 
-### Organización
-* `data/`: Contiene los conjuntos de datos crudos y limpios (`.csv`).
-* `notebooks/`: Entornos de experimentación y Análisis Exploratorio de Datos.
-* `artifacts/`: Archivos binarios serializados (`.pkl`) del modelo entrenado y el escalador.
-* `src/`: Scripts de código fuente para uso en producción.
+### Holdout final
 
-### Ejecución
-Asegúrese de tener el entorno virtual activo e instale las dependencias desde `requirements.txt`. El flujo de ejecución es el siguiente:
+El holdout no se utilizo para seleccion, tuning ni demostraciones:
+
+| Metrica | Resultado |
+| :--- | ---: |
+| Precision | 0.940092 |
+| Recall | 0.886957 |
+| F1 | 0.912752 |
+| ROC-AUC | 0.944130 |
+| PR-AUC | 0.903451 |
+
+En este proyecto, PR-AUC se calcula y reporta mediante Average Precision
+(`average_precision_score`).
+
+## 5. Ejecucion
+
+Desde la raiz del repositorio y con el entorno del proyecto activo:
 
 ```bash
-# 1. Ejecutar pipeline de limpieza de datos
-python src/preprocesamiento.py
+# Sincronizar el entorno canonico desde pyproject.toml y uv.lock
+uv sync
 
-# 2. Entrenar el modelo y generar los artefactos (.pkl)
-python src/entrenamiento.py
+# Ejecutar tests
+uv run python -m unittest discover -s tests -v
 
-# 3. Simular la inferencia en producción (Evaluación + LLM)
-python src/prediccion.py
+# Entrenar, validar, evaluar y persistir el pipeline
+uv run python -m src.entrenamiento
+
+# Simular inferencia con un perfil crudo
+uv run python -m src.prediccion
 ```
+
+`pyproject.toml` y `uv.lock` son las fuentes canonicas de dependencias. El
+proyecto no mantiene un `requirements.txt` paralelo.
+
+`prediccion.py` recibe las variables categoricas originales; no requiere
+columnas one-hot ni un scaler externo.
+
+## 6. Estructura relevante
+
+- `data/`: dataset crudo y archivos historicos locales.
+- `src/preprocesamiento.py`: contrato de variables y construccion del pipeline.
+- `src/entrenamiento.py`: split, CV, evaluacion y persistencia.
+- `src/prediccion.py`: inferencia con el pipeline unico.
+- `tests/`: pruebas del contrato de preprocesamiento e inferencia.
+- `artifacts/pipeline_rf_baseline.pkl`: pipeline evaluado y persistido.
+- `notebooks/`: evidencia historica de experimentacion V1.
+
+Los notebooks no son la fuente canonica del pipeline actual y sus resultados
+anteriores no deben atribuirse al artefacto saneado.
+
+## 7. Alcance y limitaciones
+
+- El modelo predice aprobaciones historicas, no impago ni capacidad causal de
+  repago.
+- No se ha realizado todavia seleccion de modelos V2 ni tuning.
+- La integracion Gemini existente es un componente legado de V1. No constituye
+  explicabilidad basada en evidencia del modelo. Su prompt identifica que el
+  resultado proviene de ML y prohibe atribuir causalidad sin evidencia.
+- Este baseline no implementa MLflow, nuevas features, XAI, RAG, Qdrant,
+  LangGraph ni MCP.
+- Los atributos demograficos pueden reproducir sesgos presentes en decisiones
+  historicas y requieren una evaluacion de equidad separada.
 
 ## 8. Conclusiones
 
-* **Eficacia del Enfoque Híbrido (ML + GenAI):** La combinación de un modelo clásico de Machine Learning (`RandomForestClassifier`) con un modelo de lenguaje fundacional (`Gemini 2.5 Flash`) demostró ser una arquitectura altamente viable para el sector financiero. Se logra solucionar el problema de la "caja negra" de los modelos complejos, traduciendo una certeza probabilística en un argumento de negocio legible y accionable (Explainable AI) en milisegundos.
+- **Eficacia del Enfoque Hibrido (ML + GenAI):** La combinacion de un modelo clasico de Machine Learning (`RandomForestClassifier`) con un modelo de lenguaje fundacional (`Gemini 2.5 Flash`) demostro ser una arquitectura viable para el sector financiero, integrando la prediccion probabilistica del baseline con una sintesis descriptiva para comites de credito. En fases posteriores V2 se incorporara explicabilidad formal basada en evidencia (XAI) para sustentar los reportes.
 
-* **Robustez y Estabilidad de la Predicción:** El modelo predictivo alcanzó un desempeño óptimo en la fase offline con un F1-Score de 91.89% y un F1-Score medio de 93.31% bajo validación cruzada (K-Fold=5). Estos resultados confirman que el algoritmo es estructuralmente estable, mitiga el desbalance de clases mediante el ajuste de pesos (`class_weight='balanced'`) y no presenta síntomas de sobreajuste (*overfitting*).
+- **Robustez y Estabilidad de la Prediccion:** El modelo predictivo alcanzo en el baseline saneado un F1-Score medio de 0.933760 (+/- 0.015653) bajo validacion cruzada estratificada de 5 folds y un F1-Score de 0.912752 en el holdout final (ROC-AUC de 0.944130 y PR-AUC de 0.903451). Estos resultados confirman que el pipeline unificado y fold-safe mitiga el desbalance mediante `class_weight='balanced'` y previene data leakage.
 
-* **Determinación Contextual Coherente:** Mediante las pruebas cualitativas programadas en `prediccion.py`, se verificó que la API de Google Gemini respeta estrictamente las variables de entrada proporcionadas por el pipeline de datos (como el *CreditScore* y la relación ingreso/préstamo). El LLM contextualiza los factores financieros con coherencia corporativa y cero tolerancia a la alucinación de datos.
+- **Determinacion Contextual Coherente:** Mediante la inferencia simulada en `src/prediccion.py`, el modelo de lenguaje contextualiza los factores financieros respetando las variables de entrada proporcionadas por el pipeline de datos, manteniendo un tono corporativo y reconociendo explicitamente su naturaleza descriptiva sin atribuir causalidad no demostrada.
 
-* **Delimitación del Alcance Operativo:** Para la versión 1.0.0, el proyecto cumple exitosamente con el objetivo de automatizar de punta a punta el pipeline de datos, el entrenamiento parametrizado y la inferencia simulada mediante scripts estructurados en Programación Orientada a Objetos (POO). Al quedar fuera de alcance el despliegue en la nube, se establece una base técnica sólida para una futura migración hacia servicios gestionados y arquitectura de microservicios (Docker/Cloud).
+- **Delimitacion del Alcance Operativo:** Para la version 1.0.0 saneada, el proyecto cumple exitosamente con el objetivo de automatizar de punta a punta el pipeline de datos, el entrenamiento parametrizado, la inferencia y una suite de pruebas unitarias bajo `uv`. Se establece asi una base tecnica solida y reproducible para el desarrollo de las fases V2 (nuevas variables, MLflow, XAI, RAG y orquestacion con LangGraph).
