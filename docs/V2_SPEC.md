@@ -234,11 +234,15 @@ numeric and eleven categorical. Audit-only attributes and `LoanApproved` are
 excluded through an explicit whitelist before splitting.
 
 The initial evaluation design uses an 80/20 stratified train/final-holdout
-split. Cross-validation and future model selection operate only on the 80%
-training partition. Feature engineering, median/mode imputation and
-`OneHotEncoder(handle_unknown="ignore")` are composed inside the sklearn
-pipeline so every future CV fold remains leakage-safe. No V2 estimator has
-been selected or trained in this phase.
+split. Cross-validation and model selection operate strictly on the 80%
+training partition (40,000 samples across 5 stratified folds). Feature
+engineering, median/mode imputation and `OneHotEncoder(handle_unknown="ignore")`
+are composed inside the sklearn pipeline so every CV fold remains leakage-safe.
+The V2 benchmark has been executed comparing Random Forest, XGBoost, and
+CatBoost; `catboost_tuned_02` was selected as champion based on CV F1 score
+and evaluated once on the final holdout. All benchmark runs, metrics, and
+artifacts are persisted in `artifacts/benchmark_v2_summary.json` with remote
+tracking and model registry on DagsHub.
 
 ### Data provenance requirement
 
