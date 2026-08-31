@@ -10,7 +10,7 @@ El target describe una decision historica de aprobacion. No representa un
 impago observado y, por tanto, las probabilidades producidas por el modelo no
 deben interpretarse como probabilidades de default.
 
-## 2. Dataset
+## 2. Dataset V1 (baseline historico)
 
 El conjunto de datos corresponde a un dataset tabular diseñado para la
 clasificacion binaria de aprobacion crediticia con 5,000 registros historicos de
@@ -40,6 +40,126 @@ conversion es determinista y ocurre dentro del pipeline antes de la imputacion.
 
 El archivo historico `data/credit_risk_dataset_limpio.csv` se conserva, pero ya
 no es una entrada del entrenamiento canonico.
+
+V1 se conserva como baseline historico independiente. No se enriquece con
+columnas sinteticas ni se mezcla con la fuente de V2.
+
+### Dataset V2 aprobado
+
+V2 utiliza datos reales del **HMDA 2023 One Year National Loan-Level Dataset**
+oficial de CFPB/FFIEC (fecha de congelamiento: 19 de mayo de 2025). El target
+conceptual sigue siendo `LoanApproved`: acciones originadas o aprobadas no
+aceptadas se mapean a `1`, y solicitudes denegadas a `0`.
+
+El constructor consume mediante streaming gzip un export oficial filtrado,
+sin guardar el LAR nacional completo. Aplica los filtros de poblacion,
+reservoir sampling uniforme con semilla 42 y genera:
+
+- `data/hmda_2023_loan_approval_v2.csv`: 50,000 filas y 21 columnas.
+- `data/hmda_2023_loan_approval_v2.metadata.json`: fuente, filtros, roles,
+  distribucion del target y missingness global/por clase.
+- `docs/HMDA_V2_DATA_DICTIONARY.md`: definiciones, missing codes y riesgos de
+  leakage.
+
+Construccion reproducible desde la raiz:
+
+```bash
+uv run python -m src.construir_dataset_v2
+```
+
+Las 16 variables crudas de ML estan separadas de cuatro atributos
+`audit_only` (`applicant_age`, `derived_race`, `derived_ethnicity`,
+`derived_sex`). El contrato de codigo impide incluir estos ultimos como
+predictores. Tras auditar el sample se retiraron `negative_amortization`
+(constante), `introductory_rate_period` (93.214% de nulos estructurales) y
+`other_nonamortizing_features` (0.088% positivos). `total_units` se conserva
+porque existen 868 registros multiunidad distribuidos en cuatro categorias.
+
+### Feature engineering y pipeline V2
+
+`src/preprocesamiento_v2.py` implementa feature engineering determinista para:
+
+- Loan-to-Income y PropertyValue-to-Income, respetando que income HMDA esta en
+  miles de USD.
+- Loan-to-Property-Value.
+- plazo del prestamo en anos.
+- normalizacion de DTI en siete bandas interpretables, sin puntos medios
+  inventados.
+- conteo de los flags contractuales interest-only y balloon payment.
+
+El flujo aprobado para la siguiente fase es:
+
+```text
+Dataset V2 crudo
+  -> separar audit-only y LoanApproved mediante whitelist
+  -> split estratificado 80/20
+  -> CV exclusivamente sobre el 80% de training
+       -> feature engineering determinista
+       -> imputacion numerica por mediana
+       -> imputacion categorica por moda
+       -> OneHotEncoder(handle_unknown="ignore")
+       -> estimador inyectado por el experimento
+  -> evaluacion unica del champion en el holdout final
+```
+
+El constructor del pipeline exige inyectar explicitamente un estimador. La
+seleccion del champion se realiza por separado mediante el benchmark descrito
+a continuacion, sin acoplar el preprocesamiento a una familia de modelos.
+
+### Benchmarking V2 y MLflow
+
+La fase de benchmarking compara exclusivamente:
+
+- `RandomForestClassifier` como baseline;
+- `XGBClassifier`;
+- `CatBoostClassifier`.
+
+El protocolo reserva un holdout estratificado de 20%. El 80% restante se usa
+para CV estratificada de cinco folds, robustness checks, tuning acotado y
+seleccion por F1 medio; Average Precision y ROC-AUC actuan como desempates. El
+holdout se evalua una sola vez despues de seleccionar el champion.
+
+La comparacion de robustez enfrenta el esquema completo con una configuracion
+que excluye income, DTI, CLTV, property value y todas las features derivadas
+que reutilizan esa informacion. Accuracy no se usa para seleccionar modelos.
+
+Ejecucion:
+
+```bash
+uv sync
+uv run python -m src.entrenamiento_v2
+```
+
+Backend local predeterminado:
+
+```bash
+$env:MLFLOW_BACKEND = "local"
+uv run python -m src.entrenamiento_v2
+uv run mlflow server --backend-store-uri sqlite:///mlflow.db --port 5000
+```
+
+La interfaz queda disponible en `http://127.0.0.1:5000`. Los metadatos se
+guardan en `mlflow.db` y los artefactos en `mlartifacts/`; ambos se excluyen de
+Git.
+
+Para DagsHub deben configurarse de forma segura, sin escribirlas en archivos
+versionados:
+
+```bash
+$env:MLFLOW_BACKEND = "dagshub"
+$env:MLFLOW_TRACKING_URI = "https://dagshub.com/<usuario>/<repositorio>.mlflow"
+$env:MLFLOW_TRACKING_USERNAME = "<usuario>"
+$env:MLFLOW_TRACKING_PASSWORD = "<token>"
+uv run python -m src.entrenamiento_v2
+```
+
+La URL de `MLFLOW_TRACKING_URI` abre también la tabla remota de experimentos.
+Cada run usa un nombre descriptivo y tags de familia, configuración, etapa,
+versión del dataset y estado de selección.
+
+Las metricas V1 y las futuras metricas V2 **no son directamente comparables**:
+usan fuentes, poblaciones, variables y procesos generadores de decisiones
+distintos.
 
 ## 3. Pipeline reproducible
 
@@ -136,6 +256,11 @@ columnas one-hot ni un scaler externo.
 - `src/entrenamiento.py`: split, CV, evaluacion y persistencia.
 - `src/prediccion.py`: inferencia con el pipeline unico.
 - `tests/`: pruebas del contrato de preprocesamiento e inferencia.
+- `src/construir_dataset_v2.py`: extraccion, filtros, sampling y metadata HMDA.
+- `src/preprocesamiento_v2.py`: feature engineering, split y pipeline V2.
+- `src/entrenamiento_v2.py`: benchmark, robustness, tuning y champion V2.
+- `src/mlflow_utils.py`: configuracion MLflow local/DagsHub.
+- `docs/HMDA_V2_DATA_DICTIONARY.md`: contrato de variables del Dataset V2.
 - `artifacts/pipeline_rf_baseline.pkl`: pipeline evaluado y persistido.
 - `notebooks/`: evidencia historica de experimentacion V1.
 
@@ -146,12 +271,13 @@ anteriores no deben atribuirse al artefacto saneado.
 
 - El modelo predice aprobaciones historicas, no impago ni capacidad causal de
   repago.
-- No se ha realizado todavia seleccion de modelos V2 ni tuning.
+- El benchmark V2 realiza una comparacion y tuning acotados; no constituye una
+  busqueda exhaustiva de hiperparametros.
 - La integracion Gemini existente es un componente legado de V1. No constituye
   explicabilidad basada en evidencia del modelo. Su prompt identifica que el
   resultado proviene de ML y prohibe atribuir causalidad sin evidencia.
-- Este baseline no implementa MLflow, nuevas features, XAI, RAG, Qdrant,
-  LangGraph ni MCP.
+- El tracking del benchmark V2 usa MLflow. Todavia no se implementan XAI, RAG,
+  Qdrant, LangGraph ni MCP.
 - Los atributos demograficos pueden reproducir sesgos presentes en decisiones
   historicas y requieren una evaluacion de equidad separada.
 
