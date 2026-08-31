@@ -1,0 +1,177 @@
+{
+  "dataset": "HMDA 2023 Loan Approval V2",
+  "source": {
+    "publisher": "CFPB/FFIEC",
+    "release": "One Year National Loan-Level Dataset 2023",
+    "data_freeze_date": "2025-05-19",
+    "official_publication_page": "https://ffiec.cfpb.gov/data-publication/2023",
+    "api_documentation": "https://ffiec.cfpb.gov/documentation/api/data-browser/",
+    "exact_query": "https://ffiec.cfpb.gov/v2/data-browser-api/view/nationwide/csv?years=2023&actions_taken=1,2,3&total_units=1,2,3,4",
+    "retrieved_at_utc": "2026-08-31T15:25:05.879895+00:00",
+    "raw_national_file_persisted": false,
+    "stream_compression": "gzip"
+  },
+  "population_filters": {
+    "activity_year": 2023,
+    "action_taken": [
+      1,
+      2,
+      3
+    ],
+    "reverse_mortgage": 2,
+    "open-end_line_of_credit": 2,
+    "business_or_commercial_purpose": 2,
+    "total_units": [
+      1,
+      2,
+      3,
+      4
+    ]
+  },
+  "target_mapping": {
+    "1": 1,
+    "2": 1,
+    "3": 0
+  },
+  "sampling": {
+    "method": "uniform reservoir sampling after population filters",
+    "random_state": 42,
+    "requested_rows": 50000,
+    "artificial_class_balancing": false,
+    "source_rows_streamed": 8018893,
+    "eligible_population_rows": 5570540,
+    "eligible_population_target_counts": {
+      "0": 1235251,
+      "1": 4335289
+    }
+  },
+  "shape": {
+    "rows": 50000,
+    "columns": 21
+  },
+  "target_distribution": {
+    "0": {
+      "count": 11041,
+      "proportion": 0.22082
+    },
+    "1": {
+      "count": 38959,
+      "proportion": 0.77918
+    }
+  },
+  "missingness_global": {
+    "income": 0.01374,
+    "loan_amount": 0.0,
+    "loan_term": 0.01362,
+    "loan_purpose": 0.0,
+    "loan_type": 0.0,
+    "lien_status": 0.0,
+    "preapproval": 0.0,
+    "debt_to_income_ratio": 0.01878,
+    "combined_loan_to_value_ratio": 0.07734,
+    "property_value": 0.02562,
+    "occupancy_type": 0.0,
+    "construction_method": 0.0,
+    "total_units": 0.0,
+    "submission_of_application": 4e-05,
+    "interest_only_payment": 0.0,
+    "balloon_payment": 0.0,
+    "applicant_age": 0.00106,
+    "derived_race": 0.0,
+    "derived_ethnicity": 0.0,
+    "derived_sex": 0.0,
+    "LoanApproved": 0.0
+  },
+  "missingness_by_target": {
+    "0": {
+      "income": 0.02382,
+      "loan_amount": 0.0,
+      "loan_term": 0.057241,
+      "loan_purpose": 0.0,
+      "loan_type": 0.0,
+      "lien_status": 0.0,
+      "preapproval": 0.0,
+      "debt_to_income_ratio": 0.052894,
+      "combined_loan_to_value_ratio": 0.203061,
+      "property_value": 0.086315,
+      "occupancy_type": 0.0,
+      "construction_method": 0.0,
+      "total_units": 0.0,
+      "submission_of_application": 0.0,
+      "interest_only_payment": 0.0,
+      "balloon_payment": 0.0,
+      "applicant_age": 0.001268,
+      "derived_race": 0.0,
+      "derived_ethnicity": 0.0,
+      "derived_sex": 0.0,
+      "LoanApproved": 0.0
+    },
+    "1": {
+      "income": 0.010883,
+      "loan_amount": 0.0,
+      "loan_term": 0.001258,
+      "loan_purpose": 0.0,
+      "loan_type": 0.0,
+      "lien_status": 0.0,
+      "preapproval": 0.0,
+      "debt_to_income_ratio": 0.009112,
+      "combined_loan_to_value_ratio": 0.041711,
+      "property_value": 0.008419,
+      "occupancy_type": 0.0,
+      "construction_method": 0.0,
+      "total_units": 0.0,
+      "submission_of_application": 5.1e-05,
+      "interest_only_payment": 0.0,
+      "balloon_payment": 0.0,
+      "applicant_age": 0.001001,
+      "derived_race": 0.0,
+      "derived_ethnicity": 0.0,
+      "derived_sex": 0.0,
+      "LoanApproved": 0.0
+    }
+  },
+  "column_roles": {
+    "predictor": [
+      "income",
+      "loan_amount",
+      "loan_term",
+      "loan_purpose",
+      "loan_type",
+      "lien_status",
+      "preapproval",
+      "debt_to_income_ratio",
+      "combined_loan_to_value_ratio",
+      "property_value",
+      "occupancy_type",
+      "construction_method",
+      "total_units",
+      "submission_of_application",
+      "interest_only_payment",
+      "balloon_payment"
+    ],
+    "audit_only": [
+      "applicant_age",
+      "derived_race",
+      "derived_ethnicity",
+      "derived_sex"
+    ],
+    "target": [
+      "LoanApproved"
+    ]
+  },
+  "schema_decisions": {
+    "removed_after_audit": {
+      "negative_amortization": "constant in the 50,000-row sample",
+      "introductory_rate_period": "93.214% structural missingness",
+      "other_nonamortizing_features": "44 positive values (0.088%)"
+    },
+    "retained_after_audit": {
+      "total_units": "868 multi-unit rows and four observed categories"
+    }
+  },
+  "output": {
+    "path": "data/hmda_2023_loan_approval_v2.csv",
+    "size_bytes": 5351058,
+    "sha256": "57408ac78a0db54d9ed94f805e00a300b473f1232f5fed5650fa5fa3105dc36b"
+  }
+}

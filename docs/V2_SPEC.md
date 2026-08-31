@@ -171,58 +171,78 @@ ML evidence          Credit-policy RAG
 
 ## 6. Dataset V2
 
-The target `LoanApproved` will remain unchanged.
+The approved source is the official CFPB/FFIEC **HMDA 2023 One Year National
+Loan-Level Dataset**, with a data freeze date of May 19, 2025. V1 remains an
+independent historical baseline; no joins or synthetic enrichment are made
+between V1 and V2.
 
-The priority is not simply increasing the number of rows.
+The binary target remains conceptually unchanged:
 
-The goal is to increase the informational richness of each application.
+- `action_taken = 1` (originated) -> `LoanApproved = 1`
+- `action_taken = 2` (approved but not accepted) -> `LoanApproved = 1`
+- `action_taken = 3` (denied) -> `LoanApproved = 0`
 
-Candidate additional variables will be evaluated before implementation.
+All other actions are excluded and `action_taken` is removed immediately
+after target construction.
 
-Possible categories:
+The V2 population is limited to 2023 closed-end, non-reverse,
+non-business/commercial applications for properties with one to four units.
+The target dataset is an unbalanced, reproducible 50,000-row reservoir sample
+using `random_state=42`; no SMOTE or artificial 50/50 balancing is applied.
 
-### Applicant information
+The prediction moment is immediately before the final decision, after
+underwriting inputs are available. The final raw dataset contains 16 candidate
+predictors covering income, requested loan, DTI, CLTV, property value, loan
+and property characteristics, and proposed non-amortizing terms. It also
+contains four `audit_only` columns (`applicant_age`, `derived_race`,
+`derived_ethnicity`, `derived_sex`) that are explicitly prohibited from
+entering model predictors.
 
-- Age
-- Income
-- EmploymentType
-- YearsExperience / EmploymentTenure
-- Education
-- HousingStatus
+Identifiers, geography, protected raw attributes, denial reasons, AUS
+results, purchaser type, interest/rate spread, pricing/cost fields and other
+post-decision fields are blacklisted. The full roles, source names, missing
+codes and leakage notes are documented in `docs/HMDA_V2_DATA_DICTIONARY.md`.
 
-### Credit information
+The official national raw file is not stored. Construction streams the
+filtered Data Browser CSV in gzip, applies remaining population filters and
+reservoir sampling, and persists only the final 21-column sample plus
+reproducibility metadata.
 
-- CreditScore
-- CreditHistoryYears
-- ActiveLoans
-- PreviousLoans
-- LatePayments
-- PreviousDefaults
-- CreditUtilization
-- RecentCreditInquiries
+### Final schema audit
 
-### Loan information
+The 50,000-row sample removed three low-information variables:
 
-- LoanAmount
-- LoanTermMonths
-- LoanPurpose
-- ExistingMonthlyDebt
+- `negative_amortization`: constant (`2`) in all rows;
+- `introductory_rate_period`: 93.214% structural missingness;
+- `other_nonamortizing_features`: only 44 positive values (0.088%).
 
-### Candidate engineered features
+`total_units` is retained as categorical because 868 multi-unit applications
+remain across four observed categories. Income, DTI, CLTV and property value
+are also retained, but their missingness is materially higher for denied
+applications. No missingness indicator is added at this stage.
 
-- DebtToIncome
-- LoanToIncome
-- PaymentToIncome
-- EmploymentStability
-- DelinquencyRate
-- CreditUtilizationRatio
+### Approved feature engineering contract
 
-Important:
+Deterministic feature engineering produces Loan-to-Income,
+PropertyValue-to-Income, Loan-to-Property-Value, loan term in years, a
+canonical seven-band DTI category and a count of the surviving non-amortizing
+contract flags. Invalid divisions produce missing values; they are not filled
+until the training-only preprocessing pipeline is fitted.
 
-The final variable set has NOT yet been approved.
+The model input after deterministic feature engineering has 20 columns: nine
+numeric and eleven categorical. Audit-only attributes and `LoanApproved` are
+excluded through an explicit whitelist before splitting.
 
-Potential target leakage must be analyzed before generating or using any
-additional variable.
+The initial evaluation design uses an 80/20 stratified train/final-holdout
+split. Cross-validation and model selection operate strictly on the 80%
+training partition (40,000 samples across 5 stratified folds). Feature
+engineering, median/mode imputation and `OneHotEncoder(handle_unknown="ignore")`
+are composed inside the sklearn pipeline so every CV fold remains leakage-safe.
+The V2 benchmark has been executed comparing Random Forest, XGBoost, and
+CatBoost; `catboost_tuned_02` was selected as champion based on CV F1 score
+and evaluated once on the final holdout. All benchmark runs, metrics, and
+artifacts are persisted in `artifacts/benchmark_v2_summary.json` with remote
+tracking and model registry on DagsHub.
 
 ### Data provenance requirement
 
@@ -233,8 +253,7 @@ the loan application decision.
 
 No variable derived from post-decision outcomes may be used as a predictor.
 
-Synthetic features must not be generated from `LoanApproved` or from
-information derived from the target.
+This approved dataset uses no synthetic rows or synthetic raw variables.
 
 Before implementation, each candidate variable must be classified as:
 

@@ -1,0 +1,518 @@
+{
+  "dataset_version": "hmda_2023_loan_approval_v2",
+  "dataset_sha256": "57408ac78a0db54d9ed94f805e00a300b473f1232f5fed5650fa5fa3105dc36b",
+  "positive_class": 1,
+  "selection_criterion": [
+    "cv_f1_mean",
+    "cv_average_precision_mean",
+    "cv_roc_auc_mean"
+  ],
+  "protocol": {
+    "train_rows": 40000,
+    "holdout_rows": 10000,
+    "cv_folds": 5,
+    "random_state": 42,
+    "holdout_used_for_selection": false
+  },
+  "tracking": {
+    "backend": "dagshub",
+    "tracking_uri": "https://dagshub.com/jorgesialer/Proyecto-mle-riesgo.mlflow",
+    "experiment_name": "credit-approval-v2-benchmark",
+    "experiment_id": "0",
+    "ui_url": "https://dagshub.com/jorgesialer/Proyecto-mle-riesgo.mlflow",
+    "registry_supported": true
+  },
+  "cv_runs": [
+    {
+      "run_id": "b9c3f0c3c7a0476aa7ca35ed4c70ad00",
+      "run_name": "rf_baseline_full",
+      "model_family": "random_forest",
+      "feature_config": "full",
+      "stage": "baseline",
+      "params": {
+        "n_estimators": 250,
+        "max_depth": null,
+        "min_samples_leaf": 1
+      },
+      "metrics": {
+        "cv_precision_mean": 0.8827670669018215,
+        "cv_precision_std": 0.0024241060956825687,
+        "cv_recall_mean": 0.9572303254521852,
+        "cv_recall_std": 0.0031356692177406283,
+        "cv_f1_mean": 0.9184912926719437,
+        "cv_f1_std": 0.0026519853729521357,
+        "cv_roc_auc_mean": 0.8656270461151298,
+        "cv_roc_auc_std": 0.005322052518606415,
+        "cv_average_precision_mean": 0.9452094280036991,
+        "cv_average_precision_std": 0.0027899268672204607,
+        "fit_time_mean": 3.2372658252716064,
+        "fit_time_std": 0.06298624548637458,
+        "score_time_mean": 0.6090080261230468,
+        "score_time_std": 0.023432038756763994
+      },
+      "tracked_feature_importance": {
+        "total_units": 0.0046524033987286936,
+        "loan_to_property_value": 0.09066466707191327,
+        "non_amortizing_feature_count": 0.0017534283900838305
+      }
+    },
+    {
+      "run_id": "a1b96422f3d2424f8b4ca79d26e97cf8",
+      "run_name": "rf_robust_without_workflow_features",
+      "model_family": "random_forest",
+      "feature_config": "without_workflow_features",
+      "stage": "robustness",
+      "params": {
+        "n_estimators": 250,
+        "max_depth": null,
+        "min_samples_leaf": 1
+      },
+      "metrics": {
+        "cv_precision_mean": 0.8378257397054496,
+        "cv_precision_std": 0.0017416193697875734,
+        "cv_recall_mean": 0.9220968876215941,
+        "cv_recall_std": 0.004101067387265644,
+        "cv_f1_mean": 0.8779388665464193,
+        "cv_f1_std": 0.002184297871368539,
+        "cv_roc_auc_mean": 0.7462836089710911,
+        "cv_roc_auc_std": 0.006771984170912165,
+        "cv_average_precision_mean": 0.8895162690347567,
+        "cv_average_precision_std": 0.0037164385160395005,
+        "fit_time_mean": 2.4040533542633056,
+        "fit_time_std": 0.13980585670440826,
+        "score_time_mean": 0.6651656150817871,
+        "score_time_std": 0.04677526552191403
+      },
+      "tracked_feature_importance": {
+        "total_units": 0.010635874954774718,
+        "loan_to_property_value": 0.0,
+        "non_amortizing_feature_count": 0.003444499735650063
+      }
+    },
+    {
+      "run_id": "a270885422c94d54bca3c56ac15950a8",
+      "run_name": "rf_tuned_01",
+      "model_family": "random_forest",
+      "feature_config": "full",
+      "stage": "tuning",
+      "params": {
+        "n_estimators": 400,
+        "max_depth": 18,
+        "min_samples_leaf": 2,
+        "max_features": 0.7
+      },
+      "metrics": {
+        "cv_precision_mean": 0.8831775390154103,
+        "cv_precision_std": 0.001812004795478242,
+        "cv_recall_mean": 0.9612730238697121,
+        "cv_recall_std": 0.0023869350842881886,
+        "cv_f1_mean": 0.9205710473966036,
+        "cv_f1_std": 0.0018735378510097332,
+        "cv_roc_auc_mean": 0.8732262478958799,
+        "cv_roc_auc_std": 0.005843331089516757,
+        "cv_average_precision_mean": 0.950439211640707,
+        "cv_average_precision_std": 0.0028694173737907613,
+        "fit_time_mean": 12.304654741287232,
+        "fit_time_std": 0.2345729867289178,
+        "score_time_mean": 1.0291930198669434,
+        "score_time_std": 0.19883264106196916
+      },
+      "tracked_feature_importance": {
+        "total_units": 0.0020906042529366007,
+        "loan_to_property_value": 0.08764601890897812,
+        "non_amortizing_feature_count": 0.0010013344624003337
+      }
+    },
+    {
+      "run_id": "49eba72f720542b1b882f1d259d6d062",
+      "run_name": "xgb_baseline_full",
+      "model_family": "xgboost",
+      "feature_config": "full",
+      "stage": "baseline",
+      "params": {
+        "n_estimators": 250,
+        "max_depth": 5,
+        "learning_rate": 0.05,
+        "subsample": 0.9,
+        "colsample_bytree": 0.9
+      },
+      "metrics": {
+        "cv_precision_mean": 0.8813803408975638,
+        "cv_precision_std": 0.0027064573986032626,
+        "cv_recall_mean": 0.9671767998175442,
+        "cv_recall_std": 0.0023154071194027557,
+        "cv_f1_mean": 0.9222870279361739,
+        "cv_f1_std": 0.002457890269578253,
+        "cv_roc_auc_mean": 0.8769224097834133,
+        "cv_roc_auc_std": 0.005005153396392471,
+        "cv_average_precision_mean": 0.9522981205972657,
+        "cv_average_precision_std": 0.0022082643354094946,
+        "fit_time_mean": 1.557070779800415,
+        "fit_time_std": 0.17854765060970204,
+        "score_time_mean": 0.41807971000671384,
+        "score_time_std": 0.017805221219941558
+      },
+      "tracked_feature_importance": {
+        "total_units": 0.0080051165014661,
+        "loan_to_property_value": 0.010625788342143536,
+        "non_amortizing_feature_count": 0.0041099080215925956
+      }
+    },
+    {
+      "run_id": "c3a28e20e1a24adcb6b4767ced7dc427",
+      "run_name": "xgb_robust_without_workflow_features",
+      "model_family": "xgboost",
+      "feature_config": "without_workflow_features",
+      "stage": "robustness",
+      "params": {
+        "n_estimators": 250,
+        "max_depth": 5,
+        "learning_rate": 0.05,
+        "subsample": 0.9,
+        "colsample_bytree": 0.9
+      },
+      "metrics": {
+        "cv_precision_mean": 0.8325730283844202,
+        "cv_precision_std": 0.0011767637949553936,
+        "cv_recall_mean": 0.9580967694432353,
+        "cv_recall_std": 0.0015747201599787194,
+        "cv_f1_mean": 0.8909342666038272,
+        "cv_f1_std": 0.0009289942814157073,
+        "cv_roc_auc_mean": 0.791910932987035,
+        "cv_roc_auc_std": 0.005148904368638556,
+        "cv_average_precision_mean": 0.9180922439333921,
+        "cv_average_precision_std": 0.0024334783475049304,
+        "fit_time_mean": 1.2366606712341308,
+        "fit_time_std": 0.034330359961602906,
+        "score_time_mean": 0.40448527336120604,
+        "score_time_std": 0.0035797444125472266
+      },
+      "tracked_feature_importance": {
+        "total_units": 0.017537698285266308,
+        "loan_to_property_value": 0.0,
+        "non_amortizing_feature_count": 0.005054249738917712
+      }
+    },
+    {
+      "run_id": "ac707c61df324f908885c778f9ddb203",
+      "run_name": "xgb_tuned_01",
+      "model_family": "xgboost",
+      "feature_config": "full",
+      "stage": "tuning",
+      "params": {
+        "n_estimators": 350,
+        "max_depth": 3,
+        "learning_rate": 0.07,
+        "subsample": 0.8,
+        "colsample_bytree": 0.85
+      },
+      "metrics": {
+        "cv_precision_mean": 0.8782691679516462,
+        "cv_precision_std": 0.0018015241717488793,
+        "cv_recall_mean": 0.9655404413189631,
+        "cv_recall_std": 0.002015685575856639,
+        "cv_f1_mean": 0.9198391665854906,
+        "cv_f1_std": 0.001835579112896777,
+        "cv_roc_auc_mean": 0.8745414709155719,
+        "cv_roc_auc_std": 0.004656940753752246,
+        "cv_average_precision_mean": 0.9511114045163126,
+        "cv_average_precision_std": 0.002240233337108422,
+        "fit_time_mean": 1.6194221019744872,
+        "fit_time_std": 0.08756676631952864,
+        "score_time_mean": 0.41811490058898926,
+        "score_time_std": 0.00924858775041681
+      },
+      "tracked_feature_importance": {
+        "total_units": 0.009453301758085437,
+        "loan_to_property_value": 0.01289524021467402,
+        "non_amortizing_feature_count": 0.005169900811449445
+      }
+    },
+    {
+      "run_id": "209192bbaa374307ae92c64f8253e98b",
+      "run_name": "xgb_tuned_02",
+      "model_family": "xgboost",
+      "feature_config": "full",
+      "stage": "tuning",
+      "params": {
+        "n_estimators": 450,
+        "max_depth": 4,
+        "learning_rate": 0.04,
+        "subsample": 0.9,
+        "colsample_bytree": 0.9
+      },
+      "metrics": {
+        "cv_precision_mean": 0.880654873324129,
+        "cv_precision_std": 0.0023707719762860353,
+        "cv_recall_mean": 0.9661820993654553,
+        "cv_recall_std": 0.001657695569501559,
+        "cv_f1_mean": 0.9214373664441075,
+        "cv_f1_std": 0.001932848689201122,
+        "cv_roc_auc_mean": 0.876226585420546,
+        "cv_roc_auc_std": 0.004477822362043007,
+        "cv_average_precision_mean": 0.9517315553713857,
+        "cv_average_precision_std": 0.001949785957864106,
+        "fit_time_mean": 2.090596866607666,
+        "fit_time_std": 0.05214828033624463,
+        "score_time_mean": 0.44061894416809083,
+        "score_time_std": 0.015863718610007203
+      },
+      "tracked_feature_importance": {
+        "total_units": 0.008426787447838908,
+        "loan_to_property_value": 0.01156451293248878,
+        "non_amortizing_feature_count": 0.004662263185656118
+      }
+    },
+    {
+      "run_id": "df3bb4382b7c44689720b6c74ec553bb",
+      "run_name": "catboost_baseline_full",
+      "model_family": "catboost",
+      "feature_config": "full",
+      "stage": "baseline",
+      "params": {
+        "iterations": 250,
+        "depth": 6,
+        "learning_rate": 0.05
+      },
+      "metrics": {
+        "cv_precision_mean": 0.8801409887370308,
+        "cv_precision_std": 0.002520390143584152,
+        "cv_recall_mean": 0.9666634239677961,
+        "cv_recall_std": 0.0018196601570796094,
+        "cv_f1_mean": 0.9213748846166621,
+        "cv_f1_std": 0.0021395308597939007,
+        "cv_roc_auc_mean": 0.8763771929372947,
+        "cv_roc_auc_std": 0.004820996490038545,
+        "cv_average_precision_mean": 0.9520022900879255,
+        "cv_average_precision_std": 0.002162434927807663,
+        "fit_time_mean": 5.0836510181427,
+        "fit_time_std": 0.16969689997794016,
+        "score_time_mean": 0.3423060417175293,
+        "score_time_std": 0.02083940176531125
+      },
+      "tracked_feature_importance": {
+        "total_units": 0.0021763654028109053,
+        "loan_to_property_value": 0.07335159877245272,
+        "non_amortizing_feature_count": 0.0024265286804865133
+      }
+    },
+    {
+      "run_id": "aaaa853635964b2683453b5e4664b835",
+      "run_name": "catboost_robust_without_workflow_features",
+      "model_family": "catboost",
+      "feature_config": "without_workflow_features",
+      "stage": "robustness",
+      "params": {
+        "iterations": 250,
+        "depth": 6,
+        "learning_rate": 0.05
+      },
+      "metrics": {
+        "cv_precision_mean": 0.8323932535769817,
+        "cv_precision_std": 0.0018066982504828543,
+        "cv_recall_mean": 0.9581287795135138,
+        "cv_recall_std": 0.0018350689485903372,
+        "cv_f1_mean": 0.8908448793798815,
+        "cv_f1_std": 0.0014565231965467814,
+        "cv_roc_auc_mean": 0.7928543705726947,
+        "cv_roc_auc_std": 0.0049984386894062725,
+        "cv_average_precision_mean": 0.9187181710288115,
+        "cv_average_precision_std": 0.0023189317043349118,
+        "fit_time_mean": 4.609803485870361,
+        "fit_time_std": 0.10824675441437275,
+        "score_time_mean": 0.35914182662963867,
+        "score_time_std": 0.08211364525162586
+      },
+      "tracked_feature_importance": {
+        "total_units": 0.007286378055480455,
+        "loan_to_property_value": 0.0,
+        "non_amortizing_feature_count": 0.01051367929198505
+      }
+    },
+    {
+      "run_id": "8eae5c89ed8844bf9693e9c52291e9db",
+      "run_name": "catboost_tuned_01",
+      "model_family": "catboost",
+      "feature_config": "full",
+      "stage": "tuning",
+      "params": {
+        "iterations": 350,
+        "depth": 4,
+        "learning_rate": 0.06
+      },
+      "metrics": {
+        "cv_precision_mean": 0.8788871126345814,
+        "cv_precision_std": 0.0022511483444158315,
+        "cv_recall_mean": 0.9655404052889758,
+        "cv_recall_std": 0.0021640589491472148,
+        "cv_f1_mean": 0.9201771254437443,
+        "cv_f1_std": 0.0019814488107841996,
+        "cv_roc_auc_mean": 0.8750998886281784,
+        "cv_roc_auc_std": 0.004694620054470337,
+        "cv_average_precision_mean": 0.9513112059767168,
+        "cv_average_precision_std": 0.0020655947801156527,
+        "fit_time_mean": 39.856946277618405,
+        "fit_time_std": 67.18856931270953,
+        "score_time_mean": 0.4830190181732178,
+        "score_time_std": 0.07235717925066712
+      },
+      "tracked_feature_importance": {
+        "total_units": 0.001564867823338794,
+        "loan_to_property_value": 0.06894283346412015,
+        "non_amortizing_feature_count": 0.0015174730272556926
+      }
+    },
+    {
+      "run_id": "72d13773cd914d5d9b6e06203a64cfc7",
+      "run_name": "catboost_tuned_02",
+      "model_family": "catboost",
+      "feature_config": "full",
+      "stage": "tuning",
+      "params": {
+        "iterations": 450,
+        "depth": 7,
+        "learning_rate": 0.04
+      },
+      "metrics": {
+        "cv_precision_mean": 0.8830453478029042,
+        "cv_precision_std": 0.0020877549112339445,
+        "cv_recall_mean": 0.9665671672827537,
+        "cv_recall_std": 0.0010966915140671314,
+        "cv_f1_mean": 0.9229200592313969,
+        "cv_f1_std": 0.0016177290049800082,
+        "cv_roc_auc_mean": 0.8785392065366946,
+        "cv_roc_auc_std": 0.0052856058148179575,
+        "cv_average_precision_mean": 0.9528491169542772,
+        "cv_average_precision_std": 0.0023741874149123716,
+        "fit_time_mean": 11.024181699752807,
+        "fit_time_std": 1.8640235218509134,
+        "score_time_mean": 0.3682302951812744,
+        "score_time_std": 0.039908726898410574
+      },
+      "tracked_feature_importance": {
+        "total_units": 0.0031980447814493633,
+        "loan_to_property_value": 0.0827549942481595,
+        "non_amortizing_feature_count": 0.0036338329173542724
+      }
+    }
+  ],
+  "robustness": {
+    "random_forest": {
+      "full_run": "rf_baseline_full",
+      "robust_run": "rf_robust_without_workflow_features",
+      "delta_cv_f1_robust_minus_full": -0.040552426125524454,
+      "delta_cv_average_precision_robust_minus_full": -0.05569315896894245,
+      "delta_cv_roc_auc_robust_minus_full": -0.11934343714403861
+    },
+    "xgboost": {
+      "full_run": "xgb_baseline_full",
+      "robust_run": "xgb_robust_without_workflow_features",
+      "delta_cv_f1_robust_minus_full": -0.03135276133234666,
+      "delta_cv_average_precision_robust_minus_full": -0.03420587666387365,
+      "delta_cv_roc_auc_robust_minus_full": -0.08501147679637833
+    },
+    "catboost": {
+      "full_run": "catboost_baseline_full",
+      "robust_run": "catboost_robust_without_workflow_features",
+      "delta_cv_f1_robust_minus_full": -0.03053000523678051,
+      "delta_cv_average_precision_robust_minus_full": -0.03328411905911399,
+      "delta_cv_roc_auc_robust_minus_full": -0.08352282236459996
+    }
+  },
+  "feature_signal": {
+    "normalized_importance_by_family": {
+      "total_units": {
+        "random_forest": 0.0046524033987286936,
+        "xgboost": 0.0080051165014661,
+        "catboost": 0.0021763654028109053
+      },
+      "loan_to_property_value": {
+        "random_forest": 0.09066466707191327,
+        "xgboost": 0.010625788342143536,
+        "catboost": 0.07335159877245272
+      },
+      "non_amortizing_feature_count": {
+        "random_forest": 0.0017534283900838305,
+        "xgboost": 0.0041099080215925956,
+        "catboost": 0.0024265286804865133
+      }
+    },
+    "assessment": {
+      "loan_to_property_value": "consistent signal in all three families; retain",
+      "total_units": "consistent but low signal; retain for a future controlled ablation",
+      "non_amortizing_feature_count": "consistent but low signal; future ablation should test whether it justifies complexity"
+    }
+  },
+  "selected_cv_run": {
+    "run_id": "72d13773cd914d5d9b6e06203a64cfc7",
+    "run_name": "catboost_tuned_02",
+    "model_family": "catboost",
+    "feature_config": "full",
+    "stage": "tuning",
+    "params": {
+      "iterations": 450,
+      "depth": 7,
+      "learning_rate": 0.04
+    },
+    "metrics": {
+      "cv_precision_mean": 0.8830453478029042,
+      "cv_precision_std": 0.0020877549112339445,
+      "cv_recall_mean": 0.9665671672827537,
+      "cv_recall_std": 0.0010966915140671314,
+      "cv_f1_mean": 0.9229200592313969,
+      "cv_f1_std": 0.0016177290049800082,
+      "cv_roc_auc_mean": 0.8785392065366946,
+      "cv_roc_auc_std": 0.0052856058148179575,
+      "cv_average_precision_mean": 0.9528491169542772,
+      "cv_average_precision_std": 0.0023741874149123716,
+      "fit_time_mean": 11.024181699752807,
+      "fit_time_std": 1.8640235218509134,
+      "score_time_mean": 0.3682302951812744,
+      "score_time_std": 0.039908726898410574
+    },
+    "tracked_feature_importance": {
+      "total_units": 0.0031980447814493633,
+      "loan_to_property_value": 0.0827549942481595,
+      "non_amortizing_feature_count": 0.0036338329173542724
+    }
+  },
+  "champion_final": {
+    "run_id": "94964b600522497a8cc306401c09fd79",
+    "run_name": "champion_catboost_final",
+    "selected_from": "catboost_tuned_02",
+    "model_family": "catboost",
+    "feature_config": "full",
+    "params": {
+      "iterations": 450,
+      "depth": 7,
+      "learning_rate": 0.04
+    },
+    "metrics": {
+      "holdout_precision": 0.8814432989690721,
+      "holdout_recall": 0.965605749486653,
+      "holdout_f1": 0.9216070553650172,
+      "holdout_roc_auc": 0.8749571048343898,
+      "holdout_average_precision": 0.9518966538885751,
+      "final_fit_time": 10.343445200007409
+    },
+    "confusion_matrix": [
+      [
+        1196,
+        1012
+      ],
+      [
+        268,
+        7524
+      ]
+    ],
+    "pipeline_path": "artifacts\\pipeline_champion_v2.pkl",
+    "mlflow_model_uri": "models:/m-c29e8e2985c046299d32016419b525c7",
+    "registry": {
+      "used": true,
+      "name": "credit-approval-v2",
+      "version": "1",
+      "error": null
+    }
+  },
+  "total_runs": 12
+}
