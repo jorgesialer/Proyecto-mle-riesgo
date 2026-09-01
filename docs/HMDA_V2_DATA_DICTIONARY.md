@@ -81,6 +81,35 @@ Las bandas canonicas de DTI son: `<20`, `20–29`, `30–35`, `36–42`,
 directamente; los valores numericos 36–49 se agrupan en `36–42` o `43–49`.
 No se inventan puntos medios.
 
+## Enumeraciones HMDA usadas por XAI
+
+La capa XAI traduce las siguientes enumeraciones usando exclusivamente el
+**2023 Reportable HMDA Data: Regulatory and Reporting Overview Reference
+Chart** de CFPB. El codigo original siempre se conserva como `raw_code`; un
+codigo fuera de estas tablas recibe `category_label="unknown"` y no se infiere.
+
+| Feature | Codigo | Etiqueta XAI oficial |
+| :--- | :--- | :--- |
+| `loan_purpose` | `1` | Home purchase |
+| `loan_purpose` | `2` | Home improvement |
+| `loan_purpose` | `31` | Refinancing |
+| `loan_purpose` | `32` | Cash-out refinancing |
+| `loan_purpose` | `4` | Other purpose |
+| `loan_purpose` | `5` | Not applicable |
+| `loan_type` | `1` | Conventional |
+| `loan_type` | `2` | FHA |
+| `loan_type` | `3` | VA |
+| `loan_type` | `4` | USDA/RHS/FSA |
+| `lien_status` | `1` | First lien |
+| `lien_status` | `2` | Subordinate lien |
+| `occupancy_type` | `1` | Principal residence |
+| `occupancy_type` | `2` | Second residence |
+| `occupancy_type` | `3` | Investment property |
+| `construction_method` | `1` | Site-built |
+| `construction_method` | `2` | Manufactured home |
+
+Fuente oficial: <https://files.consumerfinance.gov/f/documents/cfpb_reportable-hmda-data_regulatory-and-reporting-overview-reference-chart_2023-02.pdf>.
+
 El frame determinista posterior a feature engineering contiene 20 variables:
 9 numericas y 11 categoricas. `loan_term` y `debt_to_income_ratio` crudas son
 reemplazadas por `loan_term_years` y `dti_category`, respectivamente.

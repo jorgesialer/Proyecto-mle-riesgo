@@ -1,0 +1,162 @@
+[
+  {
+    "rank": 1,
+    "model_feature": "loan_purpose",
+    "business_feature": "Loan purpose",
+    "source_features": "loan_purpose",
+    "transformed_feature_count": 6,
+    "mean_abs_shap": 0.6284510412124137
+  },
+  {
+    "rank": 2,
+    "model_feature": "dti_category",
+    "business_feature": "Debt-to-income band",
+    "source_features": "debt_to_income_ratio",
+    "transformed_feature_count": 7,
+    "mean_abs_shap": 0.6283028848884187
+  },
+  {
+    "rank": 3,
+    "model_feature": "loan_to_property_value",
+    "business_feature": "Loan-to-property-value ratio",
+    "source_features": "loan_amount|property_value",
+    "transformed_feature_count": 1,
+    "mean_abs_shap": 0.19020386909513382
+  },
+  {
+    "rank": 4,
+    "model_feature": "construction_method",
+    "business_feature": "Construction method",
+    "source_features": "construction_method",
+    "transformed_feature_count": 2,
+    "mean_abs_shap": 0.1863476982807763
+  },
+  {
+    "rank": 5,
+    "model_feature": "preapproval",
+    "business_feature": "Preapproval status",
+    "source_features": "preapproval",
+    "transformed_feature_count": 2,
+    "mean_abs_shap": 0.1595361387684199
+  },
+  {
+    "rank": 6,
+    "model_feature": "income",
+    "business_feature": "Annual income (USD thousands)",
+    "source_features": "income",
+    "transformed_feature_count": 1,
+    "mean_abs_shap": 0.1494365774348262
+  },
+  {
+    "rank": 7,
+    "model_feature": "loan_amount",
+    "business_feature": "Requested loan amount",
+    "source_features": "loan_amount",
+    "transformed_feature_count": 1,
+    "mean_abs_shap": 0.1479280445957587
+  },
+  {
+    "rank": 8,
+    "model_feature": "loan_term_years",
+    "business_feature": "Loan term (years)",
+    "source_features": "loan_term",
+    "transformed_feature_count": 1,
+    "mean_abs_shap": 0.13934140347214535
+  },
+  {
+    "rank": 9,
+    "model_feature": "loan_type",
+    "business_feature": "Loan type",
+    "source_features": "loan_type",
+    "transformed_feature_count": 4,
+    "mean_abs_shap": 0.1317152706425367
+  },
+  {
+    "rank": 10,
+    "model_feature": "combined_loan_to_value_ratio",
+    "business_feature": "Combined loan-to-value ratio",
+    "source_features": "combined_loan_to_value_ratio",
+    "transformed_feature_count": 1,
+    "mean_abs_shap": 0.1080783684359932
+  },
+  {
+    "rank": 11,
+    "model_feature": "lien_status",
+    "business_feature": "Lien status",
+    "source_features": "lien_status",
+    "transformed_feature_count": 2,
+    "mean_abs_shap": 0.10008576279874645
+  },
+  {
+    "rank": 12,
+    "model_feature": "property_value_to_income",
+    "business_feature": "Property-value-to-income ratio",
+    "source_features": "property_value|income",
+    "transformed_feature_count": 1,
+    "mean_abs_shap": 0.08427801769382912
+  },
+  {
+    "rank": 13,
+    "model_feature": "property_value",
+    "business_feature": "Property value",
+    "source_features": "property_value",
+    "transformed_feature_count": 1,
+    "mean_abs_shap": 0.08073794543851415
+  },
+  {
+    "rank": 14,
+    "model_feature": "loan_to_income",
+    "business_feature": "Loan-to-income ratio",
+    "source_features": "loan_amount|income",
+    "transformed_feature_count": 1,
+    "mean_abs_shap": 0.07855764217275857
+  },
+  {
+    "rank": 15,
+    "model_feature": "submission_of_application",
+    "business_feature": "Application submission channel",
+    "source_features": "submission_of_application",
+    "transformed_feature_count": 2,
+    "mean_abs_shap": 0.03760262167642513
+  },
+  {
+    "rank": 16,
+    "model_feature": "occupancy_type",
+    "business_feature": "Occupancy type",
+    "source_features": "occupancy_type",
+    "transformed_feature_count": 3,
+    "mean_abs_shap": 0.011198722448119494
+  },
+  {
+    "rank": 17,
+    "model_feature": "balloon_payment",
+    "business_feature": "Balloon payment flag",
+    "source_features": "balloon_payment",
+    "transformed_feature_count": 2,
+    "mean_abs_shap": 0.0063853904474335576
+  },
+  {
+    "rank": 18,
+    "model_feature": "total_units",
+    "business_feature": "Property units",
+    "source_features": "total_units",
+    "transformed_feature_count": 4,
+    "mean_abs_shap": 0.006073617499060349
+  },
+  {
+    "rank": 19,
+    "model_feature": "non_amortizing_feature_count",
+    "business_feature": "Non-amortizing feature count",
+    "source_features": "interest_only_payment|balloon_payment",
+    "transformed_feature_count": 1,
+    "mean_abs_shap": 0.005430258659827441
+  },
+  {
+    "rank": 20,
+    "model_feature": "interest_only_payment",
+    "business_feature": "Interest-only payment flag",
+    "source_features": "interest_only_payment",
+    "transformed_feature_count": 2,
+    "mean_abs_shap": 0.0032509023715990076
+  }
+]

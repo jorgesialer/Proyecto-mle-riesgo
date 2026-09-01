@@ -359,7 +359,16 @@ ML baseline and model benchmarking.
 MLflow tracking and champion model.
 
 ### Phase 5
-Model explainability.
+Model explainability. **Implemented:** the persisted CatBoost champion is
+explained with Tree SHAP without retraining. Global evidence uses a reproducible
+1,000-row sample from the training partition, and local evidence packages map
+numeric, derived and one-hot columns back to business-readable features.
+Global business-feature importance first sums transformed SHAP contributions
+within each row and only then computes mean absolute contribution across rows.
+Relevant HMDA enumerations use official human-readable labels while preserving
+their raw codes; unmapped codes are explicitly marked unknown.
+Audit-only attributes remain structurally excluded. SHAP values describe model
+contributions in raw-margin space and must not be interpreted as causal effects.
 
 ### Phase 6
 Credit-policy RAG with Qdrant.
