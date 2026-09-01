@@ -303,6 +303,42 @@ servidor remoto de MLflow en DagsHub:
 > reales de HMDA 2023 con 16 predictores crudos y transformaciones financieras
 > especificas.
 
+### Explicabilidad XAI con SHAP
+
+`src/xai_v2.py` carga el pipeline champion sin reentrenarlo y aplica Tree SHAP
+al estimador CatBoost sobre una muestra reproducible de 1,000 filas del
+partition de training (`random_state=42`). SHAP se utiliza para describir como
+las features contribuyen al margen del modelo, no para afirmar causalidad,
+capacidad de repago ni una politica normativa de credito.
+
+La capa produce un ranking global agrupado por feature de negocio. Para evitar
+sesgo por cardinalidad, primero suma por fila las contribuciones de todas las
+columnas one-hot de una feature y despues calcula
+`mean(abs(grouped_shap_per_row))`. Se conserva tambien el detalle de las 45
+columnas transformadas. Las principales enumeraciones HMDA se muestran con
+etiquetas oficiales legibles y conservan su `raw_code`; codigos no reconocidos
+se marcan `unknown`. Los cuatro atributos `audit_only` nunca alcanzan el
+estimador ni los resultados SHAP.
+
+Artifacts reproducibles:
+
+- `artifacts/xai/global_feature_importance.csv` y `.json`;
+- `artifacts/xai/global_feature_importance_transformed.csv` y `.json`;
+- `artifacts/xai/shap_summary.png`;
+- `artifacts/xai/shap_bar.png`;
+- `artifacts/xai/local_example.json`;
+- `artifacts/xai/metadata.json` y `run_metadata.json`.
+
+Ejecucion:
+
+```bash
+uv run python -m src.xai_v2 --sample-size 1000 --top-n 10
+```
+
+La run corregida publicada es
+[`xai_catboost_champion_v2`](https://dagshub.com/jorgesialer/Proyecto-mle-riesgo.mlflow/#/experiments/0/runs/f8e8fc291f8749a9b18634c5530ee054).
+La run XAI original se conserva como evidencia historica y no se sobrescribe.
+
 ## 6. Ejecucion
 
 Desde la raiz del repositorio y con el entorno del proyecto activo:
@@ -319,6 +355,9 @@ uv run python -m src.entrenamiento
 
 # Ejecutar el benchmark V2 completo con MLflow
 uv run python -m src.entrenamiento_v2
+
+# Generar y registrar XAI del champion existente, sin reentrenamiento
+uv run python -m src.xai_v2 --sample-size 1000 --top-n 10
 
 # Simular inferencia con un perfil crudo (V1)
 uv run python -m src.prediccion
@@ -341,6 +380,7 @@ columnas one-hot ni un scaler externo.
 - `src/preprocesamiento_v2.py`: feature engineering, split y pipeline V2.
 - `src/entrenamiento_v2.py`: benchmark, robustness, tuning y champion V2.
 - `src/mlflow_utils.py`: configuracion MLflow local/DagsHub.
+- `src/xai_v2.py`: Tree SHAP global y evidencia local reusable del champion V2.
 - `docs/HMDA_V2_DATA_DICTIONARY.md`: contrato de variables del Dataset V2.
 - `artifacts/pipeline_rf_baseline.pkl`: pipeline evaluado y persistido (V1).
 - `artifacts/pipeline_champion_v2.pkl`: pipeline champion persistido (V2).
@@ -359,8 +399,10 @@ anteriores no deben atribuirse al artefacto saneado.
 - La integracion Gemini existente es un componente legado de V1. No constituye
   explicabilidad basada en evidencia del modelo. Su prompt identifica que el
   resultado proviene de ML y prohibe atribuir causalidad sin evidencia.
-- El tracking del benchmark V2 usa MLflow. Todavia no se implementan XAI, RAG,
-  Qdrant, LangGraph ni MCP.
+- El tracking del benchmark V2 y de XAI usa MLflow/DagsHub.
+- La capa XAI describe asociaciones internas del champion mediante SHAP. No
+  valida causalidad ni sustituye una auditoria de equidad.
+- Todavia no se implementan RAG, Qdrant, LangGraph ni MCP.
 - Los atributos demograficos pueden reproducir sesgos presentes en decisiones
   historicas y requieren una evaluacion de equidad separada.
 

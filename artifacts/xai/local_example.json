@@ -1,0 +1,245 @@
+{
+  "prediction": 1,
+  "prediction_label": "approved",
+  "positive_class": 1,
+  "probability": 0.803948157694955,
+  "base_value": 1.727614301176555,
+  "shap_output_space": "CatBoost raw margin (log-odds)",
+  "top_positive_factors": [
+    {
+      "feature": "Loan type = VA (present)",
+      "model_feature": "loan_type",
+      "source_features": [
+        "loan_type"
+      ],
+      "category": "3",
+      "raw_code": "3",
+      "category_label": "VA",
+      "category_active": true,
+      "application_value": "3",
+      "encoded_value": 1.0,
+      "shap_value": 0.3160846490217368
+    },
+    {
+      "feature": "Debt-to-income band = gt_60 (absent)",
+      "model_feature": "dti_category",
+      "source_features": [
+        "debt_to_income_ratio"
+      ],
+      "category": "gt_60",
+      "raw_code": "gt_60",
+      "category_label": null,
+      "category_active": false,
+      "application_value": "20_to_29",
+      "encoded_value": 0.0,
+      "shap_value": 0.1831151049050988
+    },
+    {
+      "feature": "Requested loan amount",
+      "model_feature": "loan_amount",
+      "source_features": [
+        "loan_amount"
+      ],
+      "category": null,
+      "raw_code": null,
+      "category_label": null,
+      "category_active": null,
+      "application_value": 375000.0,
+      "encoded_value": 375000.0,
+      "shap_value": 0.14495403464300946
+    },
+    {
+      "feature": "Annual income (USD thousands)",
+      "model_feature": "income",
+      "source_features": [
+        "income"
+      ],
+      "category": null,
+      "raw_code": null,
+      "category_label": null,
+      "category_active": null,
+      "application_value": 162.0,
+      "encoded_value": 162.0,
+      "shap_value": 0.13672248432187792
+    },
+    {
+      "feature": "Property-value-to-income ratio",
+      "model_feature": "property_value_to_income",
+      "source_features": [
+        "property_value",
+        "income"
+      ],
+      "category": null,
+      "raw_code": null,
+      "category_label": null,
+      "category_active": null,
+      "application_value": 2.685185185185185,
+      "encoded_value": 2.685185185185185,
+      "shap_value": 0.08487889442929689
+    }
+  ],
+  "top_negative_factors": [
+    {
+      "feature": "Loan purpose = Home purchase (absent)",
+      "model_feature": "loan_purpose",
+      "source_features": [
+        "loan_purpose"
+      ],
+      "category": "1",
+      "raw_code": "1",
+      "category_label": "Home purchase",
+      "category_active": false,
+      "application_value": "32",
+      "encoded_value": 0.0,
+      "shap_value": -1.1871484529724627
+    },
+    {
+      "feature": "Loan purpose = Cash-out refinancing (present)",
+      "model_feature": "loan_purpose",
+      "source_features": [
+        "loan_purpose"
+      ],
+      "category": "32",
+      "raw_code": "32",
+      "category_label": "Cash-out refinancing",
+      "category_active": true,
+      "application_value": "32",
+      "encoded_value": 1.0,
+      "shap_value": -0.16526396125286213
+    },
+    {
+      "feature": "Loan type = Conventional (absent)",
+      "model_feature": "loan_type",
+      "source_features": [
+        "loan_type"
+      ],
+      "category": "1",
+      "raw_code": "1",
+      "category_label": "Conventional",
+      "category_active": false,
+      "application_value": "3",
+      "encoded_value": 0.0,
+      "shap_value": -0.079574065222188
+    },
+    {
+      "feature": "Loan term (years)",
+      "model_feature": "loan_term_years",
+      "source_features": [
+        "loan_term"
+      ],
+      "category": null,
+      "raw_code": null,
+      "category_label": null,
+      "category_active": null,
+      "application_value": 30.0,
+      "encoded_value": 30.0,
+      "shap_value": -0.049468863281635155
+    },
+    {
+      "feature": "Preapproval status = 1 (absent)",
+      "model_feature": "preapproval",
+      "source_features": [
+        "preapproval"
+      ],
+      "category": "1",
+      "raw_code": "1",
+      "category_label": null,
+      "category_active": false,
+      "application_value": "2",
+      "encoded_value": 0.0,
+      "shap_value": -0.047835821330075814
+    }
+  ],
+  "global_feature_context": [
+    {
+      "rank": 1,
+      "model_feature": "loan_purpose",
+      "business_feature": "Loan purpose",
+      "source_features": "loan_purpose",
+      "transformed_feature_count": 6,
+      "mean_abs_shap": 0.6284510412124137
+    },
+    {
+      "rank": 2,
+      "model_feature": "dti_category",
+      "business_feature": "Debt-to-income band",
+      "source_features": "debt_to_income_ratio",
+      "transformed_feature_count": 7,
+      "mean_abs_shap": 0.6283028848884187
+    },
+    {
+      "rank": 3,
+      "model_feature": "loan_to_property_value",
+      "business_feature": "Loan-to-property-value ratio",
+      "source_features": "loan_amount|property_value",
+      "transformed_feature_count": 1,
+      "mean_abs_shap": 0.19020386909513382
+    },
+    {
+      "rank": 4,
+      "model_feature": "construction_method",
+      "business_feature": "Construction method",
+      "source_features": "construction_method",
+      "transformed_feature_count": 2,
+      "mean_abs_shap": 0.1863476982807763
+    },
+    {
+      "rank": 5,
+      "model_feature": "preapproval",
+      "business_feature": "Preapproval status",
+      "source_features": "preapproval",
+      "transformed_feature_count": 2,
+      "mean_abs_shap": 0.1595361387684199
+    },
+    {
+      "rank": 6,
+      "model_feature": "income",
+      "business_feature": "Annual income (USD thousands)",
+      "source_features": "income",
+      "transformed_feature_count": 1,
+      "mean_abs_shap": 0.1494365774348262
+    },
+    {
+      "rank": 7,
+      "model_feature": "loan_amount",
+      "business_feature": "Requested loan amount",
+      "source_features": "loan_amount",
+      "transformed_feature_count": 1,
+      "mean_abs_shap": 0.1479280445957587
+    },
+    {
+      "rank": 8,
+      "model_feature": "loan_term_years",
+      "business_feature": "Loan term (years)",
+      "source_features": "loan_term",
+      "transformed_feature_count": 1,
+      "mean_abs_shap": 0.13934140347214535
+    },
+    {
+      "rank": 9,
+      "model_feature": "loan_type",
+      "business_feature": "Loan type",
+      "source_features": "loan_type",
+      "transformed_feature_count": 4,
+      "mean_abs_shap": 0.1317152706425367
+    },
+    {
+      "rank": 10,
+      "model_feature": "combined_loan_to_value_ratio",
+      "business_feature": "Combined loan-to-value ratio",
+      "source_features": "combined_loan_to_value_ratio",
+      "transformed_feature_count": 1,
+      "mean_abs_shap": 0.1080783684359932
+    }
+  ],
+  "model": {
+    "name": "credit-approval-v2",
+    "version": "1",
+    "selected_configuration": "catboost_tuned_02"
+  },
+  "dataset": {
+    "version": "hmda_2023_loan_approval_v2",
+    "sha256": "57408ac78a0db54d9ed94f805e00a300b473f1232f5fed5650fa5fa3105dc36b"
+  },
+  "warning": "SHAP describe contribuciones del modelo a esta prediccion; no demuestra causalidad, capacidad de repago ni una politica de credito normativa."
+}

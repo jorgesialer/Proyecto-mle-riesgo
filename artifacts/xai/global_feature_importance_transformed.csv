@@ -1,0 +1,46 @@
+rank,transformed_feature,display_feature,model_feature,business_feature,source_features,category,raw_code,category_label,mean_abs_shap
+1,loan_purpose_1,Loan purpose = Home purchase,loan_purpose,Loan purpose,loan_purpose,1,1,Home purchase,0.5456502474480597
+2,dti_category_gt_60,Debt-to-income band = gt_60,dti_category,Debt-to-income band,debt_to_income_ratio,gt_60,gt_60,,0.4254394292919691
+3,dti_category_50_to_60,Debt-to-income band = 50_to_60,dti_category,Debt-to-income band,debt_to_income_ratio,50_to_60,50_to_60,,0.1980281423360211
+4,loan_to_property_value,Loan-to-property-value ratio,loan_to_property_value,Loan-to-property-value ratio,loan_amount|property_value,,,,0.19020386909513382
+5,income,Annual income (USD thousands),income,Annual income (USD thousands),income,,,,0.1494365774348262
+6,loan_amount,Requested loan amount,loan_amount,Requested loan amount,loan_amount,,,,0.1479280445957587
+7,loan_term_years,Loan term (years),loan_term_years,Loan term (years),loan_term,,,,0.13934140347214535
+8,combined_loan_to_value_ratio,Combined loan-to-value ratio,combined_loan_to_value_ratio,Combined loan-to-value ratio,combined_loan_to_value_ratio,,,,0.1080783684359932
+9,construction_method_2,Construction method = Manufactured home,construction_method,Construction method,construction_method,2,2,Manufactured home,0.10703019369457825
+10,preapproval_1,Preapproval status = 1,preapproval,Preapproval status,preapproval,1,1,,0.09869440862069552
+11,property_value_to_income,Property-value-to-income ratio,property_value_to_income,Property-value-to-income ratio,property_value|income,,,,0.08427801769382912
+12,dti_category_36_to_42,Debt-to-income band = 36_to_42,dti_category,Debt-to-income band,debt_to_income_ratio,36_to_42,36_to_42,,0.08235939291130612
+13,property_value,Property value,property_value,Property value,property_value,,,,0.08073794543851415
+14,construction_method_1,Construction method = Site-built,construction_method,Construction method,construction_method,1,1,Site-built,0.07931750458619802
+15,loan_to_income,Loan-to-income ratio,loan_to_income,Loan-to-income ratio,loan_amount|income,,,,0.07855764217275857
+16,loan_type_1,Loan type = Conventional,loan_type,Loan type,loan_type,1,1,Conventional,0.07669455512079208
+17,loan_type_3,Loan type = VA,loan_type,Loan type,loan_type,3,3,VA,0.07171645998365125
+18,lien_status_1,Lien status = First lien,lien_status,Lien status,lien_status,1,1,First lien,0.06907495344381633
+19,preapproval_2,Preapproval status = 2,preapproval,Preapproval status,preapproval,2,2,,0.06084173014772439
+20,loan_purpose_4,Loan purpose = Other purpose,loan_purpose,Loan purpose,loan_purpose,4,4,Other purpose,0.0565868300304172
+21,dti_category_30_to_35,Debt-to-income band = 30_to_35,dti_category,Debt-to-income band,debt_to_income_ratio,30_to_35,30_to_35,,0.04864536912193137
+22,loan_type_2,Loan type = FHA,loan_type,Loan type,loan_type,2,2,FHA,0.04499706324548595
+23,dti_category_43_to_49,Debt-to-income band = 43_to_49,dti_category,Debt-to-income band,debt_to_income_ratio,43_to_49,43_to_49,,0.04425251128714387
+24,loan_purpose_32,Loan purpose = Cash-out refinancing,loan_purpose,Loan purpose,loan_purpose,32,32,Cash-out refinancing,0.036845400276668355
+25,lien_status_2,Lien status = Subordinate lien,lien_status,Lien status,lien_status,2,2,Subordinate lien,0.031126187960911746
+26,dti_category_lt_20,Debt-to-income band = lt_20,dti_category,Debt-to-income band,debt_to_income_ratio,lt_20,lt_20,,0.03004693556804901
+27,dti_category_20_to_29,Debt-to-income band = 20_to_29,dti_category,Debt-to-income band,debt_to_income_ratio,20_to_29,20_to_29,,0.02232879047254601
+28,submission_of_application_1.0,Application submission channel = 1.0,submission_of_application,Application submission channel,submission_of_application,1.0,1.0,,0.021112719067619665
+29,loan_purpose_2,Loan purpose = Home improvement,loan_purpose,Loan purpose,loan_purpose,2,2,Home improvement,0.02058059986521604
+30,submission_of_application_2.0,Application submission channel = 2.0,submission_of_application,Application submission channel,submission_of_application,2.0,2.0,,0.01708573191616142
+31,loan_purpose_31,Loan purpose = Refinancing,loan_purpose,Loan purpose,loan_purpose,31,31,Refinancing,0.007205855510468919
+32,occupancy_type_1,Occupancy type = Principal residence,occupancy_type,Occupancy type,occupancy_type,1,1,Principal residence,0.00622228859504881
+33,non_amortizing_feature_count,Non-amortizing feature count,non_amortizing_feature_count,Non-amortizing feature count,interest_only_payment|balloon_payment,,,,0.005430258659827441
+34,occupancy_type_2,Occupancy type = Second residence,occupancy_type,Occupancy type,occupancy_type,2,2,Second residence,0.004279746986330765
+35,total_units_1,Property units = 1,total_units,Property units,total_units,1,1,,0.00419195083481049
+36,balloon_payment_1,Balloon payment flag = 1,balloon_payment,Balloon payment flag,balloon_payment,1,1,,0.003672989975961708
+37,balloon_payment_2,Balloon payment flag = 2,balloon_payment,Balloon payment flag,balloon_payment,2,2,,0.0027471056138734288
+38,interest_only_payment_1,Interest-only payment flag = 1,interest_only_payment,Interest-only payment flag,interest_only_payment,1,1,,0.0020351599094829325
+39,total_units_2,Property units = 2,total_units,Property units,total_units,2,2,,0.0020275738322856787
+40,occupancy_type_3,Occupancy type = Investment property,occupancy_type,Occupancy type,occupancy_type,3,3,Investment property,0.001797944854743079
+41,interest_only_payment_2,Interest-only payment flag = 2,interest_only_payment,Interest-only payment flag,interest_only_payment,2,2,,0.0013332647594917956
+42,loan_type_4,Loan type = USDA/RHS/FSA,loan_type,Loan type,loan_type,4,4,USDA/RHS/FSA,0.0006762097601477939
+43,total_units_4,Property units = 4,total_units,Property units,total_units,4,4,,9.976993189162936e-05
+44,loan_purpose_5,Loan purpose = Not applicable,loan_purpose,Loan purpose,loan_purpose,5,5,Not applicable,0.0
+45,total_units_3,Property units = 3,total_units,Property units,total_units,3,3,,0.0
