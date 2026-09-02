@@ -371,7 +371,33 @@ Audit-only attributes remain structurally excluded. SHAP values describe model
 contributions in raw-margin space and must not be interpreted as causal effects.
 
 ### Phase 6
-Credit-policy RAG with Qdrant.
+Credit-policy RAG with Qdrant. **Implemented:** `src/rag_v2.py` acquires five
+official, scoped sources (one CFPB HMDA 2023 reference and four Fannie Mae
+Selling Guide sections covering income, DTI, LTV and CLTV), records URL,
+version/date, retrieval timestamp and SHA-256, and extracts text reproducibly.
+PDF pages and HTML sections are chunked deterministically at 1,000 characters
+with 150-character overlap. Nested HTML blocks are deduplicated so a paragraph
+inside a list item is indexed once. The corrected snapshot contains 139 chunks from 65
+sections.
+
+Embeddings are generated locally with
+`sentence-transformers/all-MiniLM-L6-v2` (384 dimensions, normalized) and
+stored in the `credit_policy_v2` collection using Qdrant embedded/local mode
+and cosine distance. No Docker or paid embedding API is required. Runtime
+Qdrant storage is rebuildable and excluded from Git; source snapshots,
+manifest, chunks and evaluation artifacts remain traceable.
+
+The manual evaluation preserves 12 directed queries and adds four fixed cases:
+ambiguous LTV/CLTV, multi-source income/debt, a less literal income paraphrase,
+and an out-of-domain business-checking query. Directed source hit@5, source
+recall@5, concept hit@5 and MRR@5 remain 1.0. The three additional in-domain
+queries also score 1.0; the out-of-domain query is not rejected and returns a
+top score of 0.363723, versus a minimum in-domain top score of 0.534716. No
+threshold is adopted from a single OOD observation; abstention requires a
+larger calibration set. These figures are not evidence of broad regulatory
+coverage or answer-generation quality. XAI factors are converted to queries by
+deterministic templates; audit-only attributes are excluded. This phase does
+not call Gemini and does not implement LangGraph.
 
 ### Phase 7
 LangGraph agent with ML and RAG tools.

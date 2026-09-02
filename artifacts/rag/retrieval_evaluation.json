@@ -1,0 +1,1212 @@
+{
+  "k": 5,
+  "metrics": {
+    "directed": {
+      "source_hit_at_5": 1.0,
+      "source_recall_at_5": 1.0,
+      "concept_hit_at_5": 1.0,
+      "mrr_at_5": 1.0,
+      "mean_top_score": 0.7172810710987939,
+      "min_top_score": 0.6545066715774394,
+      "query_count": 12
+    },
+    "additional_in_domain": {
+      "source_hit_at_5": 1.0,
+      "source_recall_at_5": 1.0,
+      "concept_hit_at_5": 1.0,
+      "mrr_at_5": 1.0,
+      "mean_top_score": 0.5699103538687693,
+      "min_top_score": 0.5347160860460656,
+      "query_count": 3
+    },
+    "all_in_domain": {
+      "source_hit_at_5": 1.0,
+      "source_recall_at_5": 1.0,
+      "concept_hit_at_5": 1.0,
+      "mrr_at_5": 1.0,
+      "mean_top_score": 0.687806927652789,
+      "min_top_score": 0.5347160860460656,
+      "query_count": 15
+    },
+    "out_of_domain": {
+      "query_count": 1,
+      "returned_results_count": 1,
+      "rejected_count": 0,
+      "avoidance_rate": 0.0,
+      "mean_top_score": 0.3637227109648352,
+      "max_top_score": 0.3637227109648352
+    }
+  },
+  "queries": [
+    {
+      "query_id": "dti_definition",
+      "query": "How is the debt-to-income ratio calculated for mortgage underwriting?",
+      "evaluation_group": "directed",
+      "query_type": "directed",
+      "expected_no_relevant_source": false,
+      "expected_source_ids": [
+        "fannie_debt_to_income"
+      ],
+      "expected_concepts": [
+        "dti ratio"
+      ],
+      "source_hit_at_k": true,
+      "source_recall_at_k": 1.0,
+      "concept_hit_at_k": true,
+      "first_relevant_rank": 1,
+      "reciprocal_rank": 1.0,
+      "top_score": 0.6545066715774394,
+      "result_count": 5,
+      "rejection_applied": false,
+      "retrieved": [
+        {
+          "text": "The DTI ratio consists of two components: total monthly obligations, which includes the qualifying payment for the subject mortgage loan and other long-term and significant short-term monthly debts (see Calculating Total Monthly Obligation below); and total monthly income of all borrowers, to the extent the income is used to qualify for the mortgage (see Chapter B3–3, Income Assessment).",
+          "score": 0.6545066715774394,
+          "source_id": "fannie_debt_to_income",
+          "source_title": "B3-6-02, Debt-to-Income Ratios",
+          "institution": "Fannie Mae",
+          "source_url": "https://selling-guide.fanniemae.com/sel/b3-6-02/debt-income-ratios",
+          "page_or_section": "DTI Ratios",
+          "chunk_id": "fannie_debt_to_income:0001"
+        },
+        {
+          "text": "The following steps are required if the borrower discloses or the lender discovers additional debt(s) or reduced income after the underwriting decision was made up to and concurrent with loan closing: The lender must document the additional debt(s) and reduced income in accordance with B3-6-01, General Information on Liabilities B3-6-01, General Information on Liabilities or B3-3, Income Assessment B3-3, Income Assessment , as applicable. Note : The lender is not required to obtain a new credit report to verify the additional debt(s). However, if the lender chooses to obtain a new credit report after the initial underwriting decision was made, the loan must be re-underwritten. If the recalculated DTI ratio exceeds 45% for a manually underwritten loan or 50% for a DU loan casefile, the loan is not eligible for delivery to Fannie Mae. Manually underwritten loans: If the recalculated DTI does not exceed 45%, the mortgage loan must be re-underwritten with the updated information to",
+          "score": 0.6157810431992243,
+          "source_id": "fannie_debt_to_income",
+          "source_title": "B3-6-02, Debt-to-Income Ratios",
+          "institution": "Fannie Mae",
+          "source_url": "https://selling-guide.fanniemae.com/sel/b3-6-02/debt-income-ratios",
+          "page_or_section": "Applying the Re-underwriting Criteria",
+          "chunk_id": "fannie_debt_to_income:0010"
+        },
+        {
+          "text": "DTI Ratios Maximum DTI Ratios Exceptions to the Maximum DTI Ratio Calculating Total Monthly Obligation DTI Ratio Tolerance and Re-Underwriting Criteria Applying the Re-underwriting Criteria",
+          "score": 0.6080366016111809,
+          "source_id": "fannie_debt_to_income",
+          "source_title": "B3-6-02, Debt-to-Income Ratios",
+          "institution": "Fannie Mae",
+          "source_url": "https://selling-guide.fanniemae.com/sel/b3-6-02/debt-income-ratios",
+          "page_or_section": "B3-6-02, Debt-to-Income Ratios (04/02/2025)",
+          "chunk_id": "fannie_debt_to_income:0000"
+        },
+        {
+          "text": "for other recurring monthly obligations; and any net loss from a rental property. Note : Fannie Mae acknowledges that lenders may sometimes apply a more conservative approach when qualifying borrowers. This is acceptable as long as Fannie Mae’s minimum requirements are met, and lenders consistently apply the same approach to similar loans. For example, a lender might calculate a higher minimum payment on a credit card account than what Fannie Mae requires, which is acceptable as long as the lender consistently applies this calculation to all mortgage applications with revolving debts.",
+          "score": 0.5966686489836192,
+          "source_id": "fannie_debt_to_income",
+          "source_title": "B3-6-02, Debt-to-Income Ratios",
+          "institution": "Fannie Mae",
+          "source_url": "https://selling-guide.fanniemae.com/sel/b3-6-02/debt-income-ratios",
+          "page_or_section": "Calculating Total Monthly Obligation",
+          "chunk_id": "fannie_debt_to_income:0007"
+        },
+        {
+          "text": "all cases, if the lender determines that there is new subordinate financing on the subject property during the loan process, the mortgage loan must be re-underwritten. Note: Re-underwriting means that loan casefiles must be resubmitted to DU with updated information; and for manually underwritten loans, a comprehensive risk and eligibility assessment must be performed.",
+          "score": 0.5959362543172626,
+          "source_id": "fannie_debt_to_income",
+          "source_title": "B3-6-02, Debt-to-Income Ratios",
+          "institution": "Fannie Mae",
+          "source_url": "https://selling-guide.fanniemae.com/sel/b3-6-02/debt-income-ratios",
+          "page_or_section": "DTI Ratio Tolerance and Re-Underwriting Criteria",
+          "chunk_id": "fannie_debt_to_income:0009"
+        }
+      ]
+    },
+    {
+      "query_id": "dti_max_manual",
+      "query": "What is the maximum total DTI ratio for a manually underwritten mortgage?",
+      "evaluation_group": "directed",
+      "query_type": "directed",
+      "expected_no_relevant_source": false,
+      "expected_source_ids": [
+        "fannie_debt_to_income"
+      ],
+      "expected_concepts": [
+        "manually underwritten"
+      ],
+      "source_hit_at_k": true,
+      "source_recall_at_k": 1.0,
+      "concept_hit_at_k": true,
+      "first_relevant_rank": 1,
+      "reciprocal_rank": 1.0,
+      "top_score": 0.7455382154607932,
+      "result_count": 5,
+      "rejection_applied": false,
+      "retrieved": [
+        {
+          "text": "all cases, if the lender determines that there is new subordinate financing on the subject property during the loan process, the mortgage loan must be re-underwritten. Note: Re-underwriting means that loan casefiles must be resubmitted to DU with updated information; and for manually underwritten loans, a comprehensive risk and eligibility assessment must be performed.",
+          "score": 0.7455382154607932,
+          "source_id": "fannie_debt_to_income",
+          "source_title": "B3-6-02, Debt-to-Income Ratios",
+          "institution": "Fannie Mae",
+          "source_url": "https://selling-guide.fanniemae.com/sel/b3-6-02/debt-income-ratios",
+          "page_or_section": "DTI Ratio Tolerance and Re-Underwriting Criteria",
+          "chunk_id": "fannie_debt_to_income:0009"
+        },
+        {
+          "text": "For manually underwritten loans, Fannie Mae’s maximum total DTI ratio is 36% of the borrower’s stable monthly income. The maximum can be exceeded up to 45% if the borrower meets the credit score and reserve requirements reflected in the Eligibility Matrix . For loan casefiles underwritten through DU, the maximum allowable DTI ratio is 50%. See B3-1-01, Comprehensive Risk Assessment B3-1-01, Comprehensive Risk Assessment for information about the DTI.",
+          "score": 0.7406589156953047,
+          "source_id": "fannie_debt_to_income",
+          "source_title": "B3-6-02, Debt-to-Income Ratios",
+          "institution": "Fannie Mae",
+          "source_url": "https://selling-guide.fanniemae.com/sel/b3-6-02/debt-income-ratios",
+          "page_or_section": "Maximum DTI Ratios",
+          "chunk_id": "fannie_debt_to_income:0002"
+        },
+        {
+          "text": "Fannie Mae makes exceptions to the maximum allowable DTI ratios for particular mortgage transactions, including: cash-out refinance transactions — the maximum ratio may be lower for loan casefiles underwritten through DU (see B2-1.3-03, Cash-Out Refinance Transactions B2-1.3-03, Cash-Out Refinance Transactions ); high LTV refinance transactions - except for loans underwritten under the Alternative Qualification Path, there are no maximum DTI ratio requirements (see B5-7-01, High LTV Refinance Loan and Borrower Eligibility B5-7-01, High LTV Refinance Loan and Borrower Eligibility ); borrowers who do not have a credit score — the maximum ratio may be lower for manually underwritten loans (see B3-5.4-01, Eligibility Requirements for Loans with Nontraditional Credit B3-5.4-01, Eligibility Requirements for Loans with Nontraditional Credit ); non-occupant borrowers — the maximum ratio is lower than 45% for the occupying borrower for manually underwritten loans (see B2-2-04, Guarantors,",
+          "score": 0.6901816811616768,
+          "source_id": "fannie_debt_to_income",
+          "source_title": "B3-6-02, Debt-to-Income Ratios",
+          "institution": "Fannie Mae",
+          "source_url": "https://selling-guide.fanniemae.com/sel/b3-6-02/debt-income-ratios",
+          "page_or_section": "Exceptions to the Maximum DTI Ratio",
+          "chunk_id": "fannie_debt_to_income:0003"
+        },
+        {
+          "text": "The DTI ratio consists of two components: total monthly obligations, which includes the qualifying payment for the subject mortgage loan and other long-term and significant short-term monthly debts (see Calculating Total Monthly Obligation below); and total monthly income of all borrowers, to the extent the income is used to qualify for the mortgage (see Chapter B3–3, Income Assessment).",
+          "score": 0.6889392746863732,
+          "source_id": "fannie_debt_to_income",
+          "source_title": "B3-6-02, Debt-to-Income Ratios",
+          "institution": "Fannie Mae",
+          "source_url": "https://selling-guide.fanniemae.com/sel/b3-6-02/debt-income-ratios",
+          "page_or_section": "DTI Ratios",
+          "chunk_id": "fannie_debt_to_income:0001"
+        },
+        {
+          "text": "Mae. Manually underwritten loans: If the recalculated DTI does not exceed 45%, the mortgage loan must be re-underwritten with the updated information to determine if the loan is still eligible for delivery. Note: If the increase in the DTI ratio moves the DTI ratio above the 36% threshold, the loan must meet the credit score and reserve requirements in the Eligibility Matrix that apply to DTI ratios greater than 36% up to 45%. DU loan casefiles: See B3-2-10, Accuracy of DU Data, DU Tolerances, and Errors in the Credit Report B3-2-10, Accuracy of DU Data, DU Tolerances, and Errors in the Credit Report for the tolerances and resubmission requirements associated with changes impacting the DTI. High LTV refinance loans: For loans underwritten in accordance with the Alternative Qualification Path, if the recalculated DTI ratio exceeds 45%, the loan is not eligible for delivery to Fannie Mae. If the DTI does not exceed 45%, but is increasing by 3 or more percentage points, the loan must be",
+          "score": 0.6872170103033048,
+          "source_id": "fannie_debt_to_income",
+          "source_title": "B3-6-02, Debt-to-Income Ratios",
+          "institution": "Fannie Mae",
+          "source_url": "https://selling-guide.fanniemae.com/sel/b3-6-02/debt-income-ratios",
+          "page_or_section": "Applying the Re-underwriting Criteria",
+          "chunk_id": "fannie_debt_to_income:0011"
+        }
+      ]
+    },
+    {
+      "query_id": "income_stability",
+      "query": "What makes borrower income stable and predictable for mortgage qualification?",
+      "evaluation_group": "directed",
+      "query_type": "directed",
+      "expected_no_relevant_source": false,
+      "expected_source_ids": [
+        "fannie_general_income"
+      ],
+      "expected_concepts": [
+        "stable",
+        "predictable"
+      ],
+      "source_hit_at_k": true,
+      "source_recall_at_k": 1.0,
+      "concept_hit_at_k": true,
+      "first_relevant_rank": 1,
+      "reciprocal_rank": 1.0,
+      "top_score": 0.6999686984407338,
+      "result_count": 5,
+      "rejection_applied": false,
+      "retrieved": [
+        {
+          "text": "A stable and predictable flow of income is a foundational element in loan underwriting. The lender must document income is stable, has a documented history of receipt, and is reasonably expected to continue.",
+          "score": 0.6999686984407338,
+          "source_id": "fannie_general_income",
+          "source_title": "B3-3.1-01, General Income Information",
+          "institution": "Fannie Mae",
+          "source_url": "https://selling-guide.fanniemae.com/sel/b3-3.1-01/general-income-information",
+          "page_or_section": "Stable and Predictable Income",
+          "chunk_id": "fannie_general_income:0001"
+        },
+        {
+          "text": "sole or majority source of qualifying income, the lender must assess the borrower’s ability to continue repaying the loan once the income source expires or the asset is depleted prior to loan maturity. If the lender is notified that the borrower is transitioning to a lower pay structure, for example due to pending retirement or a new job, the lender must use the lower income amount in qualifying, and must determine that the lower amount is stable and predictable. See Chapter B3-3, Income Assessment for topics with additional information and requirements for continuance of income.",
+          "score": 0.6616641700144306,
+          "source_id": "fannie_general_income",
+          "source_title": "B3-3.1-01, General Income Information",
+          "institution": "Fannie Mae",
+          "source_url": "https://selling-guide.fanniemae.com/sel/b3-3.1-01/general-income-information",
+          "page_or_section": "Continuance of Income",
+          "chunk_id": "fannie_general_income:0003"
+        },
+        {
+          "text": "Borrowers must be qualified with income the lender can reasonably expect to continue for the foreseeable future. The lender must evaluate the likelihood of continuance based on the nature of the income and supporting documentation. If the income does not have a defined expiration date and the applicable history of receipt of the income is documented (per the specific income type), the lender may conclude that the income is likely to continue and the lender is not expected to obtain additional documentation, unless there is information to the contrary. If the income source does have a defined expiration date or is dependent on the depletion of an asset account or other limited benefit, the lender must document that the income is expected to continue for at least three years from the note date. Additionally, when an asset account is the sole or majority source of qualifying income, the lender must assess the borrower’s ability to continue repaying the loan once the income source expires",
+          "score": 0.56454859807166,
+          "source_id": "fannie_general_income",
+          "source_title": "B3-3.1-01, General Income Information",
+          "institution": "Fannie Mae",
+          "source_url": "https://selling-guide.fanniemae.com/sel/b3-3.1-01/general-income-information",
+          "page_or_section": "Continuance of Income",
+          "chunk_id": "fannie_general_income:0002"
+        },
+        {
+          "text": "Stable and Predictable Income Continuance of Income Verification of Income for Non-U.S. Citizen Borrowers Non-Occupant Borrower Income Nontaxable Income Income Paid in Virtual Currency Reduced Income Documentation Requirements for High LTV Refinance Loans DU Documentation Requirements",
+          "score": 0.5516788576346021,
+          "source_id": "fannie_general_income",
+          "source_title": "B3-3.1-01, General Income Information",
+          "institution": "Fannie Mae",
+          "source_url": "https://selling-guide.fanniemae.com/sel/b3-3.1-01/general-income-information",
+          "page_or_section": "B3-3.1-01, General Income Information (03/04/2026)",
+          "chunk_id": "fannie_general_income:0000"
+        },
+        {
+          "text": "for other recurring monthly obligations; and any net loss from a rental property. Note : Fannie Mae acknowledges that lenders may sometimes apply a more conservative approach when qualifying borrowers. This is acceptable as long as Fannie Mae’s minimum requirements are met, and lenders consistently apply the same approach to similar loans. For example, a lender might calculate a higher minimum payment on a credit card account than what Fannie Mae requires, which is acceptable as long as the lender consistently applies this calculation to all mortgage applications with revolving debts.",
+          "score": 0.5387158576568714,
+          "source_id": "fannie_debt_to_income",
+          "source_title": "B3-6-02, Debt-to-Income Ratios",
+          "institution": "Fannie Mae",
+          "source_url": "https://selling-guide.fanniemae.com/sel/b3-6-02/debt-income-ratios",
+          "page_or_section": "Calculating Total Monthly Obligation",
+          "chunk_id": "fannie_debt_to_income:0007"
+        }
+      ]
+    },
+    {
+      "query_id": "income_continuance",
+      "query": "When must a lender document that qualifying income will continue?",
+      "evaluation_group": "directed",
+      "query_type": "directed",
+      "expected_no_relevant_source": false,
+      "expected_source_ids": [
+        "fannie_general_income"
+      ],
+      "expected_concepts": [
+        "continue"
+      ],
+      "source_hit_at_k": true,
+      "source_recall_at_k": 1.0,
+      "concept_hit_at_k": true,
+      "first_relevant_rank": 1,
+      "reciprocal_rank": 1.0,
+      "top_score": 0.7686624721573259,
+      "result_count": 5,
+      "rejection_applied": false,
+      "retrieved": [
+        {
+          "text": "Borrowers must be qualified with income the lender can reasonably expect to continue for the foreseeable future. The lender must evaluate the likelihood of continuance based on the nature of the income and supporting documentation. If the income does not have a defined expiration date and the applicable history of receipt of the income is documented (per the specific income type), the lender may conclude that the income is likely to continue and the lender is not expected to obtain additional documentation, unless there is information to the contrary. If the income source does have a defined expiration date or is dependent on the depletion of an asset account or other limited benefit, the lender must document that the income is expected to continue for at least three years from the note date. Additionally, when an asset account is the sole or majority source of qualifying income, the lender must assess the borrower’s ability to continue repaying the loan once the income source expires",
+          "score": 0.7686624721573259,
+          "source_id": "fannie_general_income",
+          "source_title": "B3-3.1-01, General Income Information",
+          "institution": "Fannie Mae",
+          "source_url": "https://selling-guide.fanniemae.com/sel/b3-3.1-01/general-income-information",
+          "page_or_section": "Continuance of Income",
+          "chunk_id": "fannie_general_income:0002"
+        },
+        {
+          "text": "sole or majority source of qualifying income, the lender must assess the borrower’s ability to continue repaying the loan once the income source expires or the asset is depleted prior to loan maturity. If the lender is notified that the borrower is transitioning to a lower pay structure, for example due to pending retirement or a new job, the lender must use the lower income amount in qualifying, and must determine that the lower amount is stable and predictable. See Chapter B3-3, Income Assessment for topics with additional information and requirements for continuance of income.",
+          "score": 0.7270385939814313,
+          "source_id": "fannie_general_income",
+          "source_title": "B3-3.1-01, General Income Information",
+          "institution": "Fannie Mae",
+          "source_url": "https://selling-guide.fanniemae.com/sel/b3-3.1-01/general-income-information",
+          "page_or_section": "Continuance of Income",
+          "chunk_id": "fannie_general_income:0003"
+        },
+        {
+          "text": "Stable and Predictable Income Continuance of Income Verification of Income for Non-U.S. Citizen Borrowers Non-Occupant Borrower Income Nontaxable Income Income Paid in Virtual Currency Reduced Income Documentation Requirements for High LTV Refinance Loans DU Documentation Requirements",
+          "score": 0.599703548359726,
+          "source_id": "fannie_general_income",
+          "source_title": "B3-3.1-01, General Income Information",
+          "institution": "Fannie Mae",
+          "source_url": "https://selling-guide.fanniemae.com/sel/b3-3.1-01/general-income-information",
+          "page_or_section": "B3-3.1-01, General Income Information (03/04/2026)",
+          "chunk_id": "fannie_general_income:0000"
+        },
+        {
+          "text": "The lender should give special consideration to sources of income that may be nontaxable. The lender must verify that the particular source of income is nontaxable, using documentation such as award letters, policy agreements, account statements, tax returns or any other documents that address the nontaxable status of the income. Any exceptions to the required documentation can be found within the details of each specific income type. If the income is verified to be nontaxable, and the income and its tax-exempt status are likely to continue, the lender should develop an “adjusted gross income” for the borrower by adding an amount equivalent to 25% of the nontaxable income to the borrower’s income. If the actual amount of federal and state taxes that would generally be paid by a wage earner in a similar tax bracket is more than 25% of the borrower’s nontaxable income, the lender may use that amount to develop the adjusted gross income, which should be used in calculating the borrower’s",
+          "score": 0.5546131865373951,
+          "source_id": "fannie_general_income",
+          "source_title": "B3-3.1-01, General Income Information",
+          "institution": "Fannie Mae",
+          "source_url": "https://selling-guide.fanniemae.com/sel/b3-3.1-01/general-income-information",
+          "page_or_section": "Nontaxable Income",
+          "chunk_id": "fannie_general_income:0006"
+        },
+        {
+          "text": "DU indicates the minimum income verification documentation required to process a loan application. This level of documentation may not be adequate for every borrower and every situation. The lender must determine whether additional documentation is warranted. If the lender is unable to determine the stability of the borrower’s income on the basis of the available documentation, the income must be removed and the loan resubmitted to DU. When employment or income is validated by the DU validation service, DU will issue a message indicating the required documentation. This documentation requirement may differ from those described below. See B3-2-02, DU Validation Service B3-2-02, DU Validation Service for more information. Refer to DU Job Aids for information regarding data entry to DU. The table below provides reference to recently issued Announcements related to this topic.",
+          "score": 0.5494273101612633,
+          "source_id": "fannie_general_income",
+          "source_title": "B3-3.1-01, General Income Information",
+          "institution": "Fannie Mae",
+          "source_url": "https://selling-guide.fanniemae.com/sel/b3-3.1-01/general-income-information",
+          "page_or_section": "DU Documentation Requirements",
+          "chunk_id": "fannie_general_income:0010"
+        }
+      ]
+    },
+    {
+      "query_id": "ltv_definition",
+      "query": "How is mortgage loan-to-value LTV calculated?",
+      "evaluation_group": "directed",
+      "query_type": "directed",
+      "expected_no_relevant_source": false,
+      "expected_source_ids": [
+        "fannie_ltv"
+      ],
+      "expected_concepts": [
+        "ltv"
+      ],
+      "source_hit_at_k": true,
+      "source_recall_at_k": 1.0,
+      "concept_hit_at_k": true,
+      "first_relevant_rank": 1,
+      "reciprocal_rank": 1.0,
+      "top_score": 0.7218965012473292,
+      "result_count": 5,
+      "rejection_applied": false,
+      "retrieved": [
+        {
+          "text": "The maximum allowable LTV ratio for a first mortgage is based on a number of factors including, the representative credit score, the type of mortgage product, the number of dwelling units, and the occupancy status of the property. The following table describes the requirements for calculating LTV ratios for a first mortgage transaction. The result of these calculations must be truncated (shortened) to two decimal places, then rounded up to the nearest whole percent. For example: 94.01% will be delivered as 95%, and 80.001% will be delivered as 80%. The rounding rules noted above also apply to the CLTV and HCLTV ratio calculations. Lenders' systems must contain rounding methodology that results in the same or a higher LTV ratio. Note : The LTV ratio calculations shown above may differ for certain mortgage loans. For details on these differences, see B2-1.3-05, Payoff of Installment Land Contract Requirements B2-1.3-05, Payoff of Installment Land Contract Requirements ; B5-2-03,",
+          "score": 0.7218965012473292,
+          "source_id": "fannie_ltv",
+          "source_title": "B2-1.2-01, Loan-to-Value (LTV) Ratios",
+          "institution": "Fannie Mae",
+          "source_url": "https://selling-guide.fanniemae.com/sel/b2-1.2-01/loan-value-ltv-ratios",
+          "page_or_section": "Calculation of the LTV Ratio",
+          "chunk_id": "fannie_ltv:0001"
+        },
+        {
+          "text": "An LLPA may apply to certain mortgages based on the loan-to-value (LTV) ratio and representative credit score. These LLPAs are in addition to any other price adjustments that are otherwise applicable to the particular transaction. See the Loan-Level Price Adjustment (LLPA) Matrix . As defined in the LTV ratio, the original loan amount is the amount of the loan as indicated by the note. The table below provides references to recently issued Announcements that are related to this topic.",
+          "score": 0.6745732068634976,
+          "source_id": "fannie_ltv",
+          "source_title": "B2-1.2-01, Loan-to-Value (LTV) Ratios",
+          "institution": "Fannie Mae",
+          "source_url": "https://selling-guide.fanniemae.com/sel/b2-1.2-01/loan-value-ltv-ratios",
+          "page_or_section": "Loan-Level Price Adjustments",
+          "chunk_id": "fannie_ltv:0005"
+        },
+        {
+          "text": "Restrictions: Eligibility, Collateral and Delivery Requirements B5-5.2-02, Loans with Resale Restrictions: Eligibility, Collateral and Delivery Requirements ; B5-5.3-03, Shared Equity Transactions: Eligibility, Underwriting and Collateral Requirements B5-5.3-03, Shared Equity Transactions: Eligibility, Underwriting and Collateral Requirements ; and B7-1-01, Provision of Mortgage Insurance B7-1-01, Provision of Mortgage Insurance . Refer to the Eligibility Matrix for maximum allowable LTV ratios.",
+          "score": 0.633768783833749,
+          "source_id": "fannie_ltv",
+          "source_title": "B2-1.2-01, Loan-to-Value (LTV) Ratios",
+          "institution": "Fannie Mae",
+          "source_url": "https://selling-guide.fanniemae.com/sel/b2-1.2-01/loan-value-ltv-ratios",
+          "page_or_section": "Calculation of the LTV Ratio",
+          "chunk_id": "fannie_ltv:0003"
+        },
+        {
+          "text": "Calculation of the LTV Ratio Sales Price and Appraised Value Used by DU Loan-Level Price Adjustments",
+          "score": 0.5859058688679748,
+          "source_id": "fannie_ltv",
+          "source_title": "B2-1.2-01, Loan-to-Value (LTV) Ratios",
+          "institution": "Fannie Mae",
+          "source_url": "https://selling-guide.fanniemae.com/sel/b2-1.2-01/loan-value-ltv-ratios",
+          "page_or_section": "B2-1.2-01, Loan-to-Value (LTV) Ratios (06/01/2022)",
+          "chunk_id": "fannie_ltv:0000"
+        },
+        {
+          "text": "For first mortgage loans that are subject to subordinate financing, the lender must calculate the LTV ratio and the CLTV ratio. For first mortgage loans that are subject to a HELOC, see B2-1.2-03, Home Equity Combined Loan-to-Value (HCLTV) Ratios B2-1.2-03, Home Equity Combined Loan-to-Value (HCLTV) Ratios . For all other subordinate liens, see B2-1.2-04, Subordinate Financing B2-1.2-04, Subordinate Financing for additional information. The CLTV ratio is determined by dividing the sum of the items listed below by the lesser of the sales price or the appraised value of the property. the original loan amount of the first mortgage, the drawn portion (outstanding principal balance) of a HELOC, and the unpaid principal balance of all closed-end subordinate financing. (With a closed-end loan, a borrower draws down all funds on day one and may not make any payment plan changes or access any paid-down principal once the loan is closed.) Note: For each subordinate liability, in order for the",
+          "score": 0.5725850901221406,
+          "source_id": "fannie_cltv",
+          "source_title": "B2-1.2-02, Combined Loan-to-Value (CLTV) Ratios",
+          "institution": "Fannie Mae",
+          "source_url": "https://selling-guide.fanniemae.com/sel/b2-1.2-02/combined-loan-value-cltv-ratios",
+          "page_or_section": "Calculation of the CLTV Ratio",
+          "chunk_id": "fannie_cltv:0001"
+        }
+      ]
+    },
+    {
+      "query_id": "cltv_subordinate",
+      "query": "How does CLTV account for subordinate financing?",
+      "evaluation_group": "directed",
+      "query_type": "directed",
+      "expected_no_relevant_source": false,
+      "expected_source_ids": [
+        "fannie_cltv"
+      ],
+      "expected_concepts": [
+        "cltv",
+        "subordinate"
+      ],
+      "source_hit_at_k": true,
+      "source_recall_at_k": 1.0,
+      "concept_hit_at_k": true,
+      "first_relevant_rank": 1,
+      "reciprocal_rank": 1.0,
+      "top_score": 0.7381666146077991,
+      "result_count": 5,
+      "rejection_applied": false,
+      "retrieved": [
+        {
+          "text": "may not make any payment plan changes or access any paid-down principal once the loan is closed.) Note: For each subordinate liability, in order for the lender to accurately calculate the CLTV ratio for eligibility and underwriting purposes, the lender must determine the drawn portion of all HELOCs, if applicable, and the unpaid principal balance for all closed-end subordinate financing. If any subordinate financing is not shown on a credit report, the lender must obtain documentation from the borrower or creditor. If the borrower discloses, or the lender discovers, new (or increased) subordinate financing after the underwriting decision has been made, up to and concurrent with closing, the lender must re-underwrite the mortgage loan. (See B3-6-02, Debt-to-Income Ratios B3-6-02, Debt-to-Income Ratios , for additional information.) Note: The CLTV ratio calculation may differ for certain mortgage loans. For details on these differences, see B2-1.3-05, Payoff of Installment Land Contract",
+          "score": 0.7381666146077991,
+          "source_id": "fannie_cltv",
+          "source_title": "B2-1.2-02, Combined Loan-to-Value (CLTV) Ratios",
+          "institution": "Fannie Mae",
+          "source_url": "https://selling-guide.fanniemae.com/sel/b2-1.2-02/combined-loan-value-cltv-ratios",
+          "page_or_section": "Calculation of the CLTV Ratio",
+          "chunk_id": "fannie_cltv:0002"
+        },
+        {
+          "text": "For first mortgage loans that are subject to subordinate financing, the lender must calculate the LTV ratio and the CLTV ratio. For first mortgage loans that are subject to a HELOC, see B2-1.2-03, Home Equity Combined Loan-to-Value (HCLTV) Ratios B2-1.2-03, Home Equity Combined Loan-to-Value (HCLTV) Ratios . For all other subordinate liens, see B2-1.2-04, Subordinate Financing B2-1.2-04, Subordinate Financing for additional information. The CLTV ratio is determined by dividing the sum of the items listed below by the lesser of the sales price or the appraised value of the property. the original loan amount of the first mortgage, the drawn portion (outstanding principal balance) of a HELOC, and the unpaid principal balance of all closed-end subordinate financing. (With a closed-end loan, a borrower draws down all funds on day one and may not make any payment plan changes or access any paid-down principal once the loan is closed.) Note: For each subordinate liability, in order for the",
+          "score": 0.7279466044136873,
+          "source_id": "fannie_cltv",
+          "source_title": "B2-1.2-02, Combined Loan-to-Value (CLTV) Ratios",
+          "institution": "Fannie Mae",
+          "source_url": "https://selling-guide.fanniemae.com/sel/b2-1.2-02/combined-loan-value-cltv-ratios",
+          "page_or_section": "Calculation of the CLTV Ratio",
+          "chunk_id": "fannie_cltv:0001"
+        },
+        {
+          "text": "Eligibility B5-5.1-02, Community Seconds Loan Eligibility ; and B5-5.2-02, Loans with Resale Restrictions: Eligibility, Collateral and Delivery Requirements B5-5.2-02, Loans with Resale Restrictions: Eligibility, Collateral and Delivery Requirements ; and B5-5.3-03, Shared Equity Transactions: Eligibility, Underwriting and Collateral Requirements B5-5.3-03, Shared Equity Transactions: Eligibility, Underwriting and Collateral Requirements . Refer to the Eligibility Matrix for allowable CLTV ratios.",
+          "score": 0.6780919725649743,
+          "source_id": "fannie_cltv",
+          "source_title": "B2-1.2-02, Combined Loan-to-Value (CLTV) Ratios",
+          "institution": "Fannie Mae",
+          "source_url": "https://selling-guide.fanniemae.com/sel/b2-1.2-02/combined-loan-value-cltv-ratios",
+          "page_or_section": "Calculation of the CLTV Ratio",
+          "chunk_id": "fannie_cltv:0004"
+        },
+        {
+          "text": "Calculation of the CLTV Ratio Loan-Level Price Adjustments",
+          "score": 0.5994865803761724,
+          "source_id": "fannie_cltv",
+          "source_title": "B2-1.2-02, Combined Loan-to-Value (CLTV) Ratios",
+          "institution": "Fannie Mae",
+          "source_url": "https://selling-guide.fanniemae.com/sel/b2-1.2-02/combined-loan-value-cltv-ratios",
+          "page_or_section": "B2-1.2-02, Combined Loan-to-Value (CLTV) Ratios (12/04/2018)",
+          "chunk_id": "fannie_cltv:0000"
+        },
+        {
+          "text": "Get answers to your policy and guide questions, straight from the source. Customer Login Password Reset Not a customer? Get Started Mortgage Products & Options Technology Apps & Solutions Customer Service News & Events Learning Center Guide Forms The Marketing Center Fannie Mae's Consumer Website Duty to Serve Homepath",
+          "score": 0.5687821777154339,
+          "source_id": "fannie_cltv",
+          "source_title": "B2-1.2-02, Combined Loan-to-Value (CLTV) Ratios",
+          "institution": "Fannie Mae",
+          "source_url": "https://selling-guide.fanniemae.com/sel/b2-1.2-02/combined-loan-value-cltv-ratios",
+          "page_or_section": "Have questions?",
+          "chunk_id": "fannie_cltv:0006"
+        }
+      ]
+    },
+    {
+      "query_id": "hmda_loan_purpose",
+      "query": "What are the HMDA loan purpose reporting codes for purchase and refinancing?",
+      "evaluation_group": "directed",
+      "query_type": "directed",
+      "expected_no_relevant_source": false,
+      "expected_source_ids": [
+        "cfpb_hmda_2023_reference"
+      ],
+      "expected_concepts": [
+        "loan purpose"
+      ],
+      "source_hit_at_k": true,
+      "source_recall_at_k": 1.0,
+      "concept_hit_at_k": true,
+      "first_relevant_rank": 1,
+      "reciprocal_rank": 1.0,
+      "top_score": 0.8003960001544581,
+      "result_count": 5,
+      "rejection_applied": false,
+      "retrieved": [
+        {
+          "text": "Effective January 1, 2023 4 2023 REPORTABLE HMDA DATA: A REGULATORY AND REPORTING OVERVIEW REFERENCE CHART – VERSION 1, FEBRUARY 9, 2023 Data point Regulation C references Description Filing instructionsb Reporting “Not Applicable”c or “Exempt”d (5) Loan Purpose § 1003.4(a)(3), Comments 4(a)(3)- 1 through -6 Whether the transaction is for home purchase, home improvement, refinancing, cash-out refinancing, or another purpose Indicate the purpose of the covered loan or application by entering:  Code 1—Home purchase  Code 2—Home improvement  Code 31—Refinancing  Code 32—Cash-out refinancing  Code 4—Other purpose  Code 5—Not applicable To report not applicable, enter “Code 5” for purchased covered loans where origination took place prior to January 1, 2018, Comment 4(a)(3)-6. (6) Preapproval § 1003.4(a)(4), Comments 4(a)(4)- 1 and -2 Whether the transaction involved a preapproval request for a home purchase loan under a preapproval program Indicate preapproval for a covered loan or",
+          "score": 0.8003960001544581,
+          "source_id": "cfpb_hmda_2023_reference",
+          "source_title": "Reportable HMDA Data: 2023 Regulatory and Reporting Overview Reference Chart",
+          "institution": "Consumer Financial Protection Bureau (CFPB)",
+          "source_url": "https://files.consumerfinance.gov/f/documents/cfpb_reportable-hmda-data_regulatory-and-reporting-overview-reference-chart_2023-02.pdf",
+          "page_or_section": "page 4",
+          "chunk_id": "cfpb_hmda_2023_reference:0006"
+        },
+        {
+          "text": "Effective January 1, 2023 5 2023 REPORTABLE HMDA DATA: A REGULATORY AND REPORTING OVERVIEW REFERENCE CHART – VERSION 1, FEBRUARY 9, 2023 Data point Regulation C references Description Filing instructionsb Reporting “Not Applicable”c or “Exempt”d (10) Action Taken and (11) Action Taken Date § 1003.4(a)(8), Comments 4(a)(8)(i)-1 t hrough -14 and 4(a)(8)(ii)-1 through -6 Type and date of action the FI took on the loan, application, or preapproval request ACTION TAKEN. Indicate the action taken on the covered loan or application by entering:  Code 1—Loan originated  Code 2—Application approved but not accepted  Code 3—Application denied  Code 4—Application withdrawn by applicant  Code 5—File closed for incompleteness  Code 6—Purchased loan  Code 7—Preapproval request denied  Code 8—Preapproval request approved but not accepted ACTION TAKEN DATE. Enter, in numeral form, the date of action taken by year, month, and day, using YYYYMMDD format. Example: If the action taken date is July",
+          "score": 0.736172575901755,
+          "source_id": "cfpb_hmda_2023_reference",
+          "source_title": "Reportable HMDA Data: 2023 Regulatory and Reporting Overview Reference Chart",
+          "institution": "Consumer Financial Protection Bureau (CFPB)",
+          "source_url": "https://files.consumerfinance.gov/f/documents/cfpb_reportable-hmda-data_regulatory-and-reporting-overview-reference-chart_2023-02.pdf",
+          "page_or_section": "page 5",
+          "chunk_id": "cfpb_hmda_2023_reference:0009"
+        },
+        {
+          "text": "applicant or borrower, or of the first co-applicant or co-borrower, as applicable. Age is calculated, as of the application date, as the number of whole years derived from the date of birth shown on the application form. Example: If the applicant or borrower is 24 years old, enter 24. Or, enter:  Code 8888—Not applicable  Code 9999—No co-applicant NOTE: Use Code 9999 in the co-applicant field if there are no co- applicants or co-borrowers. If there is more than one co-applicant or co-borrower, provide the required information only for the first co-applicant or co-borrower listed on the collection form. To report not applicable, enter “Code 8888” for:  Purchased covered loans for which the financial institution chooses not to report the applicant’s or co-applicant’s age, Comment 4(a)(10)(ii)-3;  Covered loans or applications when applicant or co-applicant is not a natural person, Comment 4(a)(10)(ii)-4. (20) Income § 1003.4(a)(10)(iii), Comments If credit decision is made, gross",
+          "score": 0.7354400195788505,
+          "source_id": "cfpb_hmda_2023_reference",
+          "source_title": "Reportable HMDA Data: 2023 Regulatory and Reporting Overview Reference Chart",
+          "institution": "Consumer Financial Protection Bureau (CFPB)",
+          "source_url": "https://files.consumerfinance.gov/f/documents/cfpb_reportable-hmda-data_regulatory-and-reporting-overview-reference-chart_2023-02.pdf",
+          "page_or_section": "page 17",
+          "chunk_id": "cfpb_hmda_2023_reference:0042"
+        },
+        {
+          "text": "applications where the property securing the covered loan or, in the case of an application, proposed to secure the covered loan is not a multifamily dwelling, § 1003.4(a)(32); Comment 4(a)(32)-6. Enter “Exempt” if, pursuant to the 2018 HMDA Rule, your institution is not reporting Multifamily Affordable Units. (43) Application Channel (Submission of Application and § 1003.4(a)(33), Comments 4(a)(33)-1, 4(a)(33)(i)-1, and Indicators of whether the application was submitted directly to the FI, and whether the SUBMISSION OF APPLICATION. Indicate whether the applicant or borrower submitted the application directly to your institution by entering:  Code 1111—Exempt  Code 1—Submitted directly to your institution To report not applicable for Submission of Application, enter “Code 3”  Purchased covered loans, § 1003.4(a)(33);",
+          "score": 0.722219687248393,
+          "source_id": "cfpb_hmda_2023_reference",
+          "source_title": "Reportable HMDA Data: 2023 Regulatory and Reporting Overview Reference Chart",
+          "institution": "Consumer Financial Protection Bureau (CFPB)",
+          "source_url": "https://files.consumerfinance.gov/f/documents/cfpb_reportable-hmda-data_regulatory-and-reporting-overview-reference-chart_2023-02.pdf",
+          "page_or_section": "page 32",
+          "chunk_id": "cfpb_hmda_2023_reference:0082"
+        },
+        {
+          "text": "Z, § 1026.19(f), § 1003.4(a)(19); Comment 4(a)(19)-1;  Purchased covered loans with applications that were received by the selling entity prior to the effective date of Regulation Z, § 1026.19(f), Comment 4(a)(19)-2. Enter “Exempt” if, pursuant to the 2018 HMDA Rule, your institution is not reporting Discount Points . (30) Lender Credits § 1003.4(a)(20), Comments 4(a)(20)-1 through - 3 Amount of lender credits Enter, in dollars, the amount of lender credits. If no lender credits were provided, leave this field blank. Example: If the amount is $1500.24, enter 1500.24. Enter “NA” for:  Applications, Comment 4(a)(20)-1;  Covered loans not subject to Regulation Z, § 1026.19(f), § 1003.4(a)(20); Comment 4(a)(20)-1;  Purchased covered loans with applications that were received by the selling entity prior to the",
+          "score": 0.7120562983540701,
+          "source_id": "cfpb_hmda_2023_reference",
+          "source_title": "Reportable HMDA Data: 2023 Regulatory and Reporting Overview Reference Chart",
+          "institution": "Consumer Financial Protection Bureau (CFPB)",
+          "source_url": "https://files.consumerfinance.gov/f/documents/cfpb_reportable-hmda-data_regulatory-and-reporting-overview-reference-chart_2023-02.pdf",
+          "page_or_section": "page 26",
+          "chunk_id": "cfpb_hmda_2023_reference:0065"
+        }
+      ]
+    },
+    {
+      "query_id": "hmda_occupancy",
+      "query": "How does HMDA code principal residence, second residence, and investment property occupancy?",
+      "evaluation_group": "directed",
+      "query_type": "directed",
+      "expected_no_relevant_source": false,
+      "expected_source_ids": [
+        "cfpb_hmda_2023_reference"
+      ],
+      "expected_concepts": [
+        "occupancy"
+      ],
+      "source_hit_at_k": true,
+      "source_recall_at_k": 1.0,
+      "concept_hit_at_k": true,
+      "first_relevant_rank": 1,
+      "reciprocal_rank": 1.0,
+      "top_score": 0.6631593944362495,
+      "result_count": 5,
+      "rejection_applied": false,
+      "retrieved": [
+        {
+          "text": "Whether the transaction involved a preapproval request for a home purchase loan under a preapproval program Indicate preapproval for a covered loan or application by entering:  Code 1—Preapproval requested  Code 2—Preapproval not requested (7) Construction Method § 1003.4(a)(5), Comments 4(a)(5)- 1 through -3 Whether the dwelling is site-built or a manufactured home Indicate the construction method for the dwelling by entering:  Code 1—Site-built  Code 2—Manufactured home (8) Occupancy Type § 1003.4(a)(6), Comments 4(a)(6)- 1 through -5 Whether the property will be used as a principal residence, second residence, or investment property Indicate the occupancy type by entering:  Code 1—Principal residence  Code 2—Second residence  Code 3—Investment property (9) Loan Amount § 1003.4(a)(7), Comments 4(a)(7)- 1 through -9 Amount of the loan or the amount applied for Enter, in dollars, the amount of the covered loan, or the amount applied for, as applicable. Example: If the loan",
+          "score": 0.6631593944362495,
+          "source_id": "cfpb_hmda_2023_reference",
+          "source_title": "Reportable HMDA Data: 2023 Regulatory and Reporting Overview Reference Chart",
+          "institution": "Consumer Financial Protection Bureau (CFPB)",
+          "source_url": "https://files.consumerfinance.gov/f/documents/cfpb_reportable-hmda-data_regulatory-and-reporting-overview-reference-chart_2023-02.pdf",
+          "page_or_section": "page 4",
+          "chunk_id": "cfpb_hmda_2023_reference:0007"
+        },
+        {
+          "text": "Code 2—Indirect ownership  Code 3—Paid leasehold  Code 4—Unpaid leasehold  Code 5—Not applicable To report not applicable, enter “Code 5” for:  The dwelling related to the property identified is not a manufactured home, § 1003.4(a)(30); Comment 4(a)(30)-6.  The dwelling related to the property identified is a manufactured home community that is a multifamily dwelling, Comment 4(a)(30)-4; Comment 4(a)(30)-6.",
+          "score": 0.6396642975266398,
+          "source_id": "cfpb_hmda_2023_reference",
+          "source_title": "Reportable HMDA Data: 2023 Regulatory and Reporting Overview Reference Chart",
+          "institution": "Consumer Financial Protection Bureau (CFPB)",
+          "source_url": "https://files.consumerfinance.gov/f/documents/cfpb_reportable-hmda-data_regulatory-and-reporting-overview-reference-chart_2023-02.pdf",
+          "page_or_section": "page 31",
+          "chunk_id": "cfpb_hmda_2023_reference:0079"
+        },
+        {
+          "text": "applicable, enter “Code 3” for:  The dwelling related to the property identified is not a manufactured home, § 1003.4(a)(29); Comment 4(a)(29)-4.  The dwelling related to the property identified is a manufactured home community that is a multifamily dwelling, Comment 4(a)(29)-2; Comment 4(a)(29)-4. Enter “Code 1111” if, pursuant to the 2018 HMDA Rule, your institution is not reporting Manufactured Home Secured Property Type. (40) Manufactured Home Land Property Interest § 1003.4(a)(30), Comments 4(a)(30)-1 through - 6 Information about the applicant’s or borrower’s ownership or leasehold interest in the land where the manufactured home is located Indicate the applicant’s or borrower’s land property interest in the land on which a manufactured home is, or will be, located by entering:  Code 1111—Exempt  Code 1—Direct ownership  Code 2—Indirect ownership  Code 3—Paid leasehold  Code 4—Unpaid leasehold  Code 5—Not applicable To report not applicable, enter “Code 5” for:  The",
+          "score": 0.6383403435811643,
+          "source_id": "cfpb_hmda_2023_reference",
+          "source_title": "Reportable HMDA Data: 2023 Regulatory and Reporting Overview Reference Chart",
+          "institution": "Consumer Financial Protection Bureau (CFPB)",
+          "source_url": "https://files.consumerfinance.gov/f/documents/cfpb_reportable-hmda-data_regulatory-and-reporting-overview-reference-chart_2023-02.pdf",
+          "page_or_section": "page 31",
+          "chunk_id": "cfpb_hmda_2023_reference:0078"
+        },
+        {
+          "text": "Effective January 1, 2023 32 2023 REPORTABLE HMDA DATA: A REGULATORY AND REPORTING OVERVIEW REFERENCE CHART – VERSION 1, FEBRUARY 9, 2023 Data point Regulation C references Description Filing instructionsb Reporting “Not Applicable”c or “Exempt”d  A location for the manufactured home related to a covered loan or application has not been identified, § 1003.4(a)(30); Comment 4(a)(9)-5. Enter “Code 1111” if, pursuant to the 2018 HMDA Rule, your institution is not reporting Manufactured Home Land Property Interest. (41) Total Units § 1003.4(a)(31), Comments 4(a)(31)-1 through - 4 Number of individual dwelling units related to the property Enter, in numeral form, the number of individual dwelling units related to the property securing the covered loan or, in the case of an application, proposed to secure the covered loan. Example: If there are five (5) individual dwelling units, enter 5. (42) Multifamily Affordable Units § 1003.4(a)(32), Comments 4(a)(32)-1 through - 6 Number of individual",
+          "score": 0.592373418934774,
+          "source_id": "cfpb_hmda_2023_reference",
+          "source_title": "Reportable HMDA Data: 2023 Regulatory and Reporting Overview Reference Chart",
+          "institution": "Consumer Financial Protection Bureau (CFPB)",
+          "source_url": "https://files.consumerfinance.gov/f/documents/cfpb_reportable-hmda-data_regulatory-and-reporting-overview-reference-chart_2023-02.pdf",
+          "page_or_section": "page 32",
+          "chunk_id": "cfpb_hmda_2023_reference:0080"
+        },
+        {
+          "text": "Effective January 1, 2023 31 2023 REPORTABLE HMDA DATA: A REGULATORY AND REPORTING OVERVIEW REFERENCE CHART – VERSION 1, FEBRUARY 9, 2023 Data point Regulation C references Description Filing instructionsb Reporting “Not Applicable”c or “Exempt”d Enter “Exempt” if, pursuant to the 2018 HMDA Rule, your institution is not reporting Property Value. (39) Manufactured Home Secured Property Type § 1003.4(a)(29), Comments 4(a)(29)-1 through - 4 Whether the covered loan is secured by a manufactured home and land or a manufactured home and not land Indicate whether the covered loan or application is, or would have been, secured by a manufactured home and land, or by a manufactured home and not land, by entering:  Code 1111—Exempt  Code 1—Manufactured home and land  Code 2—Manufactured home and not land  Code 3—Not applicable To report not applicable, enter “Code 3” for:  The dwelling related to the property identified is not a manufactured home, § 1003.4(a)(29); Comment 4(a)(29)-4.  The",
+          "score": 0.561590747955601,
+          "source_id": "cfpb_hmda_2023_reference",
+          "source_title": "Reportable HMDA Data: 2023 Regulatory and Reporting Overview Reference Chart",
+          "institution": "Consumer Financial Protection Bureau (CFPB)",
+          "source_url": "https://files.consumerfinance.gov/f/documents/cfpb_reportable-hmda-data_regulatory-and-reporting-overview-reference-chart_2023-02.pdf",
+          "page_or_section": "page 31",
+          "chunk_id": "cfpb_hmda_2023_reference:0077"
+        }
+      ]
+    },
+    {
+      "query_id": "hmda_loan_type",
+      "query": "What HMDA loan type codes identify conventional, FHA, VA and USDA loans?",
+      "evaluation_group": "directed",
+      "query_type": "directed",
+      "expected_no_relevant_source": false,
+      "expected_source_ids": [
+        "cfpb_hmda_2023_reference"
+      ],
+      "expected_concepts": [
+        "loan type"
+      ],
+      "source_hit_at_k": true,
+      "source_recall_at_k": 1.0,
+      "concept_hit_at_k": true,
+      "first_relevant_rank": 1,
+      "reciprocal_rank": 1.0,
+      "top_score": 0.699396017758769,
+      "result_count": 5,
+      "rejection_applied": false,
+      "retrieved": [
+        {
+          "text": "Example: If the application was received on July 21, 2022, enter 20220721. Enter “NA” for purchased covered loans, § 1003.4(a)(1)(ii). (4) Loan Type § 1003.4(a)(2), Comment 4(a)(2)-1 Whether the loan or application is insured by the Federal Housing Administration, guaranteed by the Department of Veterans Affairs, Rural Housing Service, or Farm Service Agency Indicate the type of covered loan or application by entering:  Code 1—Conventional (not insured or guaranteed by FHA, VA, RHS, or FSA)  Code 2—Federal Housing Administration insured (FHA)  Code 3—Veterans Affairs guaranteed (VA)  Code 4—USDA Rural Housing Service or Farm Service Agency guaranteed (RHS or FSA) NULI Example: 999143X",
+          "score": 0.699396017758769,
+          "source_id": "cfpb_hmda_2023_reference",
+          "source_title": "Reportable HMDA Data: 2023 Regulatory and Reporting Overview Reference Chart",
+          "institution": "Consumer Financial Protection Bureau (CFPB)",
+          "source_url": "https://files.consumerfinance.gov/f/documents/cfpb_reportable-hmda-data_regulatory-and-reporting-overview-reference-chart_2023-02.pdf",
+          "page_or_section": "page 3",
+          "chunk_id": "cfpb_hmda_2023_reference:0005"
+        },
+        {
+          "text": "Effective January 1, 2023 2 2023 REPORTABLE HMDA DATA: A REGULATORY AND REPORTING OVERVIEW REFERENCE CHART – VERSION 1, FEBRUARY 9, 2023 Data point Regulation C references Description Filing instructionsb Reporting “Not Applicable”c or “Exempt”d (2) Universal Loan Identifier (ULI) or Non- Universal Loan Identifier (NULI) § 1003.4(a)(1)(i), Comments 4(a)(1)(i)-1 through -5, and appendix C ULI: Identifier assigned to identify and retrieve a loan or application that contains the FI’s LEI, an internally generated sequence of characters, and a check digit NULI: Identifier assigned to identify a loan or application ULI. Assign and report a ULI that: 1. Begins with the financial institution’s Legal Entity Identifier as defined in § 1003.4(a)(1)(i)(A). 2. Follows the Legal Entity Identifier with up to 23 additional characters to identify the covered loan or application, which:  May be letters, numerals, or a combination of letters and numerals;  Must be unique within the financial",
+          "score": 0.6568345343673956,
+          "source_id": "cfpb_hmda_2023_reference",
+          "source_title": "Reportable HMDA Data: 2023 Regulatory and Reporting Overview Reference Chart",
+          "institution": "Consumer Financial Protection Bureau (CFPB)",
+          "source_url": "https://files.consumerfinance.gov/f/documents/cfpb_reportable-hmda-data_regulatory-and-reporting-overview-reference-chart_2023-02.pdf",
+          "page_or_section": "page 2",
+          "chunk_id": "cfpb_hmda_2023_reference:0002"
+        },
+        {
+          "text": "the covered loan or application that your institution is reporting. Leave the remaining Automated Underwriting System Result data fields blank.  Code 18—Accept/Eligible  Code 19—Accept/Ineligible  Code 20—Accept/Unable to Determine  Code 21—Refer with Caution/Eligible  Code 22—Refer with Caution/Ineligible  Code 23—Refer/Unable to Determine  Code 24—Refer with Caution/Unable to Determine For the following AUS results returned, use the following Codes for these AUS:  Federal National Mortgage Association (Fannie Mae) commonly returns results that correspond to Codes 1, 2, 3, 4, 5, 6, 7, or 15. If your result(s) differ, report the AUS result(s) received.",
+          "score": 0.619024839852546,
+          "source_id": "cfpb_hmda_2023_reference",
+          "source_title": "Reportable HMDA Data: 2023 Regulatory and Reporting Overview Reference Chart",
+          "institution": "Consumer Financial Protection Bureau (CFPB)",
+          "source_url": "https://files.consumerfinance.gov/f/documents/cfpb_reportable-hmda-data_regulatory-and-reporting-overview-reference-chart_2023-02.pdf",
+          "page_or_section": "page 36",
+          "chunk_id": "cfpb_hmda_2023_reference:0092"
+        },
+        {
+          "text": "applications where the property securing the covered loan or, in the case of an application, proposed to secure the covered loan is not a multifamily dwelling, § 1003.4(a)(32); Comment 4(a)(32)-6. Enter “Exempt” if, pursuant to the 2018 HMDA Rule, your institution is not reporting Multifamily Affordable Units. (43) Application Channel (Submission of Application and § 1003.4(a)(33), Comments 4(a)(33)-1, 4(a)(33)(i)-1, and Indicators of whether the application was submitted directly to the FI, and whether the SUBMISSION OF APPLICATION. Indicate whether the applicant or borrower submitted the application directly to your institution by entering:  Code 1111—Exempt  Code 1—Submitted directly to your institution To report not applicable for Submission of Application, enter “Code 3”  Purchased covered loans, § 1003.4(a)(33);",
+          "score": 0.6125495052607017,
+          "source_id": "cfpb_hmda_2023_reference",
+          "source_title": "Reportable HMDA Data: 2023 Regulatory and Reporting Overview Reference Chart",
+          "institution": "Consumer Financial Protection Bureau (CFPB)",
+          "source_url": "https://files.consumerfinance.gov/f/documents/cfpb_reportable-hmda-data_regulatory-and-reporting-overview-reference-chart_2023-02.pdf",
+          "page_or_section": "page 32",
+          "chunk_id": "cfpb_hmda_2023_reference:0082"
+        },
+        {
+          "text": "Effective January 1, 2023 4 2023 REPORTABLE HMDA DATA: A REGULATORY AND REPORTING OVERVIEW REFERENCE CHART – VERSION 1, FEBRUARY 9, 2023 Data point Regulation C references Description Filing instructionsb Reporting “Not Applicable”c or “Exempt”d (5) Loan Purpose § 1003.4(a)(3), Comments 4(a)(3)- 1 through -6 Whether the transaction is for home purchase, home improvement, refinancing, cash-out refinancing, or another purpose Indicate the purpose of the covered loan or application by entering:  Code 1—Home purchase  Code 2—Home improvement  Code 31—Refinancing  Code 32—Cash-out refinancing  Code 4—Other purpose  Code 5—Not applicable To report not applicable, enter “Code 5” for purchased covered loans where origination took place prior to January 1, 2018, Comment 4(a)(3)-6. (6) Preapproval § 1003.4(a)(4), Comments 4(a)(4)- 1 and -2 Whether the transaction involved a preapproval request for a home purchase loan under a preapproval program Indicate preapproval for a covered loan or",
+          "score": 0.610844793691625,
+          "source_id": "cfpb_hmda_2023_reference",
+          "source_title": "Reportable HMDA Data: 2023 Regulatory and Reporting Overview Reference Chart",
+          "institution": "Consumer Financial Protection Bureau (CFPB)",
+          "source_url": "https://files.consumerfinance.gov/f/documents/cfpb_reportable-hmda-data_regulatory-and-reporting-overview-reference-chart_2023-02.pdf",
+          "page_or_section": "page 4",
+          "chunk_id": "cfpb_hmda_2023_reference:0006"
+        }
+      ]
+    },
+    {
+      "query_id": "hmda_income_reporting",
+      "query": "What income amount must be reported under HMDA for a credit decision?",
+      "evaluation_group": "directed",
+      "query_type": "directed",
+      "expected_no_relevant_source": false,
+      "expected_source_ids": [
+        "cfpb_hmda_2023_reference"
+      ],
+      "expected_concepts": [
+        "income"
+      ],
+      "source_hit_at_k": true,
+      "source_recall_at_k": 1.0,
+      "concept_hit_at_k": true,
+      "first_relevant_rank": 1,
+      "reciprocal_rank": 1.0,
+      "top_score": 0.7435280573063965,
+      "result_count": 5,
+      "rejection_applied": false,
+      "retrieved": [
+        {
+          "text": "Effective January 1, 2023 18 2023 REPORTABLE HMDA DATA: A REGULATORY AND REPORTING OVERVIEW REFERENCE CHART – VERSION 1, FEBRUARY 9, 2023 Data point Regulation C references Description Filing instructionsb Reporting “Not Applicable”c or “Exempt”d 4(a)(10)(iii)-1 through -10 income relied on in making the credit decision; Or, if a credit decision was not made, the gross annual income relied on in processing the application relied on in processing the application. Round all dollar amounts to the nearest thousand (round $500 up to the next $1,000). Example: If the income amount is $35,500, enter 36.  Covered loans or applications for which the credit decision did not consider, or would not have considered income, § 1003.4(a)(10)(iii); Comment 4(a)(10)(iii)-6;  Covered loans or applications when applicant or co-applicant is not a natural person, Comment 4(a)(10)(iii)-7;  Covered loan is secured by, or application is proposed to be secured by, a multifamily dwelling, Comment",
+          "score": 0.7435280573063965,
+          "source_id": "cfpb_hmda_2023_reference",
+          "source_title": "Reportable HMDA Data: 2023 Regulatory and Reporting Overview Reference Chart",
+          "institution": "Consumer Financial Protection Bureau (CFPB)",
+          "source_url": "https://files.consumerfinance.gov/f/documents/cfpb_reportable-hmda-data_regulatory-and-reporting-overview-reference-chart_2023-02.pdf",
+          "page_or_section": "page 18",
+          "chunk_id": "cfpb_hmda_2023_reference:0044"
+        },
+        {
+          "text": "applicant or co-applicant is not a natural person, Comment 4(a)(10)(ii)-4. (20) Income § 1003.4(a)(10)(iii), Comments If credit decision is made, gross annual Enter, in dollars, the gross annual income relied on in making the credit decision, or if a credit decision was not made, the gross annual income Enter “NA” for:",
+          "score": 0.7188319707831508,
+          "source_id": "cfpb_hmda_2023_reference",
+          "source_title": "Reportable HMDA Data: 2023 Regulatory and Reporting Overview Reference Chart",
+          "institution": "Consumer Financial Protection Bureau (CFPB)",
+          "source_url": "https://files.consumerfinance.gov/f/documents/cfpb_reportable-hmda-data_regulatory-and-reporting-overview-reference-chart_2023-02.pdf",
+          "page_or_section": "page 17",
+          "chunk_id": "cfpb_hmda_2023_reference:0043"
+        },
+        {
+          "text": "Effective January 1, 2023 28 2023 REPORTABLE HMDA DATA: A REGULATORY AND REPORTING OVERVIEW REFERENCE CHART – VERSION 1, FEBRUARY 9, 2023 Data point Regulation C references Description Filing instructionsb Reporting “Not Applicable”c or “Exempt”d (33) Debt-to- Income Ratio § 1003.4(a)(23), Comments 4(a)(23)-1 through - 7 Ratio of the applicant’s or borrower’s total monthly debt to total monthly income relied on Enter, as a percentage, the ratio of the applicant’s or borrower’s total monthly debt to the total monthly income relied on in making the credit decision. Use decimal places only if the ratio relied upon uses decimal places. The HMDA Platform can accept up to fifteen (15) decimal places and can accept negative numbers for Debt-to-Income Ratio. Example: If the relied upon debt-to-income ratio is 42.95, enter 42.95, not 43. If, however, your institution rounded the ratio up to 43% and relied on the rounded-up number, enter 43. Enter “NA” for:  Purchased covered loans, §",
+          "score": 0.7114545535396737,
+          "source_id": "cfpb_hmda_2023_reference",
+          "source_title": "Reportable HMDA Data: 2023 Regulatory and Reporting Overview Reference Chart",
+          "institution": "Consumer Financial Protection Bureau (CFPB)",
+          "source_url": "https://files.consumerfinance.gov/f/documents/cfpb_reportable-hmda-data_regulatory-and-reporting-overview-reference-chart_2023-02.pdf",
+          "page_or_section": "page 28",
+          "chunk_id": "cfpb_hmda_2023_reference:0068"
+        },
+        {
+          "text": "of the loan or the amount applied for Enter, in dollars, the amount of the covered loan, or the amount applied for, as applicable. Example: If the loan amount is $110,500, enter 110500 or 110500.00. If the loan amount is $110,500.24, enter 110500.24.",
+          "score": 0.6754036459487303,
+          "source_id": "cfpb_hmda_2023_reference",
+          "source_title": "Reportable HMDA Data: 2023 Regulatory and Reporting Overview Reference Chart",
+          "institution": "Consumer Financial Protection Bureau (CFPB)",
+          "source_url": "https://files.consumerfinance.gov/f/documents/cfpb_reportable-hmda-data_regulatory-and-reporting-overview-reference-chart_2023-02.pdf",
+          "page_or_section": "page 4",
+          "chunk_id": "cfpb_hmda_2023_reference:0008"
+        },
+        {
+          "text": "If, however, your institution rounded the ratio up to 43% and relied on the rounded-up number, enter 43. Enter “NA” for:  Purchased covered loans, § 1003.4(a)(23); Comment 4(a)(23)-7;  Transactions for which no credit decision was made (e.g., files closed for incompleteness, or if an application was withdrawn before a credit decision was made), Comment 4(a)(23)-3;  Transactions for which the credit decision was made without relying on debt-to-income ratio, Comment 4(a)(23)-4;  Covered loans or applications when applicant and co-applicant are not natural persons, Comment 4(a)(23)-5;  Covered loan secured by, or an application proposed to be secured by, a multifamily dwelling, Comment 4(a)(23)-6. Enter “Exempt” if, pursuant to the 2018 HMDA Rule, your institution is not reporting Debt-to- Income-Ratio. (34) Combined Loan-to-Value Ratio § 1003.4(a)(24), Comments 4(a)(24)-1 through - 6 Ratio of the total amount of debt that is secured by the property to the value of the property that",
+          "score": 0.666189227050576,
+          "source_id": "cfpb_hmda_2023_reference",
+          "source_title": "Reportable HMDA Data: 2023 Regulatory and Reporting Overview Reference Chart",
+          "institution": "Consumer Financial Protection Bureau (CFPB)",
+          "source_url": "https://files.consumerfinance.gov/f/documents/cfpb_reportable-hmda-data_regulatory-and-reporting-overview-reference-chart_2023-02.pdf",
+          "page_or_section": "page 28",
+          "chunk_id": "cfpb_hmda_2023_reference:0069"
+        }
+      ]
+    },
+    {
+      "query_id": "hmda_action_taken",
+      "query": "Which HMDA action taken codes represent originated, approved but not accepted, and denied applications?",
+      "evaluation_group": "directed",
+      "query_type": "directed",
+      "expected_no_relevant_source": false,
+      "expected_source_ids": [
+        "cfpb_hmda_2023_reference"
+      ],
+      "expected_concepts": [
+        "action taken"
+      ],
+      "source_hit_at_k": true,
+      "source_recall_at_k": 1.0,
+      "concept_hit_at_k": true,
+      "first_relevant_rank": 1,
+      "reciprocal_rank": 1.0,
+      "top_score": 0.6936387187141018,
+      "result_count": 5,
+      "rejection_applied": false,
+      "retrieved": [
+        {
+          "text": "3—Freddie Mac  Code 4—Farmer Mac  Code 5—Private securitizer To report not applicable, enter “Code 0” for:  Applications that were denied, withdrawn, closed for incompleteness, or approved but not accepted by the applicant, Comment 4(a)(11)- 10;  Preapproval requests that were denied or approved but not accepted by the applicant, Comment 4(a)(11)-10;",
+          "score": 0.6936387187141018,
+          "source_id": "cfpb_hmda_2023_reference",
+          "source_title": "Reportable HMDA Data: 2023 Regulatory and Reporting Overview Reference Chart",
+          "institution": "Consumer Financial Protection Bureau (CFPB)",
+          "source_url": "https://files.consumerfinance.gov/f/documents/cfpb_reportable-hmda-data_regulatory-and-reporting-overview-reference-chart_2023-02.pdf",
+          "page_or_section": "page 18",
+          "chunk_id": "cfpb_hmda_2023_reference:0046"
+        },
+        {
+          "text": "Effective January 1, 2023 5 2023 REPORTABLE HMDA DATA: A REGULATORY AND REPORTING OVERVIEW REFERENCE CHART – VERSION 1, FEBRUARY 9, 2023 Data point Regulation C references Description Filing instructionsb Reporting “Not Applicable”c or “Exempt”d (10) Action Taken and (11) Action Taken Date § 1003.4(a)(8), Comments 4(a)(8)(i)-1 t hrough -14 and 4(a)(8)(ii)-1 through -6 Type and date of action the FI took on the loan, application, or preapproval request ACTION TAKEN. Indicate the action taken on the covered loan or application by entering:  Code 1—Loan originated  Code 2—Application approved but not accepted  Code 3—Application denied  Code 4—Application withdrawn by applicant  Code 5—File closed for incompleteness  Code 6—Purchased loan  Code 7—Preapproval request denied  Code 8—Preapproval request approved but not accepted ACTION TAKEN DATE. Enter, in numeral form, the date of action taken by year, month, and day, using YYYYMMDD format. Example: If the action taken date is July",
+          "score": 0.6794716749213112,
+          "source_id": "cfpb_hmda_2023_reference",
+          "source_title": "Reportable HMDA Data: 2023 Regulatory and Reporting Overview Reference Chart",
+          "institution": "Consumer Financial Protection Bureau (CFPB)",
+          "source_url": "https://files.consumerfinance.gov/f/documents/cfpb_reportable-hmda-data_regulatory-and-reporting-overview-reference-chart_2023-02.pdf",
+          "page_or_section": "page 5",
+          "chunk_id": "cfpb_hmda_2023_reference:0009"
+        },
+        {
+          "text": "indicated by entering:  Code 1111 —Exempt  Code 1—Approve/Eligible  Code 2—Approve/Ineligible  Code 3—Refer/Eligible  Code 4—Refer/Ineligible  Code 5—Refer with Caution  Code 6—Out of Scope  Code 7—Error  Code 8—Accept  Code 9—Caution  Code 10—Ineligible  Code 11—Incomplete  Code 12—Invalid  Code 13—Refer  Code 14—Eligible  Code 15—Unable to Determine",
+          "score": 0.6740377084302458,
+          "source_id": "cfpb_hmda_2023_reference",
+          "source_title": "Reportable HMDA Data: 2023 Regulatory and Reporting Overview Reference Chart",
+          "institution": "Consumer Financial Protection Bureau (CFPB)",
+          "source_url": "https://files.consumerfinance.gov/f/documents/cfpb_reportable-hmda-data_regulatory-and-reporting-overview-reference-chart_2023-02.pdf",
+          "page_or_section": "page 35",
+          "chunk_id": "cfpb_hmda_2023_reference:0090"
+        },
+        {
+          "text": "Effective January 1, 2023 33 2023 REPORTABLE HMDA DATA: A REGULATORY AND REPORTING OVERVIEW REFERENCE CHART – VERSION 1, FEBRUARY 9, 2023 Data point Regulation C references Description Filing instructionsb Reporting “Not Applicable”c or “Exempt”d Initially Payable to Your Institution) 4(a)(33)(ii)-1 through -2 obligation was initially payable to the FI  Code 2—Not submitted directly to your institution  Code 3—Not applicable INITIALLY PAYABLE TO YOUR INSTITUTION. Indicate whether the obligation arising from the covered loan was, or, in the case of an application, would have been, initially payable to your institution by entering:  Code 1111—Exempt  Code 1—Initially payable to your institution  Code 2—Not initially payable to your institution  Code 3—Not applicable To report not applicable for Initially Payable to Your Institution, enter “Code 3”  Purchased covered loans, § 1003.4(a)(33);  Applications that were withdrawn, denied, or closed for incompleteness, if the institution",
+          "score": 0.6521191886195679,
+          "source_id": "cfpb_hmda_2023_reference",
+          "source_title": "Reportable HMDA Data: 2023 Regulatory and Reporting Overview Reference Chart",
+          "institution": "Consumer Financial Protection Bureau (CFPB)",
+          "source_url": "https://files.consumerfinance.gov/f/documents/cfpb_reportable-hmda-data_regulatory-and-reporting-overview-reference-chart_2023-02.pdf",
+          "page_or_section": "page 33",
+          "chunk_id": "cfpb_hmda_2023_reference:0083"
+        },
+        {
+          "text": "the credit scoring model, or that multiple credit scoring models were used, in the applicant field, and use Code 9 in the co-applicant field; or (B) the name and version of the credit scoring model, or that multiple credit scoring models were used, in the co-applicant field, and use Code 9 in the applicant field. (26) Reason for Denial § 1003.4(a)(16), Comments 4(a)(16)-1 through - 4 Reason(s) the application was denied Indicate the principal reason, or reasons, for denial by entering up to four (4):  Code 1111—Exempt  Code 1—Debt-to-income ratio  Code 2—Employment history  Code 3—Credit history  Code 4—Collateral  Code 5—Insufficient cash (downpayment, closing costs) To report not applicable, enter “Code 10” for applications that were not denied (e.g., loan is originated or purchased by the financial institution), Comment 4(a)(16)-4. Enter “Code 1111” if, pursuant to the 2018 HMDA Rule, your institution is not reporting the Reasons",
+          "score": 0.6517861025245598,
+          "source_id": "cfpb_hmda_2023_reference",
+          "source_title": "Reportable HMDA Data: 2023 Regulatory and Reporting Overview Reference Chart",
+          "institution": "Consumer Financial Protection Bureau (CFPB)",
+          "source_url": "https://files.consumerfinance.gov/f/documents/cfpb_reportable-hmda-data_regulatory-and-reporting-overview-reference-chart_2023-02.pdf",
+          "page_or_section": "page 22",
+          "chunk_id": "cfpb_hmda_2023_reference:0056"
+        }
+      ]
+    },
+    {
+      "query_id": "hmda_property_value",
+      "query": "When is property value reported as not applicable under HMDA?",
+      "evaluation_group": "directed",
+      "query_type": "directed",
+      "expected_no_relevant_source": false,
+      "expected_source_ids": [
+        "cfpb_hmda_2023_reference"
+      ],
+      "expected_concepts": [
+        "property value"
+      ],
+      "source_hit_at_k": true,
+      "source_recall_at_k": 1.0,
+      "concept_hit_at_k": true,
+      "first_relevant_rank": 1,
+      "reciprocal_rank": 1.0,
+      "top_score": 0.6785154913241319,
+      "result_count": 5,
+      "rejection_applied": false,
+      "retrieved": [
+        {
+          "text": "FEATURES. Indicate whether the contractual terms include, or would have included, any term, other than those described in § 1003.4(a)(27)(i), (ii), and (iii) that would allow for payments other than fully amortizing payments during the loan term by entering:  Code 1111—Exempt  Code 1—Other non-fully amortizing features  Code 2—No other non-fully amortizing features the 2018 HMDA Rule, your institution is not reporting Non-Amortizing Features. (38) Property Value § 1003.4(a)(28), Comments 4(a)(28)-1 through - 4 Value of the property relied on that secures the loan Enter, in dollars, the value of the property securing the covered loan or, in the case of an application, proposed to secure the covered loan, relied on in making the credit decision. Example: If the property value is $350,500, enter 350500. Enter “NA” for:  Transactions for which no credit decision was made (e.g., files closed for incompleteness, or if an application was withdrawn before a credit decision was made),",
+          "score": 0.6785154913241319,
+          "source_id": "cfpb_hmda_2023_reference",
+          "source_title": "Reportable HMDA Data: 2023 Regulatory and Reporting Overview Reference Chart",
+          "institution": "Consumer Financial Protection Bureau (CFPB)",
+          "source_url": "https://files.consumerfinance.gov/f/documents/cfpb_reportable-hmda-data_regulatory-and-reporting-overview-reference-chart_2023-02.pdf",
+          "page_or_section": "page 30",
+          "chunk_id": "cfpb_hmda_2023_reference:0075"
+        },
+        {
+          "text": "Effective January 1, 2023 31 2023 REPORTABLE HMDA DATA: A REGULATORY AND REPORTING OVERVIEW REFERENCE CHART – VERSION 1, FEBRUARY 9, 2023 Data point Regulation C references Description Filing instructionsb Reporting “Not Applicable”c or “Exempt”d Enter “Exempt” if, pursuant to the 2018 HMDA Rule, your institution is not reporting Property Value. (39) Manufactured Home Secured Property Type § 1003.4(a)(29), Comments 4(a)(29)-1 through - 4 Whether the covered loan is secured by a manufactured home and land or a manufactured home and not land Indicate whether the covered loan or application is, or would have been, secured by a manufactured home and land, or by a manufactured home and not land, by entering:  Code 1111—Exempt  Code 1—Manufactured home and land  Code 2—Manufactured home and not land  Code 3—Not applicable To report not applicable, enter “Code 3” for:  The dwelling related to the property identified is not a manufactured home, § 1003.4(a)(29); Comment 4(a)(29)-4.  The",
+          "score": 0.6598727201915703,
+          "source_id": "cfpb_hmda_2023_reference",
+          "source_title": "Reportable HMDA Data: 2023 Regulatory and Reporting Overview Reference Chart",
+          "institution": "Consumer Financial Protection Bureau (CFPB)",
+          "source_url": "https://files.consumerfinance.gov/f/documents/cfpb_reportable-hmda-data_regulatory-and-reporting-overview-reference-chart_2023-02.pdf",
+          "page_or_section": "page 31",
+          "chunk_id": "cfpb_hmda_2023_reference:0077"
+        },
+        {
+          "text": "CITY. Enter the city of the property as one (1) data field. Enter “NA” in each of the property address fields for:  Covered loans or applications if the property address of the property securing the covered loan is not known (e.g., the property did not have a property address at closing, or the property address was not provided to the institution before the application was denied, withdrawn, or closed for incompleteness), Comment 4(a)(9)(i)-3;  Covered loans or applications if a site of a manufactured home has not been identified, Comment 4(a)(9)-5.",
+          "score": 0.6507080473606212,
+          "source_id": "cfpb_hmda_2023_reference",
+          "source_title": "Reportable HMDA Data: 2023 Regulatory and Reporting Overview Reference Chart",
+          "institution": "Consumer Financial Protection Bureau (CFPB)",
+          "source_url": "https://files.consumerfinance.gov/f/documents/cfpb_reportable-hmda-data_regulatory-and-reporting-overview-reference-chart_2023-02.pdf",
+          "page_or_section": "page 5",
+          "chunk_id": "cfpb_hmda_2023_reference:0011"
+        },
+        {
+          "text": "Effective January 1, 2023 32 2023 REPORTABLE HMDA DATA: A REGULATORY AND REPORTING OVERVIEW REFERENCE CHART – VERSION 1, FEBRUARY 9, 2023 Data point Regulation C references Description Filing instructionsb Reporting “Not Applicable”c or “Exempt”d  A location for the manufactured home related to a covered loan or application has not been identified, § 1003.4(a)(30); Comment 4(a)(9)-5. Enter “Code 1111” if, pursuant to the 2018 HMDA Rule, your institution is not reporting Manufactured Home Land Property Interest. (41) Total Units § 1003.4(a)(31), Comments 4(a)(31)-1 through - 4 Number of individual dwelling units related to the property Enter, in numeral form, the number of individual dwelling units related to the property securing the covered loan or, in the case of an application, proposed to secure the covered loan. Example: If there are five (5) individual dwelling units, enter 5. (42) Multifamily Affordable Units § 1003.4(a)(32), Comments 4(a)(32)-1 through - 6 Number of individual",
+          "score": 0.6396183557587987,
+          "source_id": "cfpb_hmda_2023_reference",
+          "source_title": "Reportable HMDA Data: 2023 Regulatory and Reporting Overview Reference Chart",
+          "institution": "Consumer Financial Protection Bureau (CFPB)",
+          "source_url": "https://files.consumerfinance.gov/f/documents/cfpb_reportable-hmda-data_regulatory-and-reporting-overview-reference-chart_2023-02.pdf",
+          "page_or_section": "page 32",
+          "chunk_id": "cfpb_hmda_2023_reference:0080"
+        },
+        {
+          "text": "Transactions for which no credit decision was made (e.g., files closed for incompleteness, or if an application was withdrawn before a credit decision was made), Comment 4(a)(28)-3;  Transactions for which the credit decision was made without relying on property value, Comment 4(a)(28)-4.",
+          "score": 0.6280033296638791,
+          "source_id": "cfpb_hmda_2023_reference",
+          "source_title": "Reportable HMDA Data: 2023 Regulatory and Reporting Overview Reference Chart",
+          "institution": "Consumer Financial Protection Bureau (CFPB)",
+          "source_url": "https://files.consumerfinance.gov/f/documents/cfpb_reportable-hmda-data_regulatory-and-reporting-overview-reference-chart_2023-02.pdf",
+          "page_or_section": "page 30",
+          "chunk_id": "cfpb_hmda_2023_reference:0076"
+        }
+      ]
+    },
+    {
+      "query_id": "ambiguous_ltv_cltv",
+      "query": "If a home has a first mortgage and a smaller second lien, which value ratio describes the total financing?",
+      "evaluation_group": "additional",
+      "query_type": "ambiguous",
+      "expected_no_relevant_source": false,
+      "expected_source_ids": [
+        "fannie_cltv",
+        "fannie_ltv"
+      ],
+      "expected_concepts": [
+        "ltv",
+        "cltv"
+      ],
+      "source_hit_at_k": true,
+      "source_recall_at_k": 1.0,
+      "concept_hit_at_k": true,
+      "first_relevant_rank": 1,
+      "reciprocal_rank": 1.0,
+      "top_score": 0.6112914247174911,
+      "result_count": 5,
+      "rejection_applied": false,
+      "retrieved": [
+        {
+          "text": "For first mortgage loans that are subject to subordinate financing, the lender must calculate the LTV ratio and the CLTV ratio. For first mortgage loans that are subject to a HELOC, see B2-1.2-03, Home Equity Combined Loan-to-Value (HCLTV) Ratios B2-1.2-03, Home Equity Combined Loan-to-Value (HCLTV) Ratios . For all other subordinate liens, see B2-1.2-04, Subordinate Financing B2-1.2-04, Subordinate Financing for additional information. The CLTV ratio is determined by dividing the sum of the items listed below by the lesser of the sales price or the appraised value of the property. the original loan amount of the first mortgage, the drawn portion (outstanding principal balance) of a HELOC, and the unpaid principal balance of all closed-end subordinate financing. (With a closed-end loan, a borrower draws down all funds on day one and may not make any payment plan changes or access any paid-down principal once the loan is closed.) Note: For each subordinate liability, in order for the",
+          "score": 0.6112914247174911,
+          "source_id": "fannie_cltv",
+          "source_title": "B2-1.2-02, Combined Loan-to-Value (CLTV) Ratios",
+          "institution": "Fannie Mae",
+          "source_url": "https://selling-guide.fanniemae.com/sel/b2-1.2-02/combined-loan-value-cltv-ratios",
+          "page_or_section": "Calculation of the CLTV Ratio",
+          "chunk_id": "fannie_cltv:0001"
+        },
+        {
+          "text": "The total monthly obligation is the sum of the following: the housing payment for each borrower’s principal residence if the subject loan is the borrower’s principal residence, use the PITIA and qualifying payment amount (see B3-6-03, Monthly Housing Expense for the Subject Property B3-6-03, Monthly Housing Expense for the Subject Property ); if there is a non-occupant borrower, use the mortgage payment (including HOA fees and subordinate lien payments) or rental payments (see B3-6-05, Monthly Debt Obligations B3-6-05, Monthly Debt Obligations ); if the subject loan is a second home or investment property, use the mortgage payment (including HOA fees and subordinate lien payments) or rental payments (see B3-6-05, Monthly Debt Obligations B3-6-05, Monthly Debt Obligations ; the qualifying payment amount if the subject loan is for a second home or investment property (see B3-6-04, Qualifying Payment Requirements B3-6-04, Qualifying Payment Requirements ); monthly payments on installment",
+          "score": 0.6062441880682208,
+          "source_id": "fannie_debt_to_income",
+          "source_title": "B3-6-02, Debt-to-Income Ratios",
+          "institution": "Fannie Mae",
+          "source_url": "https://selling-guide.fanniemae.com/sel/b3-6-02/debt-income-ratios",
+          "page_or_section": "Calculating Total Monthly Obligation",
+          "chunk_id": "fannie_debt_to_income:0005"
+        },
+        {
+          "text": "The maximum allowable LTV ratio for a first mortgage is based on a number of factors including, the representative credit score, the type of mortgage product, the number of dwelling units, and the occupancy status of the property. The following table describes the requirements for calculating LTV ratios for a first mortgage transaction. The result of these calculations must be truncated (shortened) to two decimal places, then rounded up to the nearest whole percent. For example: 94.01% will be delivered as 95%, and 80.001% will be delivered as 80%. The rounding rules noted above also apply to the CLTV and HCLTV ratio calculations. Lenders' systems must contain rounding methodology that results in the same or a higher LTV ratio. Note : The LTV ratio calculations shown above may differ for certain mortgage loans. For details on these differences, see B2-1.3-05, Payoff of Installment Land Contract Requirements B2-1.3-05, Payoff of Installment Land Contract Requirements ; B5-2-03,",
+          "score": 0.5746796136908097,
+          "source_id": "fannie_ltv",
+          "source_title": "B2-1.2-01, Loan-to-Value (LTV) Ratios",
+          "institution": "Fannie Mae",
+          "source_url": "https://selling-guide.fanniemae.com/sel/b2-1.2-01/loan-value-ltv-ratios",
+          "page_or_section": "Calculation of the LTV Ratio",
+          "chunk_id": "fannie_ltv:0001"
+        },
+        {
+          "text": "may not make any payment plan changes or access any paid-down principal once the loan is closed.) Note: For each subordinate liability, in order for the lender to accurately calculate the CLTV ratio for eligibility and underwriting purposes, the lender must determine the drawn portion of all HELOCs, if applicable, and the unpaid principal balance for all closed-end subordinate financing. If any subordinate financing is not shown on a credit report, the lender must obtain documentation from the borrower or creditor. If the borrower discloses, or the lender discovers, new (or increased) subordinate financing after the underwriting decision has been made, up to and concurrent with closing, the lender must re-underwrite the mortgage loan. (See B3-6-02, Debt-to-Income Ratios B3-6-02, Debt-to-Income Ratios , for additional information.) Note: The CLTV ratio calculation may differ for certain mortgage loans. For details on these differences, see B2-1.3-05, Payoff of Installment Land Contract",
+          "score": 0.5666014633396479,
+          "source_id": "fannie_cltv",
+          "source_title": "B2-1.2-02, Combined Loan-to-Value (CLTV) Ratios",
+          "institution": "Fannie Mae",
+          "source_url": "https://selling-guide.fanniemae.com/sel/b2-1.2-02/combined-loan-value-cltv-ratios",
+          "page_or_section": "Calculation of the CLTV Ratio",
+          "chunk_id": "fannie_cltv:0002"
+        },
+        {
+          "text": "The CLTV ratio calculation may differ for certain mortgage loans. For details on these differences, see B2-1.3-05, Payoff of Installment Land Contract Requirements B2-1.3-05, Payoff of Installment Land Contract Requirements ; B5-2-03, Manufactured Housing Underwriting Requirements B5-2-03, Manufactured Housing Underwriting Requirements ; B5-3.1-02, Conversion of Construction-to-Permanent Financing: Single-Closing Transactions B5-3.1-02, Conversion of Construction-to-Permanent Financing: Single-Closing Transactions ; B5-3.2-03, HomeStyle Renovation Mortgages: Collateral Considerations B5-3.2-03, HomeStyle Renovation Mortgages: Collateral Considerations ; B5-3.3-01, HomeStyle Refresh for Improvements on Existing Properties B5-3.3-01, HomeStyle Refresh for Improvements on Existing Properties ; B5-5.1-02, Community Seconds Loan Eligibility B5-5.1-02, Community Seconds Loan Eligibility ; and B5-5.2-02, Loans with Resale Restrictions: Eligibility, Collateral and Delivery Requirements",
+          "score": 0.5616919547466369,
+          "source_id": "fannie_cltv",
+          "source_title": "B2-1.2-02, Combined Loan-to-Value (CLTV) Ratios",
+          "institution": "Fannie Mae",
+          "source_url": "https://selling-guide.fanniemae.com/sel/b2-1.2-02/combined-loan-value-cltv-ratios",
+          "page_or_section": "Calculation of the CLTV Ratio",
+          "chunk_id": "fannie_cltv:0003"
+        }
+      ]
+    },
+    {
+      "query_id": "multi_source_income_debt",
+      "query": "How do recurring debts and dependable earnings work together when deciding whether a borrower qualifies?",
+      "evaluation_group": "additional",
+      "query_type": "multi_source",
+      "expected_no_relevant_source": false,
+      "expected_source_ids": [
+        "fannie_debt_to_income",
+        "fannie_general_income"
+      ],
+      "expected_concepts": [
+        "debt",
+        "income"
+      ],
+      "source_hit_at_k": true,
+      "source_recall_at_k": 1.0,
+      "concept_hit_at_k": true,
+      "first_relevant_rank": 1,
+      "reciprocal_rank": 1.0,
+      "top_score": 0.5637235508427513,
+      "result_count": 5,
+      "rejection_applied": false,
+      "retrieved": [
+        {
+          "text": "sole or majority source of qualifying income, the lender must assess the borrower’s ability to continue repaying the loan once the income source expires or the asset is depleted prior to loan maturity. If the lender is notified that the borrower is transitioning to a lower pay structure, for example due to pending retirement or a new job, the lender must use the lower income amount in qualifying, and must determine that the lower amount is stable and predictable. See Chapter B3-3, Income Assessment for topics with additional information and requirements for continuance of income.",
+          "score": 0.5637235508427513,
+          "source_id": "fannie_general_income",
+          "source_title": "B3-3.1-01, General Income Information",
+          "institution": "Fannie Mae",
+          "source_url": "https://selling-guide.fanniemae.com/sel/b3-3.1-01/general-income-information",
+          "page_or_section": "Continuance of Income",
+          "chunk_id": "fannie_general_income:0003"
+        },
+        {
+          "text": "for other recurring monthly obligations; and any net loss from a rental property. Note : Fannie Mae acknowledges that lenders may sometimes apply a more conservative approach when qualifying borrowers. This is acceptable as long as Fannie Mae’s minimum requirements are met, and lenders consistently apply the same approach to similar loans. For example, a lender might calculate a higher minimum payment on a credit card account than what Fannie Mae requires, which is acceptable as long as the lender consistently applies this calculation to all mortgage applications with revolving debts.",
+          "score": 0.5411448461952124,
+          "source_id": "fannie_debt_to_income",
+          "source_title": "B3-6-02, Debt-to-Income Ratios",
+          "institution": "Fannie Mae",
+          "source_url": "https://selling-guide.fanniemae.com/sel/b3-6-02/debt-income-ratios",
+          "page_or_section": "Calculating Total Monthly Obligation",
+          "chunk_id": "fannie_debt_to_income:0007"
+        },
+        {
+          "text": "Borrowers must be qualified with income the lender can reasonably expect to continue for the foreseeable future. The lender must evaluate the likelihood of continuance based on the nature of the income and supporting documentation. If the income does not have a defined expiration date and the applicable history of receipt of the income is documented (per the specific income type), the lender may conclude that the income is likely to continue and the lender is not expected to obtain additional documentation, unless there is information to the contrary. If the income source does have a defined expiration date or is dependent on the depletion of an asset account or other limited benefit, the lender must document that the income is expected to continue for at least three years from the note date. Additionally, when an asset account is the sole or majority source of qualifying income, the lender must assess the borrower’s ability to continue repaying the loan once the income source expires",
+          "score": 0.5243886955604766,
+          "source_id": "fannie_general_income",
+          "source_title": "B3-3.1-01, General Income Information",
+          "institution": "Fannie Mae",
+          "source_url": "https://selling-guide.fanniemae.com/sel/b3-3.1-01/general-income-information",
+          "page_or_section": "Continuance of Income",
+          "chunk_id": "fannie_general_income:0002"
+        },
+        {
+          "text": "home or investment property (see B3-6-04, Qualifying Payment Requirements B3-6-04, Qualifying Payment Requirements ); monthly payments on installment debts and other mortgage debts that extend beyond ten months; monthly payments on installment debts and other mortgage debts that extend ten months or less if the payments significantly affect the borrower’s ability to meet credit obligations; monthly payments on installment debts secured by virtual currency; monthly payments on revolving debts; monthly payments on lease agreements, regardless of the expiration date of the lease; monthly alimony, child support, or maintenance payments that extend beyond ten months (alimony (but not child support or maintenance) may instead be deducted from income, (see B3-6-05, Monthly Debt Obligations B3-6-05, Monthly Debt Obligations ); monthly payments for other recurring monthly obligations; and any net loss from a rental property. Note : Fannie Mae acknowledges that lenders may sometimes apply a more",
+          "score": 0.5160750955445005,
+          "source_id": "fannie_debt_to_income",
+          "source_title": "B3-6-02, Debt-to-Income Ratios",
+          "institution": "Fannie Mae",
+          "source_url": "https://selling-guide.fanniemae.com/sel/b3-6-02/debt-income-ratios",
+          "page_or_section": "Calculating Total Monthly Obligation",
+          "chunk_id": "fannie_debt_to_income:0006"
+        },
+        {
+          "text": "Income from a non-occupant borrower may be considered in qualifying for both DU and manually underwritten loans provided the income meets the same standards as required for occupying borrowers. For information about restrictions to the down payment, DTI, maximum LTV, CLTV, and HCLTV that apply to loans with a non-occupant borrower, see B2-2-04, Guarantors, Co-Signers, or Non-Occupant Borrowers on the Subject Transaction B2-2-04, Guarantors, Co-Signers, or Non-Occupant Borrowers on the Subject Transaction . For manually underwritten loans, this income can offset certain weaknesses that may be in the occupant borrower’s loan application, such as limited income, financial reserves, or limited credit history. However, it may not be used to offset significant or recent instances of major derogatory credit in the occupant borrower’s credit history. The occupant borrower must still reasonably demonstrate a willingness to make the mortgage payments and maintain homeownership.",
+          "score": 0.4840646225338313,
+          "source_id": "fannie_general_income",
+          "source_title": "B3-3.1-01, General Income Information",
+          "institution": "Fannie Mae",
+          "source_url": "https://selling-guide.fanniemae.com/sel/b3-3.1-01/general-income-information",
+          "page_or_section": "Non-Occupant Borrower Income",
+          "chunk_id": "fannie_general_income:0005"
+        }
+      ]
+    },
+    {
+      "query_id": "out_of_domain_business_checking",
+      "query": "What documents are required to open a business checking account?",
+      "evaluation_group": "additional",
+      "query_type": "out_of_domain",
+      "expected_no_relevant_source": true,
+      "expected_source_ids": [],
+      "expected_concepts": [],
+      "source_hit_at_k": null,
+      "source_recall_at_k": null,
+      "concept_hit_at_k": null,
+      "first_relevant_rank": null,
+      "reciprocal_rank": null,
+      "top_score": 0.3637227109648352,
+      "result_count": 5,
+      "rejection_applied": false,
+      "retrieved": [
+        {
+          "text": "Borrowers who are not U.S. citizens must meet the same employment and income verification requirements that are required for borrowers who are U.S. citizens, regardless of the type or source of income. For information on a borrower earning foreign income, See B3-3.2-02, Standards for Employment-Related Income B3-3.2-02, Standards for Employment-Related Income .For non-U.S. citizen borrower eligibility, see B2-2-02, Non–U.S. Citizen Borrower Eligibility Requirements B2-2-02, Non–U.S. Citizen Borrower Eligibility Requirements .",
+          "score": 0.3637227109648352,
+          "source_id": "fannie_general_income",
+          "source_title": "B3-3.1-01, General Income Information",
+          "institution": "Fannie Mae",
+          "source_url": "https://selling-guide.fanniemae.com/sel/b3-3.1-01/general-income-information",
+          "page_or_section": "Verification of Income for Non-U.S. Citizen Borrowers",
+          "chunk_id": "fannie_general_income:0004"
+        },
+        {
+          "text": "applicant or borrower, or of the first co-applicant or co-borrower, as applicable. Age is calculated, as of the application date, as the number of whole years derived from the date of birth shown on the application form. Example: If the applicant or borrower is 24 years old, enter 24. Or, enter:  Code 8888—Not applicable  Code 9999—No co-applicant NOTE: Use Code 9999 in the co-applicant field if there are no co- applicants or co-borrowers. If there is more than one co-applicant or co-borrower, provide the required information only for the first co-applicant or co-borrower listed on the collection form. To report not applicable, enter “Code 8888” for:  Purchased covered loans for which the financial institution chooses not to report the applicant’s or co-applicant’s age, Comment 4(a)(10)(ii)-3;  Covered loans or applications when applicant or co-applicant is not a natural person, Comment 4(a)(10)(ii)-4. (20) Income § 1003.4(a)(10)(iii), Comments If credit decision is made, gross",
+          "score": 0.3419283619138789,
+          "source_id": "cfpb_hmda_2023_reference",
+          "source_title": "Reportable HMDA Data: 2023 Regulatory and Reporting Overview Reference Chart",
+          "institution": "Consumer Financial Protection Bureau (CFPB)",
+          "source_url": "https://files.consumerfinance.gov/f/documents/cfpb_reportable-hmda-data_regulatory-and-reporting-overview-reference-chart_2023-02.pdf",
+          "page_or_section": "page 17",
+          "chunk_id": "cfpb_hmda_2023_reference:0042"
+        },
+        {
+          "text": "DU indicates the minimum income verification documentation required to process a loan application. This level of documentation may not be adequate for every borrower and every situation. The lender must determine whether additional documentation is warranted. If the lender is unable to determine the stability of the borrower’s income on the basis of the available documentation, the income must be removed and the loan resubmitted to DU. When employment or income is validated by the DU validation service, DU will issue a message indicating the required documentation. This documentation requirement may differ from those described below. See B3-2-02, DU Validation Service B3-2-02, DU Validation Service for more information. Refer to DU Job Aids for information regarding data entry to DU. The table below provides reference to recently issued Announcements related to this topic.",
+          "score": 0.3396773233680691,
+          "source_id": "fannie_general_income",
+          "source_title": "B3-3.1-01, General Income Information",
+          "institution": "Fannie Mae",
+          "source_url": "https://selling-guide.fanniemae.com/sel/b3-3.1-01/general-income-information",
+          "page_or_section": "DU Documentation Requirements",
+          "chunk_id": "fannie_general_income:0010"
+        },
+        {
+          "text": "Effective January 1, 2023 38 2023 REPORTABLE HMDA DATA: A REGULATORY AND REPORTING OVERVIEW REFERENCE CHART – VERSION 1, FEBRUARY 9, 2023 Data point Regulation C references Description Filing instructionsb Reporting “Not Applicable”c or “Exempt”d (47) Open-End Line of Credit § 1003.4(a)(37), Comment 4(a)(37)- 1 Indicator of whether the transaction is for an open-end line of credit Indicate whether the covered loan is, or the application is for, an open- end line of credit by entering:  Code 1111 —Exempt  Code 1—Open-end line of credit  Code 2—Not an open-end line of credit Enter “Code 1111” if, pursuant to the 2018 HMDA Rule, your institution is not reporting Open-End Line of Credit. (48) Business or Commercial Purpose § 1003.4(a)(38), Comment 4(a)(38)- 1 Indicator of whether the transaction is primarily for a business or commercial purpose Indicate whether the covered loan is, or the application is for a covered loan that will be made, primarily for a business or commercial purpose",
+          "score": 0.32688180105104514,
+          "source_id": "cfpb_hmda_2023_reference",
+          "source_title": "Reportable HMDA Data: 2023 Regulatory and Reporting Overview Reference Chart",
+          "institution": "Consumer Financial Protection Bureau (CFPB)",
+          "source_url": "https://files.consumerfinance.gov/f/documents/cfpb_reportable-hmda-data_regulatory-and-reporting-overview-reference-chart_2023-02.pdf",
+          "page_or_section": "page 38",
+          "chunk_id": "cfpb_hmda_2023_reference:0095"
+        },
+        {
+          "text": "Borrowers must be qualified with income the lender can reasonably expect to continue for the foreseeable future. The lender must evaluate the likelihood of continuance based on the nature of the income and supporting documentation. If the income does not have a defined expiration date and the applicable history of receipt of the income is documented (per the specific income type), the lender may conclude that the income is likely to continue and the lender is not expected to obtain additional documentation, unless there is information to the contrary. If the income source does have a defined expiration date or is dependent on the depletion of an asset account or other limited benefit, the lender must document that the income is expected to continue for at least three years from the note date. Additionally, when an asset account is the sole or majority source of qualifying income, the lender must assess the borrower’s ability to continue repaying the loan once the income source expires",
+          "score": 0.31112103624745713,
+          "source_id": "fannie_general_income",
+          "source_title": "B3-3.1-01, General Income Information",
+          "institution": "Fannie Mae",
+          "source_url": "https://selling-guide.fanniemae.com/sel/b3-3.1-01/general-income-information",
+          "page_or_section": "Continuance of Income",
+          "chunk_id": "fannie_general_income:0002"
+        }
+      ]
+    },
+    {
+      "query_id": "paraphrase_income_continuance",
+      "query": "When can a borrower's pay be counted if it is likely to keep coming?",
+      "evaluation_group": "additional",
+      "query_type": "paraphrase",
+      "expected_no_relevant_source": false,
+      "expected_source_ids": [
+        "fannie_general_income"
+      ],
+      "expected_concepts": [
+        "continue"
+      ],
+      "source_hit_at_k": true,
+      "source_recall_at_k": 1.0,
+      "concept_hit_at_k": true,
+      "first_relevant_rank": 1,
+      "reciprocal_rank": 1.0,
+      "top_score": 0.5347160860460656,
+      "result_count": 5,
+      "rejection_applied": false,
+      "retrieved": [
+        {
+          "text": "sole or majority source of qualifying income, the lender must assess the borrower’s ability to continue repaying the loan once the income source expires or the asset is depleted prior to loan maturity. If the lender is notified that the borrower is transitioning to a lower pay structure, for example due to pending retirement or a new job, the lender must use the lower income amount in qualifying, and must determine that the lower amount is stable and predictable. See Chapter B3-3, Income Assessment for topics with additional information and requirements for continuance of income.",
+          "score": 0.5347160860460656,
+          "source_id": "fannie_general_income",
+          "source_title": "B3-3.1-01, General Income Information",
+          "institution": "Fannie Mae",
+          "source_url": "https://selling-guide.fanniemae.com/sel/b3-3.1-01/general-income-information",
+          "page_or_section": "Continuance of Income",
+          "chunk_id": "fannie_general_income:0003"
+        },
+        {
+          "text": "not reporting Total Loan Costs or Total Points and Fees. (28) Origination Charges § 1003.4(a)(18), Comments 4(a)(18)-1 through - 3 Total borrower-paid origination charges Enter, in dollars, the total of all itemized amounts that are designated borrower-paid at or before closing. If the total is zero, enter 0. Example: If the origination charges are $2,399.04, enter 2399.04. Enter “NA” for:  Applications, Comment 4(a)(18)-1;  Covered loans not subject to Regulation Z, § 1026.19(f), § 1003.4(a)(18); Comment 4(a)(18)-1;  Purchased covered loans with applications that were received by the selling entity prior to the",
+          "score": 0.5150302866073035,
+          "source_id": "cfpb_hmda_2023_reference",
+          "source_title": "Reportable HMDA Data: 2023 Regulatory and Reporting Overview Reference Chart",
+          "institution": "Consumer Financial Protection Bureau (CFPB)",
+          "source_url": "https://files.consumerfinance.gov/f/documents/cfpb_reportable-hmda-data_regulatory-and-reporting-overview-reference-chart_2023-02.pdf",
+          "page_or_section": "page 25",
+          "chunk_id": "cfpb_hmda_2023_reference:0063"
+        },
+        {
+          "text": "for other recurring monthly obligations; and any net loss from a rental property. Note : Fannie Mae acknowledges that lenders may sometimes apply a more conservative approach when qualifying borrowers. This is acceptable as long as Fannie Mae’s minimum requirements are met, and lenders consistently apply the same approach to similar loans. For example, a lender might calculate a higher minimum payment on a credit card account than what Fannie Mae requires, which is acceptable as long as the lender consistently applies this calculation to all mortgage applications with revolving debts.",
+          "score": 0.49997370766111815,
+          "source_id": "fannie_debt_to_income",
+          "source_title": "B3-6-02, Debt-to-Income Ratios",
+          "institution": "Fannie Mae",
+          "source_url": "https://selling-guide.fanniemae.com/sel/b3-6-02/debt-income-ratios",
+          "page_or_section": "Calculating Total Monthly Obligation",
+          "chunk_id": "fannie_debt_to_income:0007"
+        },
+        {
+          "text": "Borrowers must be qualified with income the lender can reasonably expect to continue for the foreseeable future. The lender must evaluate the likelihood of continuance based on the nature of the income and supporting documentation. If the income does not have a defined expiration date and the applicable history of receipt of the income is documented (per the specific income type), the lender may conclude that the income is likely to continue and the lender is not expected to obtain additional documentation, unless there is information to the contrary. If the income source does have a defined expiration date or is dependent on the depletion of an asset account or other limited benefit, the lender must document that the income is expected to continue for at least three years from the note date. Additionally, when an asset account is the sole or majority source of qualifying income, the lender must assess the borrower’s ability to continue repaying the loan once the income source expires",
+          "score": 0.4782380586066932,
+          "source_id": "fannie_general_income",
+          "source_title": "B3-3.1-01, General Income Information",
+          "institution": "Fannie Mae",
+          "source_url": "https://selling-guide.fanniemae.com/sel/b3-3.1-01/general-income-information",
+          "page_or_section": "Continuance of Income",
+          "chunk_id": "fannie_general_income:0002"
+        },
+        {
+          "text": "exempti on. The HMDA Rule issue d on April 16, 2020, adjusts Regulation C’s institutional and transactional coverage thresholds for closed -end mortgage loans and open -end lines of credit. On September 23, 2022, the United States District Court for the District of Columbia issued an order that vacated the closed -end mortgage loan threshold for institutional and transactional coverage set in the 2020 HMDA Final Rule. See NCRC v. CFPB, Case No. 20 -cv-2074, 2022 U.S. Dist. LEXIS 174183 (D.D.C. Sept. 23, 2022 ). Accordingly, the closed -end threshold is 25 loans in each of the two preceding calendar years, which is the threshold established by the 2015 HMDA Final Rule . b This column provides the information from Section 4.2 of the 2023 Filing Instruction s Guide . Further information can be found in the 2023 Filing Instructions Guide. Some information may not be presented exactly as in the 2023 Filing Instructions Guide. This chart is not a substitute for the 2 023 Filing Instruction s",
+          "score": 0.442384673064929,
+          "source_id": "cfpb_hmda_2023_reference",
+          "source_title": "Reportable HMDA Data: 2023 Regulatory and Reporting Overview Reference Chart",
+          "institution": "Consumer Financial Protection Bureau (CFPB)",
+          "source_url": "https://files.consumerfinance.gov/f/documents/cfpb_reportable-hmda-data_regulatory-and-reporting-overview-reference-chart_2023-02.pdf",
+          "page_or_section": "page 38",
+          "chunk_id": "cfpb_hmda_2023_reference:0097"
+        }
+      ]
+    }
+  ]
+}

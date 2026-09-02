@@ -4,6 +4,7 @@ env/
 data/*.csv
 data/*.parquet
 !data/hmda_2023_loan_approval_v2.csv
+data/qdrant/
 artifacts/*.pkl
 mlflow.db
 mlartifacts/
