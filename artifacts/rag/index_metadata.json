@@ -1,0 +1,12 @@
+{
+  "collection_name": "credit_policy_v2",
+  "storage_mode": "embedded_local",
+  "distance": "Cosine",
+  "vector_dimension": 384,
+  "point_count": 139,
+  "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
+  "chunk_size_chars": 1000,
+  "chunk_overlap_chars": 150,
+  "document_count": 5,
+  "section_count": 65
+}

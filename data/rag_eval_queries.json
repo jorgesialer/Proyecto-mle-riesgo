@@ -1,0 +1,135 @@
+{
+  "evaluation_id": "credit_policy_v2_retrieval_eval_v2",
+  "judgment_method": "Manual source and concept expectations defined before retrieval execution",
+  "queries": [
+    {
+      "query_id": "dti_definition",
+      "evaluation_group": "directed",
+      "query_type": "directed",
+      "query": "How is the debt-to-income ratio calculated for mortgage underwriting?",
+      "expected_source_ids": ["fannie_debt_to_income"],
+      "expected_concepts": ["dti ratio"]
+    },
+    {
+      "query_id": "dti_max_manual",
+      "evaluation_group": "directed",
+      "query_type": "directed",
+      "query": "What is the maximum total DTI ratio for a manually underwritten mortgage?",
+      "expected_source_ids": ["fannie_debt_to_income"],
+      "expected_concepts": ["manually underwritten"]
+    },
+    {
+      "query_id": "income_stability",
+      "evaluation_group": "directed",
+      "query_type": "directed",
+      "query": "What makes borrower income stable and predictable for mortgage qualification?",
+      "expected_source_ids": ["fannie_general_income"],
+      "expected_concepts": ["stable", "predictable"]
+    },
+    {
+      "query_id": "income_continuance",
+      "evaluation_group": "directed",
+      "query_type": "directed",
+      "query": "When must a lender document that qualifying income will continue?",
+      "expected_source_ids": ["fannie_general_income"],
+      "expected_concepts": ["continue"]
+    },
+    {
+      "query_id": "ltv_definition",
+      "evaluation_group": "directed",
+      "query_type": "directed",
+      "query": "How is mortgage loan-to-value LTV calculated?",
+      "expected_source_ids": ["fannie_ltv"],
+      "expected_concepts": ["ltv"]
+    },
+    {
+      "query_id": "cltv_subordinate",
+      "evaluation_group": "directed",
+      "query_type": "directed",
+      "query": "How does CLTV account for subordinate financing?",
+      "expected_source_ids": ["fannie_cltv"],
+      "expected_concepts": ["cltv", "subordinate"]
+    },
+    {
+      "query_id": "hmda_loan_purpose",
+      "evaluation_group": "directed",
+      "query_type": "directed",
+      "query": "What are the HMDA loan purpose reporting codes for purchase and refinancing?",
+      "expected_source_ids": ["cfpb_hmda_2023_reference"],
+      "expected_concepts": ["loan purpose"]
+    },
+    {
+      "query_id": "hmda_occupancy",
+      "evaluation_group": "directed",
+      "query_type": "directed",
+      "query": "How does HMDA code principal residence, second residence, and investment property occupancy?",
+      "expected_source_ids": ["cfpb_hmda_2023_reference"],
+      "expected_concepts": ["occupancy"]
+    },
+    {
+      "query_id": "hmda_loan_type",
+      "evaluation_group": "directed",
+      "query_type": "directed",
+      "query": "What HMDA loan type codes identify conventional, FHA, VA and USDA loans?",
+      "expected_source_ids": ["cfpb_hmda_2023_reference"],
+      "expected_concepts": ["loan type"]
+    },
+    {
+      "query_id": "hmda_income_reporting",
+      "evaluation_group": "directed",
+      "query_type": "directed",
+      "query": "What income amount must be reported under HMDA for a credit decision?",
+      "expected_source_ids": ["cfpb_hmda_2023_reference"],
+      "expected_concepts": ["income"]
+    },
+    {
+      "query_id": "hmda_action_taken",
+      "evaluation_group": "directed",
+      "query_type": "directed",
+      "query": "Which HMDA action taken codes represent originated, approved but not accepted, and denied applications?",
+      "expected_source_ids": ["cfpb_hmda_2023_reference"],
+      "expected_concepts": ["action taken"]
+    },
+    {
+      "query_id": "hmda_property_value",
+      "evaluation_group": "directed",
+      "query_type": "directed",
+      "query": "When is property value reported as not applicable under HMDA?",
+      "expected_source_ids": ["cfpb_hmda_2023_reference"],
+      "expected_concepts": ["property value"]
+    },
+    {
+      "query_id": "ambiguous_ltv_cltv",
+      "evaluation_group": "additional",
+      "query_type": "ambiguous",
+      "query": "If a home has a first mortgage and a smaller second lien, which value ratio describes the total financing?",
+      "expected_source_ids": ["fannie_ltv", "fannie_cltv"],
+      "expected_concepts": ["ltv", "cltv"]
+    },
+    {
+      "query_id": "multi_source_income_debt",
+      "evaluation_group": "additional",
+      "query_type": "multi_source",
+      "query": "How do recurring debts and dependable earnings work together when deciding whether a borrower qualifies?",
+      "expected_source_ids": ["fannie_debt_to_income", "fannie_general_income"],
+      "expected_concepts": ["debt", "income"]
+    },
+    {
+      "query_id": "out_of_domain_business_checking",
+      "evaluation_group": "additional",
+      "query_type": "out_of_domain",
+      "query": "What documents are required to open a business checking account?",
+      "expected_no_relevant_source": true,
+      "expected_source_ids": [],
+      "expected_concepts": []
+    },
+    {
+      "query_id": "paraphrase_income_continuance",
+      "evaluation_group": "additional",
+      "query_type": "paraphrase",
+      "query": "When can a borrower's pay be counted if it is likely to keep coming?",
+      "expected_source_ids": ["fannie_general_income"],
+      "expected_concepts": ["continue"]
+    }
+  ]
+}

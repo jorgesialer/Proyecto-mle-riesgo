@@ -339,6 +339,67 @@ La run corregida publicada es
 [`xai_catboost_champion_v2`](https://dagshub.com/jorgesialer/Proyecto-mle-riesgo.mlflow/#/experiments/0/runs/f8e8fc291f8749a9b18634c5530ee054).
 La run XAI original se conserva como evidencia historica y no se sobrescribe.
 
+### RAG de politica crediticia con Qdrant
+
+`src/rag_v2.py` implementa retrieval semantico sin LLM sobre un corpus pequeno
+y exclusivamente oficial. El snapshot incluye el chart HMDA 2023 del CFPB y
+cuatro secciones acotadas de la Fannie Mae Selling Guide: informacion general
+de ingresos, DTI, LTV y CLTV. Cada documento conserva URL, institucion, fecha o
+version, fecha de descarga, nombre local y SHA-256 en
+`data/rag_sources/corpus_metadata.json`.
+
+Fuentes del snapshot:
+
+- [CFPB: Reportable HMDA Data 2023 reference chart](https://files.consumerfinance.gov/f/documents/cfpb_reportable-hmda-data_regulatory-and-reporting-overview-reference-chart_2023-02.pdf);
+- [Fannie Mae B3-3.1-01: General Income Information](https://selling-guide.fanniemae.com/sel/b3-3.1-01/general-income-information);
+- [Fannie Mae B3-6-02: Debt-to-Income Ratios](https://selling-guide.fanniemae.com/sel/b3-6-02/debt-income-ratios);
+- [Fannie Mae B2-1.2-01: Loan-to-Value Ratios](https://selling-guide.fanniemae.com/sel/b2-1.2-01/loan-value-ltv-ratios);
+- [Fannie Mae B2-1.2-02: Combined Loan-to-Value Ratios](https://selling-guide.fanniemae.com/sel/b2-1.2-02/combined-loan-value-cltv-ratios).
+
+La extraccion usa `pypdf` para PDF y `BeautifulSoup` para HTML. El texto se
+divide de forma determinista por pagina/seccion en chunks de hasta 1,000
+caracteres con 150 caracteres de solapamiento. El corpus corregido produce 139
+chunks a partir de 65 secciones. Los embeddings locales normalizados usan
+`sentence-transformers/all-MiniLM-L6-v2` (384 dimensiones) y se almacenan en
+la coleccion `credit_policy_v2` mediante Qdrant embedded, con distancia coseno.
+El almacenamiento runtime versionado bajo `data/qdrant/` no se versiona en Git;
+se reconstruye desde los snapshots y el manifest.
+
+La evaluacion manual `data/rag_eval_queries.json` conserva las 12 queries
+dirigidas y agrega cuatro casos: uno ambiguo LTV/CLTV, uno multi-source, una
+parafrasis menos literal y uno fuera de dominio. Las 12 dirigidas mantuvieron
+source hit@5, source recall@5, concept hit@5 y MRR@5 de 1.0. Los tres casos
+adicionales in-domain tambien obtuvieron 1.0 en esas metricas; el caso
+out-of-domain devolvio resultados, sin rechazo, con top score 0.363723. El
+menor top score in-domain fue 0.534716. Esta separacion es solo una observacion
+inicial: no se implementa un threshold con una unica query OOD y se requiere
+un conjunto de calibracion mas amplio antes de definir abstencion.
+
+Estos resultados no prueban cobertura normativa general ni calidad de una
+respuesta generada. `construir_queries_desde_evidence` traduce factores XAI a
+consultas mediante templates deterministas, omitiendo estructuralmente
+columnas `audit_only`.
+
+La ejecucion corregida se registro como
+[`rag_qdrant_retrieval_v2`](https://dagshub.com/jorgesialer/Proyecto-mle-riesgo.mlflow/#/experiments/0/runs/1e98c47241ff449bb5bcb41cb79caf9c)
+sin repetir el benchmark ML. La run
+[`rag_qdrant_retrieval_v1`](https://dagshub.com/jorgesialer/Proyecto-mle-riesgo.mlflow/#/experiments/0/runs/f57dba116c4544bcbb87bb1aa1af378c)
+se conserva como evidencia historica.
+
+Artifacts reproducibles:
+
+- `artifacts/rag/chunks.jsonl`;
+- `artifacts/rag/index_metadata.json`;
+- `artifacts/rag/retrieval_evaluation.json`;
+- `artifacts/rag/example_retrieval.json`;
+- `artifacts/rag/run_metadata.json` tras registrar MLflow/DagsHub.
+
+Ejecucion sin generar respuestas ni invocar Gemini:
+
+```bash
+uv run python -m src.rag_v2 --skip-mlflow
+```
+
 ## 6. Ejecucion
 
 Desde la raiz del repositorio y con el entorno del proyecto activo:
@@ -358,6 +419,9 @@ uv run python -m src.entrenamiento_v2
 
 # Generar y registrar XAI del champion existente, sin reentrenamiento
 uv run python -m src.xai_v2 --sample-size 1000 --top-n 10
+
+# Adquirir, indexar y evaluar el corpus RAG oficial
+uv run python -m src.rag_v2
 
 # Simular inferencia con un perfil crudo (V1)
 uv run python -m src.prediccion
@@ -381,6 +445,9 @@ columnas one-hot ni un scaler externo.
 - `src/entrenamiento_v2.py`: benchmark, robustness, tuning y champion V2.
 - `src/mlflow_utils.py`: configuracion MLflow local/DagsHub.
 - `src/xai_v2.py`: Tree SHAP global y evidencia local reusable del champion V2.
+- `src/rag_v2.py`: adquisicion, chunking, Qdrant, retrieval y evaluacion RAG.
+- `data/rag_sources/`: snapshots oficiales y manifest criptografico del corpus.
+- `data/rag_eval_queries.json`: evaluation set manual de retrieval.
 - `docs/HMDA_V2_DATA_DICTIONARY.md`: contrato de variables del Dataset V2.
 - `artifacts/pipeline_rf_baseline.pkl`: pipeline evaluado y persistido (V1).
 - `artifacts/pipeline_champion_v2.pkl`: pipeline champion persistido (V2).
@@ -402,7 +469,11 @@ anteriores no deben atribuirse al artefacto saneado.
 - El tracking del benchmark V2 y de XAI usa MLflow/DagsHub.
 - La capa XAI describe asociaciones internas del champion mediante SHAP. No
   valida causalidad ni sustituye una auditoria de equidad.
-- Todavia no se implementan RAG, Qdrant, LangGraph ni MCP.
+- RAG/Qdrant recupera extractos, pero no determina elegibilidad ni sustituye
+  la lectura de la fuente oficial; el corpus es deliberadamente acotado.
+- El retriever aun no tiene threshold de abstencion. La unica query OOD obtuvo
+  menor score que todas las queries in-domain, pero no basta para calibrarlo.
+- Todavia no se implementan LangGraph, grounding con Gemini ni MCP.
 - Los atributos demograficos pueden reproducir sesgos presentes en decisiones
   historicas y requieren una evaluacion de equidad separada.
 
