@@ -1,0 +1,55 @@
+{
+  "query": "How is debt-to-income ratio calculated for mortgage underwriting?",
+  "results": [
+    {
+      "text": "The DTI ratio consists of two components: total monthly obligations, which includes the qualifying payment for the subject mortgage loan and other long-term and significant short-term monthly debts (see Calculating Total Monthly Obligation below); and total monthly income of all borrowers, to the extent the income is used to qualify for the mortgage (see Chapter B3–3, Income Assessment).",
+      "score": 0.657411810791034,
+      "source_id": "fannie_debt_to_income",
+      "source_title": "B3-6-02, Debt-to-Income Ratios",
+      "institution": "Fannie Mae",
+      "source_url": "https://selling-guide.fanniemae.com/sel/b3-6-02/debt-income-ratios",
+      "page_or_section": "DTI Ratios",
+      "chunk_id": "fannie_debt_to_income:0001"
+    },
+    {
+      "text": "The following steps are required if the borrower discloses or the lender discovers additional debt(s) or reduced income after the underwriting decision was made up to and concurrent with loan closing: The lender must document the additional debt(s) and reduced income in accordance with B3-6-01, General Information on Liabilities B3-6-01, General Information on Liabilities or B3-3, Income Assessment B3-3, Income Assessment , as applicable. Note : The lender is not required to obtain a new credit report to verify the additional debt(s). However, if the lender chooses to obtain a new credit report after the initial underwriting decision was made, the loan must be re-underwritten. If the recalculated DTI ratio exceeds 45% for a manually underwritten loan or 50% for a DU loan casefile, the loan is not eligible for delivery to Fannie Mae. Manually underwritten loans: If the recalculated DTI does not exceed 45%, the mortgage loan must be re-underwritten with the updated information to",
+      "score": 0.6180891988478054,
+      "source_id": "fannie_debt_to_income",
+      "source_title": "B3-6-02, Debt-to-Income Ratios",
+      "institution": "Fannie Mae",
+      "source_url": "https://selling-guide.fanniemae.com/sel/b3-6-02/debt-income-ratios",
+      "page_or_section": "Applying the Re-underwriting Criteria",
+      "chunk_id": "fannie_debt_to_income:0010"
+    },
+    {
+      "text": "DTI Ratios Maximum DTI Ratios Exceptions to the Maximum DTI Ratio Calculating Total Monthly Obligation DTI Ratio Tolerance and Re-Underwriting Criteria Applying the Re-underwriting Criteria",
+      "score": 0.605230864311189,
+      "source_id": "fannie_debt_to_income",
+      "source_title": "B3-6-02, Debt-to-Income Ratios",
+      "institution": "Fannie Mae",
+      "source_url": "https://selling-guide.fanniemae.com/sel/b3-6-02/debt-income-ratios",
+      "page_or_section": "B3-6-02, Debt-to-Income Ratios (04/02/2025)",
+      "chunk_id": "fannie_debt_to_income:0000"
+    },
+    {
+      "text": "for other recurring monthly obligations; and any net loss from a rental property. Note : Fannie Mae acknowledges that lenders may sometimes apply a more conservative approach when qualifying borrowers. This is acceptable as long as Fannie Mae’s minimum requirements are met, and lenders consistently apply the same approach to similar loans. For example, a lender might calculate a higher minimum payment on a credit card account than what Fannie Mae requires, which is acceptable as long as the lender consistently applies this calculation to all mortgage applications with revolving debts.",
+      "score": 0.6024158519636356,
+      "source_id": "fannie_debt_to_income",
+      "source_title": "B3-6-02, Debt-to-Income Ratios",
+      "institution": "Fannie Mae",
+      "source_url": "https://selling-guide.fanniemae.com/sel/b3-6-02/debt-income-ratios",
+      "page_or_section": "Calculating Total Monthly Obligation",
+      "chunk_id": "fannie_debt_to_income:0007"
+    },
+    {
+      "text": "all cases, if the lender determines that there is new subordinate financing on the subject property during the loan process, the mortgage loan must be re-underwritten. Note: Re-underwriting means that loan casefiles must be resubmitted to DU with updated information; and for manually underwritten loans, a comprehensive risk and eligibility assessment must be performed.",
+      "score": 0.5987152853666284,
+      "source_id": "fannie_debt_to_income",
+      "source_title": "B3-6-02, Debt-to-Income Ratios",
+      "institution": "Fannie Mae",
+      "source_url": "https://selling-guide.fanniemae.com/sel/b3-6-02/debt-income-ratios",
+      "page_or_section": "DTI Ratio Tolerance and Re-Underwriting Criteria",
+      "chunk_id": "fannie_debt_to_income:0009"
+    }
+  ]
+}

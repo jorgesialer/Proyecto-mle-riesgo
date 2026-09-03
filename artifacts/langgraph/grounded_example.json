@@ -1,0 +1,13 @@
+{
+  "prediction": "denied",
+  "probability": 0.20811161084150762,
+  "model_explanation": "La evidencia del modelo no puede sintetizarse de forma grounded en esta ejecucion.",
+  "policy_context": "Evidencia documental oficial insuficiente o invalida.",
+  "final_assessment": "Abstencion controlada: Gemini produjo citations no permitidas: ['S10', 'S13', 'S3', 'S5', 'S9']",
+  "sources": [],
+  "warnings": [
+    "Retrieval scores are ranking signals, not calibrated confidence.",
+    "No numeric rejection threshold is configured.",
+    "Gemini produjo citations no permitidas: ['S10', 'S13', 'S3', 'S5', 'S9']"
+  ]
+}

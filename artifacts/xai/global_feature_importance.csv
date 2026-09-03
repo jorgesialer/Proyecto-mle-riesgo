@@ -1,0 +1,21 @@
+rank,model_feature,business_feature,source_features,transformed_feature_count,mean_abs_shap
+1,loan_purpose,Loan purpose,loan_purpose,6,0.6284510412124137
+2,dti_category,Debt-to-income band,debt_to_income_ratio,7,0.6283028848884187
+3,loan_to_property_value,Loan-to-property-value ratio,loan_amount|property_value,1,0.19020386909513382
+4,construction_method,Construction method,construction_method,2,0.1863476982807763
+5,preapproval,Preapproval status,preapproval,2,0.1595361387684199
+6,income,Annual income (USD thousands),income,1,0.1494365774348262
+7,loan_amount,Requested loan amount,loan_amount,1,0.1479280445957587
+8,loan_term_years,Loan term (years),loan_term,1,0.13934140347214535
+9,loan_type,Loan type,loan_type,4,0.1317152706425367
+10,combined_loan_to_value_ratio,Combined loan-to-value ratio,combined_loan_to_value_ratio,1,0.1080783684359932
+11,lien_status,Lien status,lien_status,2,0.10008576279874645
+12,property_value_to_income,Property-value-to-income ratio,property_value|income,1,0.08427801769382912
+13,property_value,Property value,property_value,1,0.08073794543851415
+14,loan_to_income,Loan-to-income ratio,loan_amount|income,1,0.07855764217275857
+15,submission_of_application,Application submission channel,submission_of_application,2,0.03760262167642513
+16,occupancy_type,Occupancy type,occupancy_type,3,0.011198722448119494
+17,balloon_payment,Balloon payment flag,balloon_payment,2,0.0063853904474335576
+18,total_units,Property units,total_units,4,0.006073617499060349
+19,non_amortizing_feature_count,Non-amortizing feature count,interest_only_payment|balloon_payment,1,0.005430258659827441
+20,interest_only_payment,Interest-only payment flag,interest_only_payment,2,0.0032509023715990076

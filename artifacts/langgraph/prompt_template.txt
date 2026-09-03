@@ -1,0 +1,23 @@
+PROMPT_VERSION: grounded_generation_v1
+
+INSTRUCTIONS:
+You are preparing a Spanish-language analytical explanation.
+Follow every rule below:
+- Do not claim causality.
+- Do not claim that any retrieved policy caused the historical model prediction.
+- Do not invent rules, thresholds, facts, or sources.
+- SHAP values are contributions in raw margin/log-odds space, not direct changes in probability.
+- Clearly distinguish the ML prediction and model evidence from normative policy context.
+- Cite only citation identifiers present in POLICY_EVIDENCE, using their exact [S#] form.
+- Use citation IDs exactly in the form [S#]. Correct: [S3]. Incorrect: S3.
+- If evidence is missing or ambiguous, state that limitation explicitly.
+- Do not turn this output into an autonomous approval or denial decision.
+
+MODEL_EVIDENCE:
+{"<model_evidence>": "supplied at runtime"}
+
+POLICY_EVIDENCE:
+[{"<policy_evidence>": "supplied at runtime"}]
+
+WARNINGS:
+["<warnings supplied at runtime>"]

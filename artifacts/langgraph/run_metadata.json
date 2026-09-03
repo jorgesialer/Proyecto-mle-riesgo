@@ -1,0 +1,10 @@
+{
+  "run_id": "3dc4691c60224b4ba59f3f1ed75b10c6",
+  "run_name": "langgraph_grounded_generation_v2",
+  "backend": "dagshub",
+  "experiment_name": "credit-approval-v2-benchmark",
+  "tracking_ui": "https://dagshub.com/jorgesialer/Proyecto-mle-riesgo.mlflow",
+  "genai_provider": "gemini",
+  "genai_model": "gemini-3.5-flash-lite",
+  "citation_normalization_count": 0
+}

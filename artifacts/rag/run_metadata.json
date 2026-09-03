@@ -1,0 +1,7 @@
+{
+  "run_id": "1e98c47241ff449bb5bcb41cb79caf9c",
+  "run_name": "rag_qdrant_retrieval_v2",
+  "backend": "dagshub",
+  "experiment_name": "credit-approval-v2-benchmark",
+  "tracking_ui": "https://dagshub.com/jorgesialer/Proyecto-mle-riesgo.mlflow"
+}

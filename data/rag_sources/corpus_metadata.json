@@ -1,0 +1,75 @@
+{
+  "corpus_id": "credit_policy_v2_official_v1",
+  "document_count": 5,
+  "official_hosts": [
+    "files.consumerfinance.gov",
+    "selling-guide.fanniemae.com"
+  ],
+  "documents": [
+    {
+      "source_id": "cfpb_hmda_2023_reference",
+      "title": "Reportable HMDA Data: 2023 Regulatory and Reporting Overview Reference Chart",
+      "institution": "Consumer Financial Protection Bureau (CFPB)",
+      "source_url": "https://files.consumerfinance.gov/f/documents/cfpb_reportable-hmda-data_regulatory-and-reporting-overview-reference-chart_2023-02.pdf",
+      "document_date": "2023-02-09",
+      "document_version": "Version 1.0",
+      "local_filename": "cfpb_hmda_2023_reference_chart.pdf",
+      "media_type": "application/pdf",
+      "retrieved_at": "2026-09-02T00:39:09.865368+00:00",
+      "sha256": "6075293fd69e813cdc35de94faa701cd79a350ca60b68f28bfabb7c4ebb887eb",
+      "bytes": 710783
+    },
+    {
+      "source_id": "fannie_general_income",
+      "title": "B3-3.1-01, General Income Information",
+      "institution": "Fannie Mae",
+      "source_url": "https://selling-guide.fanniemae.com/sel/b3-3.1-01/general-income-information",
+      "document_date": "2026-03-04",
+      "document_version": "Selling Guide section B3-3.1-01",
+      "local_filename": "fannie_b3_3_1_01_general_income.html",
+      "media_type": "text/html",
+      "retrieved_at": "2026-09-02T00:39:10.936380+00:00",
+      "sha256": "681e39ba74f6ee01425a235930ab93dfb709ef9f332cc89389186af484c3c5e3",
+      "bytes": 246194
+    },
+    {
+      "source_id": "fannie_debt_to_income",
+      "title": "B3-6-02, Debt-to-Income Ratios",
+      "institution": "Fannie Mae",
+      "source_url": "https://selling-guide.fanniemae.com/sel/b3-6-02/debt-income-ratios",
+      "document_date": "2025-04-02",
+      "document_version": "Selling Guide section B3-6-02",
+      "local_filename": "fannie_b3_6_02_debt_to_income.html",
+      "media_type": "text/html",
+      "retrieved_at": "2026-09-02T00:39:11.773878+00:00",
+      "sha256": "cf6bc6b162cabfd03cf8426ed5e62d5dc988461f0afe106e5b7701af52c7501d",
+      "bytes": 254614
+    },
+    {
+      "source_id": "fannie_ltv",
+      "title": "B2-1.2-01, Loan-to-Value (LTV) Ratios",
+      "institution": "Fannie Mae",
+      "source_url": "https://selling-guide.fanniemae.com/sel/b2-1.2-01/loan-value-ltv-ratios",
+      "document_date": "2022-06-01",
+      "document_version": "Selling Guide section B2-1.2-01",
+      "local_filename": "fannie_b2_1_2_01_ltv.html",
+      "media_type": "text/html",
+      "retrieved_at": "2026-09-02T00:39:12.626756+00:00",
+      "sha256": "ab011a6a1154ba24191bdb3785704e762198de2a13acc73182f66c6d3f041c33",
+      "bytes": 247511
+    },
+    {
+      "source_id": "fannie_cltv",
+      "title": "B2-1.2-02, Combined Loan-to-Value (CLTV) Ratios",
+      "institution": "Fannie Mae",
+      "source_url": "https://selling-guide.fanniemae.com/sel/b2-1.2-02/combined-loan-value-cltv-ratios",
+      "document_date": "2018-12-04",
+      "document_version": "Selling Guide section B2-1.2-02",
+      "local_filename": "fannie_b2_1_2_02_cltv.html",
+      "media_type": "text/html",
+      "retrieved_at": "2026-09-02T00:39:13.458435+00:00",
+      "sha256": "f9c22eda731aa91a0f4365462aef0a2ceb98c311d62d376c341f87666180cfb0",
+      "bytes": 244545
+    }
+  ]
+}

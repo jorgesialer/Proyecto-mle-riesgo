@@ -1,0 +1,53 @@
+{
+  "method": "Tree SHAP",
+  "shap_version": "0.52.0",
+  "model_name": "credit-approval-v2",
+  "model_version": "1",
+  "dataset_version": "hmda_2023_loan_approval_v2",
+  "dataset_sha256": "57408ac78a0db54d9ed94f805e00a300b473f1232f5fed5650fa5fa3105dc36b",
+  "sample_source": "training partition after deterministic 80/20 split",
+  "sample_size": 1000,
+  "random_state": 42,
+  "top_n": 10,
+  "positive_class": 1,
+  "transformed_feature_count": 45,
+  "grouped_feature_count": 20,
+  "global_aggregation": "sum transformed SHAP contributions by model feature within each row, then mean absolute value across rows",
+  "hmda_category_label_source": "CFPB 2023 Reportable HMDA Data regulatory and reporting overview",
+  "hmda_category_mappings": {
+    "loan_purpose": {
+      "1": "Home purchase",
+      "2": "Home improvement",
+      "31": "Refinancing",
+      "32": "Cash-out refinancing",
+      "4": "Other purpose",
+      "5": "Not applicable"
+    },
+    "loan_type": {
+      "1": "Conventional",
+      "2": "FHA",
+      "3": "VA",
+      "4": "USDA/RHS/FSA"
+    },
+    "lien_status": {
+      "1": "First lien",
+      "2": "Subordinate lien"
+    },
+    "occupancy_type": {
+      "1": "Principal residence",
+      "2": "Second residence",
+      "3": "Investment property"
+    },
+    "construction_method": {
+      "1": "Site-built",
+      "2": "Manufactured home"
+    }
+  },
+  "audit_only_excluded": [
+    "applicant_age",
+    "derived_race",
+    "derived_ethnicity",
+    "derived_sex"
+  ],
+  "warning": "SHAP describe contribuciones del modelo a esta prediccion; no demuestra causalidad, capacidad de repago ni una politica de credito normativa."
+}
