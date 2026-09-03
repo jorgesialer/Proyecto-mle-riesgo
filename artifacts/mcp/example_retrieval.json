@@ -1,0 +1,39 @@
+{
+  "query": "mortgage debt-to-income ratio",
+  "top_k": 3,
+  "results": [
+    {
+      "text": "The DTI ratio consists of two components: total monthly obligations, which includes the qualifying payment for the subject mortgage loan and other long-term and significant short-term monthly debts (see Calculating Total Monthly Obligation below); and total monthly income of all borrowers, to the extent the income is used to qualify for the mortgage (see Chapter B3–3, Income Assessment).",
+      "score": 0.698517482964839,
+      "source_id": "fannie_debt_to_income",
+      "source_title": "B3-6-02, Debt-to-Income Ratios",
+      "institution": "Fannie Mae",
+      "source_url": "https://selling-guide.fanniemae.com/sel/b3-6-02/debt-income-ratios",
+      "page_or_section": "DTI Ratios",
+      "chunk_id": "fannie_debt_to_income:0001"
+    },
+    {
+      "text": "for other recurring monthly obligations; and any net loss from a rental property. Note : Fannie Mae acknowledges that lenders may sometimes apply a more conservative approach when qualifying borrowers. This is acceptable as long as Fannie Mae’s minimum requirements are met, and lenders consistently apply the same approach to similar loans. For example, a lender might calculate a higher minimum payment on a credit card account than what Fannie Mae requires, which is acceptable as long as the lender consistently applies this calculation to all mortgage applications with revolving debts.",
+      "score": 0.6195375660926237,
+      "source_id": "fannie_debt_to_income",
+      "source_title": "B3-6-02, Debt-to-Income Ratios",
+      "institution": "Fannie Mae",
+      "source_url": "https://selling-guide.fanniemae.com/sel/b3-6-02/debt-income-ratios",
+      "page_or_section": "Calculating Total Monthly Obligation",
+      "chunk_id": "fannie_debt_to_income:0007"
+    },
+    {
+      "text": "Credit ); non-occupant borrowers — the maximum ratio is lower than 45% for the occupying borrower for manually underwritten loans (see B2-2-04, Guarantors, Co-Signers, or Non-Occupant Borrowers on the Subject Transaction B2-2-04, Guarantors, Co-Signers, or Non-Occupant Borrowers on the Subject Transaction ); and government mortgage loans — lenders must follow the requirements for the respective government agency.",
+      "score": 0.6114542830903406,
+      "source_id": "fannie_debt_to_income",
+      "source_title": "B3-6-02, Debt-to-Income Ratios",
+      "institution": "Fannie Mae",
+      "source_url": "https://selling-guide.fanniemae.com/sel/b3-6-02/debt-income-ratios",
+      "page_or_section": "Exceptions to the Maximum DTI Ratio",
+      "chunk_id": "fannie_debt_to_income:0004"
+    }
+  ],
+  "warnings": [
+    "Retrieval scores rank corpus chunks; they are not calibrated confidence or eligibility rules."
+  ]
+}

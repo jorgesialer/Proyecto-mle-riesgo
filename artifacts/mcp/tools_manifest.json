@@ -1,0 +1,1378 @@
+{
+  "tools": [
+    {
+      "name": "predict_credit_application",
+      "title": null,
+      "description": "Predict historical HMDA loan approval from exactly 16 raw V2 fields.",
+      "inputSchema": {
+        "type": "object",
+        "$defs": {
+          "CreditApplication": {
+            "additionalProperties": false,
+            "description": "Las 16 variables crudas autorizadas por el contrato HMDA V2.",
+            "properties": {
+              "income": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Income"
+              },
+              "loan_amount": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Loan Amount"
+              },
+              "loan_term": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Loan Term"
+              },
+              "loan_purpose": {
+                "anyOf": [
+                  {
+                    "type": "integer"
+                  },
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Loan Purpose"
+              },
+              "loan_type": {
+                "anyOf": [
+                  {
+                    "type": "integer"
+                  },
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Loan Type"
+              },
+              "lien_status": {
+                "anyOf": [
+                  {
+                    "type": "integer"
+                  },
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Lien Status"
+              },
+              "preapproval": {
+                "anyOf": [
+                  {
+                    "type": "integer"
+                  },
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Preapproval"
+              },
+              "debt_to_income_ratio": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Debt To Income Ratio"
+              },
+              "combined_loan_to_value_ratio": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Combined Loan To Value Ratio"
+              },
+              "property_value": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Property Value"
+              },
+              "occupancy_type": {
+                "anyOf": [
+                  {
+                    "type": "integer"
+                  },
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Occupancy Type"
+              },
+              "construction_method": {
+                "anyOf": [
+                  {
+                    "type": "integer"
+                  },
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Construction Method"
+              },
+              "total_units": {
+                "anyOf": [
+                  {
+                    "type": "integer"
+                  },
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Total Units"
+              },
+              "submission_of_application": {
+                "anyOf": [
+                  {
+                    "type": "integer"
+                  },
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Submission Of Application"
+              },
+              "interest_only_payment": {
+                "anyOf": [
+                  {
+                    "type": "integer"
+                  },
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Interest Only Payment"
+              },
+              "balloon_payment": {
+                "anyOf": [
+                  {
+                    "type": "integer"
+                  },
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Balloon Payment"
+              }
+            },
+            "required": [
+              "income",
+              "loan_amount",
+              "loan_term",
+              "loan_purpose",
+              "loan_type",
+              "lien_status",
+              "preapproval",
+              "debt_to_income_ratio",
+              "combined_loan_to_value_ratio",
+              "property_value",
+              "occupancy_type",
+              "construction_method",
+              "total_units",
+              "submission_of_application",
+              "interest_only_payment",
+              "balloon_payment"
+            ],
+            "title": "CreditApplication",
+            "type": "object"
+          }
+        },
+        "properties": {
+          "application": {
+            "$ref": "#/$defs/CreditApplication"
+          }
+        },
+        "required": [
+          "application"
+        ],
+        "title": "predict_credit_applicationArguments"
+      },
+      "execution": null,
+      "outputSchema": {
+        "$defs": {
+          "ModelIdentity": {
+            "additionalProperties": false,
+            "properties": {
+              "name": {
+                "title": "Name",
+                "type": "string"
+              },
+              "version": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Version"
+              },
+              "selected_configuration": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Selected Configuration"
+              },
+              "dataset_version": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Dataset Version"
+              }
+            },
+            "required": [
+              "name",
+              "version",
+              "selected_configuration",
+              "dataset_version"
+            ],
+            "title": "ModelIdentity",
+            "type": "object"
+          }
+        },
+        "additionalProperties": false,
+        "properties": {
+          "prediction": {
+            "enum": [
+              0,
+              1
+            ],
+            "title": "Prediction",
+            "type": "integer"
+          },
+          "prediction_label": {
+            "enum": [
+              "approved",
+              "denied"
+            ],
+            "title": "Prediction Label",
+            "type": "string"
+          },
+          "probability": {
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "title": "Probability",
+            "type": "number"
+          },
+          "model": {
+            "$ref": "#/$defs/ModelIdentity"
+          },
+          "warnings": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Warnings",
+            "type": "array"
+          }
+        },
+        "required": [
+          "prediction",
+          "prediction_label",
+          "probability",
+          "model",
+          "warnings"
+        ],
+        "title": "PredictionOutput",
+        "type": "object"
+      },
+      "icons": null,
+      "annotations": {
+        "title": null,
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "_meta": null
+    },
+    {
+      "name": "explain_credit_application",
+      "title": null,
+      "description": "Return the existing non-causal local Tree SHAP evidence package.",
+      "inputSchema": {
+        "type": "object",
+        "$defs": {
+          "CreditApplication": {
+            "additionalProperties": false,
+            "description": "Las 16 variables crudas autorizadas por el contrato HMDA V2.",
+            "properties": {
+              "income": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Income"
+              },
+              "loan_amount": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Loan Amount"
+              },
+              "loan_term": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Loan Term"
+              },
+              "loan_purpose": {
+                "anyOf": [
+                  {
+                    "type": "integer"
+                  },
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Loan Purpose"
+              },
+              "loan_type": {
+                "anyOf": [
+                  {
+                    "type": "integer"
+                  },
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Loan Type"
+              },
+              "lien_status": {
+                "anyOf": [
+                  {
+                    "type": "integer"
+                  },
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Lien Status"
+              },
+              "preapproval": {
+                "anyOf": [
+                  {
+                    "type": "integer"
+                  },
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Preapproval"
+              },
+              "debt_to_income_ratio": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Debt To Income Ratio"
+              },
+              "combined_loan_to_value_ratio": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Combined Loan To Value Ratio"
+              },
+              "property_value": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Property Value"
+              },
+              "occupancy_type": {
+                "anyOf": [
+                  {
+                    "type": "integer"
+                  },
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Occupancy Type"
+              },
+              "construction_method": {
+                "anyOf": [
+                  {
+                    "type": "integer"
+                  },
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Construction Method"
+              },
+              "total_units": {
+                "anyOf": [
+                  {
+                    "type": "integer"
+                  },
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Total Units"
+              },
+              "submission_of_application": {
+                "anyOf": [
+                  {
+                    "type": "integer"
+                  },
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Submission Of Application"
+              },
+              "interest_only_payment": {
+                "anyOf": [
+                  {
+                    "type": "integer"
+                  },
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Interest Only Payment"
+              },
+              "balloon_payment": {
+                "anyOf": [
+                  {
+                    "type": "integer"
+                  },
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Balloon Payment"
+              }
+            },
+            "required": [
+              "income",
+              "loan_amount",
+              "loan_term",
+              "loan_purpose",
+              "loan_type",
+              "lien_status",
+              "preapproval",
+              "debt_to_income_ratio",
+              "combined_loan_to_value_ratio",
+              "property_value",
+              "occupancy_type",
+              "construction_method",
+              "total_units",
+              "submission_of_application",
+              "interest_only_payment",
+              "balloon_payment"
+            ],
+            "title": "CreditApplication",
+            "type": "object"
+          }
+        },
+        "properties": {
+          "application": {
+            "$ref": "#/$defs/CreditApplication"
+          }
+        },
+        "required": [
+          "application"
+        ],
+        "title": "explain_credit_applicationArguments"
+      },
+      "execution": null,
+      "outputSchema": {
+        "$defs": {
+          "JsonValue": {}
+        },
+        "additionalProperties": false,
+        "properties": {
+          "prediction": {
+            "enum": [
+              0,
+              1
+            ],
+            "title": "Prediction",
+            "type": "integer"
+          },
+          "prediction_label": {
+            "enum": [
+              "approved",
+              "denied"
+            ],
+            "title": "Prediction Label",
+            "type": "string"
+          },
+          "probability": {
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "title": "Probability",
+            "type": "number"
+          },
+          "shap_output_space": {
+            "title": "Shap Output Space",
+            "type": "string"
+          },
+          "top_positive_factors": {
+            "items": {
+              "additionalProperties": {
+                "$ref": "#/$defs/JsonValue"
+              },
+              "type": "object"
+            },
+            "title": "Top Positive Factors",
+            "type": "array"
+          },
+          "top_negative_factors": {
+            "items": {
+              "additionalProperties": {
+                "$ref": "#/$defs/JsonValue"
+              },
+              "type": "object"
+            },
+            "title": "Top Negative Factors",
+            "type": "array"
+          },
+          "model": {
+            "additionalProperties": {
+              "$ref": "#/$defs/JsonValue"
+            },
+            "title": "Model",
+            "type": "object"
+          },
+          "dataset": {
+            "additionalProperties": {
+              "$ref": "#/$defs/JsonValue"
+            },
+            "title": "Dataset",
+            "type": "object"
+          },
+          "non_causality_warning": {
+            "title": "Non Causality Warning",
+            "type": "string"
+          },
+          "evidence_package": {
+            "additionalProperties": {
+              "$ref": "#/$defs/JsonValue"
+            },
+            "title": "Evidence Package",
+            "type": "object"
+          }
+        },
+        "required": [
+          "prediction",
+          "prediction_label",
+          "probability",
+          "shap_output_space",
+          "top_positive_factors",
+          "top_negative_factors",
+          "model",
+          "dataset",
+          "non_causality_warning",
+          "evidence_package"
+        ],
+        "title": "ExplanationOutput",
+        "type": "object"
+      },
+      "icons": null,
+      "annotations": {
+        "title": null,
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "_meta": null
+    },
+    {
+      "name": "retrieve_credit_policy",
+      "title": null,
+      "description": "Retrieve bounded official mortgage-policy chunks from local Qdrant.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "maxLength": 500,
+            "minLength": 3,
+            "title": "Query",
+            "type": "string"
+          },
+          "top_k": {
+            "default": 3,
+            "maximum": 10,
+            "minimum": 1,
+            "title": "Top K",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "query"
+        ],
+        "title": "retrieve_credit_policyArguments"
+      },
+      "execution": null,
+      "outputSchema": {
+        "$defs": {
+          "PolicyResult": {
+            "additionalProperties": false,
+            "properties": {
+              "text": {
+                "title": "Text",
+                "type": "string"
+              },
+              "score": {
+                "title": "Score",
+                "type": "number"
+              },
+              "source_id": {
+                "title": "Source Id",
+                "type": "string"
+              },
+              "source_title": {
+                "title": "Source Title",
+                "type": "string"
+              },
+              "institution": {
+                "title": "Institution",
+                "type": "string"
+              },
+              "source_url": {
+                "title": "Source Url",
+                "type": "string"
+              },
+              "page_or_section": {
+                "title": "Page Or Section",
+                "type": "string"
+              },
+              "chunk_id": {
+                "title": "Chunk Id",
+                "type": "string"
+              }
+            },
+            "required": [
+              "text",
+              "score",
+              "source_id",
+              "source_title",
+              "institution",
+              "source_url",
+              "page_or_section",
+              "chunk_id"
+            ],
+            "title": "PolicyResult",
+            "type": "object"
+          }
+        },
+        "additionalProperties": false,
+        "properties": {
+          "query": {
+            "title": "Query",
+            "type": "string"
+          },
+          "top_k": {
+            "title": "Top K",
+            "type": "integer"
+          },
+          "results": {
+            "items": {
+              "$ref": "#/$defs/PolicyResult"
+            },
+            "title": "Results",
+            "type": "array"
+          },
+          "warnings": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Warnings",
+            "type": "array"
+          }
+        },
+        "required": [
+          "query",
+          "top_k",
+          "results",
+          "warnings"
+        ],
+        "title": "PolicyRetrievalOutput",
+        "type": "object"
+      },
+      "icons": null,
+      "annotations": {
+        "title": null,
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "_meta": null
+    },
+    {
+      "name": "analyze_credit_application",
+      "title": null,
+      "description": "Run the existing deterministic ML→XAI→RAG→guardrail→Gemini graph.",
+      "inputSchema": {
+        "type": "object",
+        "$defs": {
+          "CreditApplication": {
+            "additionalProperties": false,
+            "description": "Las 16 variables crudas autorizadas por el contrato HMDA V2.",
+            "properties": {
+              "income": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Income"
+              },
+              "loan_amount": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Loan Amount"
+              },
+              "loan_term": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Loan Term"
+              },
+              "loan_purpose": {
+                "anyOf": [
+                  {
+                    "type": "integer"
+                  },
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Loan Purpose"
+              },
+              "loan_type": {
+                "anyOf": [
+                  {
+                    "type": "integer"
+                  },
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Loan Type"
+              },
+              "lien_status": {
+                "anyOf": [
+                  {
+                    "type": "integer"
+                  },
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Lien Status"
+              },
+              "preapproval": {
+                "anyOf": [
+                  {
+                    "type": "integer"
+                  },
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Preapproval"
+              },
+              "debt_to_income_ratio": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Debt To Income Ratio"
+              },
+              "combined_loan_to_value_ratio": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Combined Loan To Value Ratio"
+              },
+              "property_value": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Property Value"
+              },
+              "occupancy_type": {
+                "anyOf": [
+                  {
+                    "type": "integer"
+                  },
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Occupancy Type"
+              },
+              "construction_method": {
+                "anyOf": [
+                  {
+                    "type": "integer"
+                  },
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Construction Method"
+              },
+              "total_units": {
+                "anyOf": [
+                  {
+                    "type": "integer"
+                  },
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Total Units"
+              },
+              "submission_of_application": {
+                "anyOf": [
+                  {
+                    "type": "integer"
+                  },
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Submission Of Application"
+              },
+              "interest_only_payment": {
+                "anyOf": [
+                  {
+                    "type": "integer"
+                  },
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Interest Only Payment"
+              },
+              "balloon_payment": {
+                "anyOf": [
+                  {
+                    "type": "integer"
+                  },
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Balloon Payment"
+              }
+            },
+            "required": [
+              "income",
+              "loan_amount",
+              "loan_term",
+              "loan_purpose",
+              "loan_type",
+              "lien_status",
+              "preapproval",
+              "debt_to_income_ratio",
+              "combined_loan_to_value_ratio",
+              "property_value",
+              "occupancy_type",
+              "construction_method",
+              "total_units",
+              "submission_of_application",
+              "interest_only_payment",
+              "balloon_payment"
+            ],
+            "title": "CreditApplication",
+            "type": "object"
+          }
+        },
+        "properties": {
+          "application": {
+            "$ref": "#/$defs/CreditApplication"
+          }
+        },
+        "required": [
+          "application"
+        ],
+        "title": "analyze_credit_applicationArguments"
+      },
+      "execution": null,
+      "outputSchema": {
+        "$defs": {
+          "GroundedResponse": {
+            "additionalProperties": false,
+            "properties": {
+              "prediction": {
+                "title": "Prediction",
+                "type": "string"
+              },
+              "probability": {
+                "title": "Probability",
+                "type": "number"
+              },
+              "model_explanation": {
+                "title": "Model Explanation",
+                "type": "string"
+              },
+              "policy_context": {
+                "title": "Policy Context",
+                "type": "string"
+              },
+              "final_assessment": {
+                "title": "Final Assessment",
+                "type": "string"
+              },
+              "sources": {
+                "items": {
+                  "$ref": "#/$defs/GroundedSource"
+                },
+                "title": "Sources",
+                "type": "array"
+              },
+              "warnings": {
+                "items": {
+                  "type": "string"
+                },
+                "title": "Warnings",
+                "type": "array"
+              }
+            },
+            "required": [
+              "prediction",
+              "probability",
+              "model_explanation",
+              "policy_context",
+              "final_assessment",
+              "sources",
+              "warnings"
+            ],
+            "title": "GroundedResponse",
+            "type": "object"
+          },
+          "GroundedSource": {
+            "additionalProperties": false,
+            "properties": {
+              "citation_id": {
+                "title": "Citation Id",
+                "type": "string"
+              },
+              "source_id": {
+                "title": "Source Id",
+                "type": "string"
+              },
+              "source_title": {
+                "title": "Source Title",
+                "type": "string"
+              },
+              "institution": {
+                "title": "Institution",
+                "type": "string"
+              },
+              "source_url": {
+                "title": "Source Url",
+                "type": "string"
+              },
+              "page_or_section": {
+                "title": "Page Or Section",
+                "type": "string"
+              },
+              "chunk_id": {
+                "title": "Chunk Id",
+                "type": "string"
+              }
+            },
+            "required": [
+              "citation_id",
+              "source_id",
+              "source_title",
+              "institution",
+              "source_url",
+              "page_or_section",
+              "chunk_id"
+            ],
+            "title": "GroundedSource",
+            "type": "object"
+          },
+          "JsonValue": {}
+        },
+        "additionalProperties": false,
+        "properties": {
+          "prediction": {
+            "anyOf": [
+              {
+                "enum": [
+                  0,
+                  1
+                ],
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Prediction"
+          },
+          "prediction_label": {
+            "anyOf": [
+              {
+                "enum": [
+                  "approved",
+                  "denied"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Prediction Label"
+          },
+          "probability": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Probability"
+          },
+          "xai_evidence": {
+            "anyOf": [
+              {
+                "additionalProperties": {
+                  "$ref": "#/$defs/JsonValue"
+                },
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Xai Evidence"
+          },
+          "rag_queries": {
+            "items": {
+              "additionalProperties": {
+                "$ref": "#/$defs/JsonValue"
+              },
+              "type": "object"
+            },
+            "title": "Rag Queries",
+            "type": "array"
+          },
+          "policy_evidence": {
+            "items": {
+              "additionalProperties": {
+                "$ref": "#/$defs/JsonValue"
+              },
+              "type": "object"
+            },
+            "title": "Policy Evidence",
+            "type": "array"
+          },
+          "evidence_sufficiency": {
+            "anyOf": [
+              {
+                "additionalProperties": {
+                  "$ref": "#/$defs/JsonValue"
+                },
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Evidence Sufficiency"
+          },
+          "grounded_response": {
+            "$ref": "#/$defs/GroundedResponse"
+          },
+          "final_response": {
+            "title": "Final Response",
+            "type": "string"
+          },
+          "sources": {
+            "items": {
+              "$ref": "#/$defs/GroundedSource"
+            },
+            "title": "Sources",
+            "type": "array"
+          },
+          "warnings": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Warnings",
+            "type": "array"
+          },
+          "errors": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Errors",
+            "type": "array"
+          },
+          "node_trace": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Node Trace",
+            "type": "array"
+          },
+          "gemini_called": {
+            "title": "Gemini Called",
+            "type": "boolean"
+          },
+          "generation_attempts": {
+            "title": "Generation Attempts",
+            "type": "integer"
+          },
+          "generation_status": {
+            "title": "Generation Status",
+            "type": "string"
+          },
+          "provider_status": {
+            "title": "Provider Status",
+            "type": "string"
+          },
+          "citation_normalization_count": {
+            "title": "Citation Normalization Count",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "prediction",
+          "prediction_label",
+          "probability",
+          "xai_evidence",
+          "rag_queries",
+          "policy_evidence",
+          "evidence_sufficiency",
+          "grounded_response",
+          "final_response",
+          "sources",
+          "warnings",
+          "errors",
+          "node_trace",
+          "gemini_called",
+          "generation_attempts",
+          "generation_status",
+          "provider_status",
+          "citation_normalization_count"
+        ],
+        "title": "AnalysisOutput",
+        "type": "object"
+      },
+      "icons": null,
+      "annotations": {
+        "title": null,
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "_meta": null
+    }
+  ]
+}

@@ -498,6 +498,69 @@ Puede copiarse `.env.example`; un `GENAI_MODEL` del environment reemplaza el
 default. Solo Gemini esta habilitado en esta fase y nunca se hace fallback a
 otro proveedor o modelo.
 
+### MCP: exposicion estandarizada de capacidades V2
+
+`src/mcp_server_v2.py` expone las capacidades existentes sin duplicar su
+logica. La referencia del Modulo 4 del curso usa el SDK oficial `mcp`, tools
+decoradas y transporte `stdio`; este proyecto conserva ese transporte local,
+pero adopta la API vigente `MCPServer` de `mcp==2.1.1`, outputs estructurados y
+un lifespan tipado. `stdio` evita abrir un puerto, autenticacion HTTP o
+infraestructura adicional para esta entrega local.
+
+El servidor publica exactamente cuatro tools read-only:
+
+| Tool | Entrada | Salida |
+|---|---|---|
+| `predict_credit_application` | objeto `application` con las 16 variables crudas V2 | clase, label, probabilidad y modelo/version |
+| `explain_credit_application` | la misma solicitud valida | evidence package SHAP local, top factors y warning no causal |
+| `retrieve_credit_policy` | `query` y `top_k` entre 1 y 10 | chunks, scores y metadata oficial |
+| `analyze_credit_application` | la misma solicitud valida | resultado completo del LangGraph existente, incluidos XAI, RAG, guardrail, generacion, fuentes y estados |
+
+Los tres contratos de solicitud rechazan campos extra, target y atributos
+`audit_only`. El lifecycle carga de forma perezosa y reutiliza una sola
+instancia del champion/resumen, embedder, cliente Qdrant y grafo por sesion
+MCP. La configuracion GenAI se carga solo cuando se solicita el workflow
+completo, desde `.env` o el environment. Las respuestas son JSON estructurado;
+no contienen API keys, rutas
+locales ni objetos Python internos. Los errores internos se convierten en
+mensajes controlados.
+
+LangGraph sigue siendo el orquestador interno determinista que ejecuta
+ML -> XAI -> RAG -> guardrail -> Gemini. MCP no es un segundo agente ni un
+segundo workflow: es la interfaz estandar para invocar por separado tres
+capacidades o el workflow completo.
+
+Inicio local por `stdio`:
+
+```bash
+uv sync
+uv run python -m src.mcp_server_v2
+```
+
+Configuracion equivalente de un cliente MCP:
+
+```json
+{
+  "mcpServers": {
+    "credit-approval-v2": {
+      "command": "uv",
+      "args": ["run", "python", "-m", "src.mcp_server_v2"]
+    }
+  }
+}
+```
+
+Manifest, metadata y ejemplos reproducibles se generan sin una nueva llamada
+live a Gemini:
+
+```bash
+uv run python -m src.mcp_server_v2 --generate-artifacts
+```
+
+Los artifacts quedan en `artifacts/mcp/`. El ejemplo de analisis reproduce el
+output Gemini ya validado a traves del LangGraph real para comprobar el
+contrato MCP sin introducir una llamada externa en esta fase.
+
 ## 6. Ejecucion
 
 Desde la raiz del repositorio y con el entorno del proyecto activo:
@@ -524,6 +587,9 @@ uv run python -m src.rag_v2
 # Ejecutar ML -> XAI -> RAG -> guardrail -> Gemini y registrar la run
 uv run python -m src.langgraph_v2 --backend dagshub
 
+# Iniciar el servidor MCP local por stdio
+uv run python -m src.mcp_server_v2
+
 # Simular inferencia con un perfil crudo (V1)
 uv run python -m src.prediccion
 ```
@@ -548,6 +614,7 @@ columnas one-hot ni un scaler externo.
 - `src/xai_v2.py`: Tree SHAP global y evidencia local reusable del champion V2.
 - `src/rag_v2.py`: adquisicion, chunking, Qdrant, retrieval y evaluacion RAG.
 - `src/langgraph_v2.py`: orquestacion determinista y Gemini grounded fail-closed.
+- `src/mcp_server_v2.py`: servidor MCP stdio con cuatro tools V2 estructuradas.
 - `data/rag_sources/`: snapshots oficiales y manifest criptografico del corpus.
 - `data/rag_eval_queries.json`: evaluation set manual de retrieval.
 - `docs/HMDA_V2_DATA_DICTIONARY.md`: contrato de variables del Dataset V2.
@@ -580,7 +647,9 @@ anteriores no deben atribuirse al artefacto saneado.
   intentos producen abstencion controlada.
 - Las citas pasan una validacion de pertenencia al retrieval, pero esto no
   garantiza que la sintesis sea juridicamente correcta ni exhaustiva.
-- MCP y Docker todavia no estan implementados.
+- MCP esta implementado como interfaz local `stdio`; no incorpora control de
+  acceso de red, rate limiting ni aislamiento multi-tenant. Docker sigue fuera
+  del alcance.
 - Los atributos demograficos pueden reproducir sesgos presentes en decisiones
   historicas y requieren una evaluacion de equidad separada.
 

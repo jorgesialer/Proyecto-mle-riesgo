@@ -1,0 +1,19 @@
+{
+  "server_name": "credit-approval-v2",
+  "server_version": "1.0.0",
+  "sdk": "mcp",
+  "sdk_version": "2.1.1",
+  "transport": "stdio",
+  "tool_count": 4,
+  "resource_lifecycle": "lazy_per_stdio_session",
+  "generated_at": "2026-09-03T00:55:07.226189+00:00",
+  "grounded_example_provider": "validated_fixture_replayed_through_existing_workflow",
+  "audit_only_excluded": [
+    "applicant_age",
+    "derived_race",
+    "derived_ethnicity",
+    "derived_sex"
+  ],
+  "target_excluded": "LoanApproved",
+  "secrets_recorded": false
+}

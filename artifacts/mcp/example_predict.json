@@ -1,0 +1,14 @@
+{
+  "prediction": 0,
+  "prediction_label": "denied",
+  "probability": 0.20811161084150762,
+  "model": {
+    "name": "credit-approval-v2",
+    "version": "1",
+    "selected_configuration": "catboost_tuned_02",
+    "dataset_version": "hmda_2023_loan_approval_v2"
+  },
+  "warnings": [
+    "Historical approval prediction; not a default-risk estimate or autonomous decision."
+  ]
+}

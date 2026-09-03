@@ -201,7 +201,10 @@ No se ha implementado aun un fairness dashboard ni metricas por subgrupo.
   acotado y la generacion depende de un servicio externo no determinista.
 - Una respuesta grounded no valida legalidad, fairness ni correccion de la
   decision; el sistema es apoyo analitico y no un decisor autonomo.
-- MCP, Docker y una nueva UI no estan implementados.
+- MCP expone el modelo, XAI, retrieval y el workflow grounded mediante cuatro
+  tools locales read-only por `stdio`; no altera el modelo ni agrega seguridad
+  de red, rate limiting o aislamiento multi-tenant. Docker y una nueva UI no
+  estan implementados.
 
 ## Evidencia y reproducibilidad
 

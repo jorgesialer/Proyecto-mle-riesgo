@@ -497,7 +497,39 @@ in this run, so the normalization count was 0. Artifact:
 `3dc4691c60224b4ba59f3f1ed75b10c6`.
 
 ### Phase 8
-FastMCP integration.
+MCP integration. **Implemented:** `src/mcp_server_v2.py` uses the official
+`mcp==2.1.1` Python SDK and the current `MCPServer` API. The course reference
+also uses the official SDK, decorated tools and `stdio`; V2 keeps `stdio` but
+updates the older eager-loading/string-output example to typed structured
+outputs and a server lifespan.
+
+Exactly four read-only tools are exposed: historical approval prediction,
+local SHAP explanation, bounded official-policy retrieval, and complete
+grounded application analysis. The first three reuse the persisted CatBoost
+champion, `explicar_solicitud()` and `retrieve_policy_context()` respectively.
+The fourth invokes the existing deterministic LangGraph as a whole; MCP does
+not implement a second orchestration path or an autonomous agent.
+
+The application schema contains exactly the 16 approved raw V2 predictors and
+rejects arbitrary fields. `LoanApproved` and the four `audit_only` attributes
+are absent from the tool schemas and rejected as extras. Retrieval constrains
+`top_k` to 1--10. All outputs have Pydantic/JSON schemas and contain only
+JSON-serializable domain data, controlled warnings/errors and public source
+metadata.
+
+One lifespan-scoped resource manager lazily initializes and reuses the
+champion, benchmark summary, local SentenceTransformer, embedded Qdrant client
+and compiled LangGraph for the lifetime of a client session. It closes owned
+resources on shutdown. API keys are left to the Gemini SDK environment and are
+not placed in schemas, state, artifacts or responses.
+
+The real integration test launches the module as a new `stdio` subprocess,
+performs the MCP handshake, discovers exactly four tools, inspects their
+schemas and executes prediction, XAI and retrieval. LangGraph/Gemini is covered
+with a mocked provider in unit tests so the suite makes no live GenAI calls.
+Validation evidence and examples are stored under `artifacts/mcp/`. No DagsHub
+run is required because this phase changes the serving contract rather than ML
+or retrieval behavior.
 
 ### Phase 9
 End-to-end demo.
@@ -521,6 +553,8 @@ Version 2 is considered complete when:
 - RAG retrieves relevant credit-policy information.
 - LangGraph orchestrates the ML and retrieval components.
 - GenAI produces grounded analyst explanations.
+- MCP exposes prediction, XAI, retrieval and full grounded analysis as typed
+  local tools.
 - The project can execute end-to-end.
 - The README documents the architecture and results.
 - The model card reflects the final model.
