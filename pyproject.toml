@@ -12,6 +12,7 @@ dependencies = [
     "ipykernel>=7.2.0",
     "langgraph>=1.2.11",
     "matplotlib>=3.10.9",
+    "mcp>=2.1.1",
     "mlflow>=3.10.0",
     "numpy>=2.4.6",
     "pandas>=2.3.3,<3.0",

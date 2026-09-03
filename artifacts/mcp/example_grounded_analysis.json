@@ -1,0 +1,683 @@
+{
+  "prediction": 0,
+  "prediction_label": "denied",
+  "probability": 0.20811161084150762,
+  "xai_evidence": {
+    "prediction": 0,
+    "prediction_label": "denied",
+    "positive_class": 1,
+    "probability": 0.20811161084150762,
+    "base_value": 1.727614301176555,
+    "shap_output_space": "CatBoost raw margin (log-odds)",
+    "top_positive_factors": [
+      {
+        "feature": "Debt-to-income band = gt_60 (absent)",
+        "model_feature": "dti_category",
+        "source_features": [
+          "debt_to_income_ratio"
+        ],
+        "category": "gt_60",
+        "raw_code": "gt_60",
+        "category_label": null,
+        "category_active": false,
+        "application_value": null,
+        "encoded_value": 0.0,
+        "shap_value": 0.3013730657743669
+      },
+      {
+        "feature": "Combined loan-to-value ratio",
+        "model_feature": "combined_loan_to_value_ratio",
+        "source_features": [
+          "combined_loan_to_value_ratio"
+        ],
+        "category": null,
+        "raw_code": null,
+        "category_label": null,
+        "category_active": null,
+        "application_value": 73.077,
+        "encoded_value": 73.077,
+        "shap_value": 0.11128343925526324
+      },
+      {
+        "feature": "Debt-to-income band = 50_to_60 (absent)",
+        "model_feature": "dti_category",
+        "source_features": [
+          "debt_to_income_ratio"
+        ],
+        "category": "50_to_60",
+        "raw_code": "50_to_60",
+        "category_label": null,
+        "category_active": false,
+        "application_value": null,
+        "encoded_value": 0.0,
+        "shap_value": 0.10211879889584631
+      },
+      {
+        "feature": "Application submission channel = 1.0 (absent)",
+        "model_feature": "submission_of_application",
+        "source_features": [
+          "submission_of_application"
+        ],
+        "category": "1.0",
+        "raw_code": "1.0",
+        "category_label": null,
+        "category_active": false,
+        "application_value": "1",
+        "encoded_value": 0.0,
+        "shap_value": 0.05778871433004523
+      },
+      {
+        "feature": "Debt-to-income band = lt_20 (absent)",
+        "model_feature": "dti_category",
+        "source_features": [
+          "debt_to_income_ratio"
+        ],
+        "category": "lt_20",
+        "raw_code": "lt_20",
+        "category_label": null,
+        "category_active": false,
+        "application_value": null,
+        "encoded_value": 0.0,
+        "shap_value": 0.05649108001202186
+      }
+    ],
+    "top_negative_factors": [
+      {
+        "feature": "Loan purpose = Home purchase (absent)",
+        "model_feature": "loan_purpose",
+        "source_features": [
+          "loan_purpose"
+        ],
+        "category": "1",
+        "raw_code": "1",
+        "category_label": "Home purchase",
+        "category_active": false,
+        "application_value": "2",
+        "encoded_value": 0.0,
+        "shap_value": -0.9845818587247546
+      },
+      {
+        "feature": "Property value",
+        "model_feature": "property_value",
+        "source_features": [
+          "property_value"
+        ],
+        "category": null,
+        "raw_code": null,
+        "category_label": null,
+        "category_active": null,
+        "application_value": 55000.0,
+        "encoded_value": 55000.0,
+        "shap_value": -0.5324860608718396
+      },
+      {
+        "feature": "Requested loan amount",
+        "model_feature": "loan_amount",
+        "source_features": [
+          "loan_amount"
+        ],
+        "category": null,
+        "raw_code": null,
+        "category_label": null,
+        "category_active": null,
+        "application_value": 35000.0,
+        "encoded_value": 35000.0,
+        "shap_value": -0.5259303271976962
+      },
+      {
+        "feature": "Annual income (USD thousands)",
+        "model_feature": "income",
+        "source_features": [
+          "income"
+        ],
+        "category": null,
+        "raw_code": null,
+        "category_label": null,
+        "category_active": null,
+        "application_value": 28.0,
+        "encoded_value": 28.0,
+        "shap_value": -0.4954882706376787
+      },
+      {
+        "feature": "Loan purpose = Home improvement (present)",
+        "model_feature": "loan_purpose",
+        "source_features": [
+          "loan_purpose"
+        ],
+        "category": "2",
+        "raw_code": "2",
+        "category_label": "Home improvement",
+        "category_active": true,
+        "application_value": "2",
+        "encoded_value": 1.0,
+        "shap_value": -0.4804283040604272
+      }
+    ],
+    "global_feature_context": null,
+    "model": {
+      "name": "credit-approval-v2",
+      "version": "1",
+      "selected_configuration": "catboost_tuned_02"
+    },
+    "dataset": {
+      "version": "hmda_2023_loan_approval_v2",
+      "sha256": "57408ac78a0db54d9ed94f805e00a300b473f1232f5fed5650fa5fa3105dc36b"
+    },
+    "warning": "SHAP describe contribuciones del modelo a esta prediccion; no demuestra causalidad, capacidad de repago ni una politica de credito normativa."
+  },
+  "rag_queries": [
+    {
+      "origin_feature": "dti_category",
+      "query": "mortgage underwriting debt-to-income ratio calculation and limits"
+    },
+    {
+      "origin_feature": "combined_loan_to_value_ratio",
+      "query": "mortgage combined loan-to-value CLTV calculation and subordinate financing"
+    },
+    {
+      "origin_feature": "loan_purpose",
+      "query": "HMDA loan purpose definitions and reporting codes"
+    },
+    {
+      "origin_feature": "loan_amount",
+      "query": "HMDA loan amount reporting requirements"
+    },
+    {
+      "origin_feature": "income",
+      "query": "mortgage underwriting stable predictable income documentation and continuance"
+    }
+  ],
+  "policy_evidence": [
+    {
+      "origin_feature": "dti_category",
+      "query": "mortgage underwriting debt-to-income ratio calculation and limits",
+      "results": [
+        {
+          "text": "DTI Ratios Maximum DTI Ratios Exceptions to the Maximum DTI Ratio Calculating Total Monthly Obligation DTI Ratio Tolerance and Re-Underwriting Criteria Applying the Re-underwriting Criteria",
+          "score": 0.6490533228986446,
+          "source_id": "fannie_debt_to_income",
+          "source_title": "B3-6-02, Debt-to-Income Ratios",
+          "institution": "Fannie Mae",
+          "source_url": "https://selling-guide.fanniemae.com/sel/b3-6-02/debt-income-ratios",
+          "page_or_section": "B3-6-02, Debt-to-Income Ratios (04/02/2025)",
+          "chunk_id": "fannie_debt_to_income:0000",
+          "citation_id": "[S1]"
+        },
+        {
+          "text": "The following steps are required if the borrower discloses or the lender discovers additional debt(s) or reduced income after the underwriting decision was made up to and concurrent with loan closing: The lender must document the additional debt(s) and reduced income in accordance with B3-6-01, General Information on Liabilities B3-6-01, General Information on Liabilities or B3-3, Income Assessment B3-3, Income Assessment , as applicable. Note : The lender is not required to obtain a new credit report to verify the additional debt(s). However, if the lender chooses to obtain a new credit report after the initial underwriting decision was made, the loan must be re-underwritten. If the recalculated DTI ratio exceeds 45% for a manually underwritten loan or 50% for a DU loan casefile, the loan is not eligible for delivery to Fannie Mae. Manually underwritten loans: If the recalculated DTI does not exceed 45%, the mortgage loan must be re-underwritten with the updated information to",
+          "score": 0.648456965469024,
+          "source_id": "fannie_debt_to_income",
+          "source_title": "B3-6-02, Debt-to-Income Ratios",
+          "institution": "Fannie Mae",
+          "source_url": "https://selling-guide.fanniemae.com/sel/b3-6-02/debt-income-ratios",
+          "page_or_section": "Applying the Re-underwriting Criteria",
+          "chunk_id": "fannie_debt_to_income:0010",
+          "citation_id": "[S2]"
+        },
+        {
+          "text": "The DTI ratio consists of two components: total monthly obligations, which includes the qualifying payment for the subject mortgage loan and other long-term and significant short-term monthly debts (see Calculating Total Monthly Obligation below); and total monthly income of all borrowers, to the extent the income is used to qualify for the mortgage (see Chapter B3–3, Income Assessment).",
+          "score": 0.6352198530429156,
+          "source_id": "fannie_debt_to_income",
+          "source_title": "B3-6-02, Debt-to-Income Ratios",
+          "institution": "Fannie Mae",
+          "source_url": "https://selling-guide.fanniemae.com/sel/b3-6-02/debt-income-ratios",
+          "page_or_section": "DTI Ratios",
+          "chunk_id": "fannie_debt_to_income:0001",
+          "citation_id": "[S3]"
+        }
+      ]
+    },
+    {
+      "origin_feature": "combined_loan_to_value_ratio",
+      "query": "mortgage combined loan-to-value CLTV calculation and subordinate financing",
+      "results": [
+        {
+          "text": "may not make any payment plan changes or access any paid-down principal once the loan is closed.) Note: For each subordinate liability, in order for the lender to accurately calculate the CLTV ratio for eligibility and underwriting purposes, the lender must determine the drawn portion of all HELOCs, if applicable, and the unpaid principal balance for all closed-end subordinate financing. If any subordinate financing is not shown on a credit report, the lender must obtain documentation from the borrower or creditor. If the borrower discloses, or the lender discovers, new (or increased) subordinate financing after the underwriting decision has been made, up to and concurrent with closing, the lender must re-underwrite the mortgage loan. (See B3-6-02, Debt-to-Income Ratios B3-6-02, Debt-to-Income Ratios , for additional information.) Note: The CLTV ratio calculation may differ for certain mortgage loans. For details on these differences, see B2-1.3-05, Payoff of Installment Land Contract",
+          "score": 0.8303381293096961,
+          "source_id": "fannie_cltv",
+          "source_title": "B2-1.2-02, Combined Loan-to-Value (CLTV) Ratios",
+          "institution": "Fannie Mae",
+          "source_url": "https://selling-guide.fanniemae.com/sel/b2-1.2-02/combined-loan-value-cltv-ratios",
+          "page_or_section": "Calculation of the CLTV Ratio",
+          "chunk_id": "fannie_cltv:0002",
+          "citation_id": "[S4]"
+        },
+        {
+          "text": "For first mortgage loans that are subject to subordinate financing, the lender must calculate the LTV ratio and the CLTV ratio. For first mortgage loans that are subject to a HELOC, see B2-1.2-03, Home Equity Combined Loan-to-Value (HCLTV) Ratios B2-1.2-03, Home Equity Combined Loan-to-Value (HCLTV) Ratios . For all other subordinate liens, see B2-1.2-04, Subordinate Financing B2-1.2-04, Subordinate Financing for additional information. The CLTV ratio is determined by dividing the sum of the items listed below by the lesser of the sales price or the appraised value of the property. the original loan amount of the first mortgage, the drawn portion (outstanding principal balance) of a HELOC, and the unpaid principal balance of all closed-end subordinate financing. (With a closed-end loan, a borrower draws down all funds on day one and may not make any payment plan changes or access any paid-down principal once the loan is closed.) Note: For each subordinate liability, in order for the",
+          "score": 0.8226793964260459,
+          "source_id": "fannie_cltv",
+          "source_title": "B2-1.2-02, Combined Loan-to-Value (CLTV) Ratios",
+          "institution": "Fannie Mae",
+          "source_url": "https://selling-guide.fanniemae.com/sel/b2-1.2-02/combined-loan-value-cltv-ratios",
+          "page_or_section": "Calculation of the CLTV Ratio",
+          "chunk_id": "fannie_cltv:0001",
+          "citation_id": "[S5]"
+        },
+        {
+          "text": "Eligibility B5-5.1-02, Community Seconds Loan Eligibility ; and B5-5.2-02, Loans with Resale Restrictions: Eligibility, Collateral and Delivery Requirements B5-5.2-02, Loans with Resale Restrictions: Eligibility, Collateral and Delivery Requirements ; and B5-5.3-03, Shared Equity Transactions: Eligibility, Underwriting and Collateral Requirements B5-5.3-03, Shared Equity Transactions: Eligibility, Underwriting and Collateral Requirements . Refer to the Eligibility Matrix for allowable CLTV ratios.",
+          "score": 0.7905181340625245,
+          "source_id": "fannie_cltv",
+          "source_title": "B2-1.2-02, Combined Loan-to-Value (CLTV) Ratios",
+          "institution": "Fannie Mae",
+          "source_url": "https://selling-guide.fanniemae.com/sel/b2-1.2-02/combined-loan-value-cltv-ratios",
+          "page_or_section": "Calculation of the CLTV Ratio",
+          "chunk_id": "fannie_cltv:0004",
+          "citation_id": "[S6]"
+        }
+      ]
+    },
+    {
+      "origin_feature": "loan_purpose",
+      "query": "HMDA loan purpose definitions and reporting codes",
+      "results": [
+        {
+          "text": "Effective January 1, 2023 2 2023 REPORTABLE HMDA DATA: A REGULATORY AND REPORTING OVERVIEW REFERENCE CHART – VERSION 1, FEBRUARY 9, 2023 Data point Regulation C references Description Filing instructionsb Reporting “Not Applicable”c or “Exempt”d (2) Universal Loan Identifier (ULI) or Non- Universal Loan Identifier (NULI) § 1003.4(a)(1)(i), Comments 4(a)(1)(i)-1 through -5, and appendix C ULI: Identifier assigned to identify and retrieve a loan or application that contains the FI’s LEI, an internally generated sequence of characters, and a check digit NULI: Identifier assigned to identify a loan or application ULI. Assign and report a ULI that: 1. Begins with the financial institution’s Legal Entity Identifier as defined in § 1003.4(a)(1)(i)(A). 2. Follows the Legal Entity Identifier with up to 23 additional characters to identify the covered loan or application, which:  May be letters, numerals, or a combination of letters and numerals;  Must be unique within the financial",
+          "score": 0.7657679975381887,
+          "source_id": "cfpb_hmda_2023_reference",
+          "source_title": "Reportable HMDA Data: 2023 Regulatory and Reporting Overview Reference Chart",
+          "institution": "Consumer Financial Protection Bureau (CFPB)",
+          "source_url": "https://files.consumerfinance.gov/f/documents/cfpb_reportable-hmda-data_regulatory-and-reporting-overview-reference-chart_2023-02.pdf",
+          "page_or_section": "page 2",
+          "chunk_id": "cfpb_hmda_2023_reference:0002",
+          "citation_id": "[S7]"
+        },
+        {
+          "text": "Effective January 1, 2023 5 2023 REPORTABLE HMDA DATA: A REGULATORY AND REPORTING OVERVIEW REFERENCE CHART – VERSION 1, FEBRUARY 9, 2023 Data point Regulation C references Description Filing instructionsb Reporting “Not Applicable”c or “Exempt”d (10) Action Taken and (11) Action Taken Date § 1003.4(a)(8), Comments 4(a)(8)(i)-1 t hrough -14 and 4(a)(8)(ii)-1 through -6 Type and date of action the FI took on the loan, application, or preapproval request ACTION TAKEN. Indicate the action taken on the covered loan or application by entering:  Code 1—Loan originated  Code 2—Application approved but not accepted  Code 3—Application denied  Code 4—Application withdrawn by applicant  Code 5—File closed for incompleteness  Code 6—Purchased loan  Code 7—Preapproval request denied  Code 8—Preapproval request approved but not accepted ACTION TAKEN DATE. Enter, in numeral form, the date of action taken by year, month, and day, using YYYYMMDD format. Example: If the action taken date is July",
+          "score": 0.7541643367502913,
+          "source_id": "cfpb_hmda_2023_reference",
+          "source_title": "Reportable HMDA Data: 2023 Regulatory and Reporting Overview Reference Chart",
+          "institution": "Consumer Financial Protection Bureau (CFPB)",
+          "source_url": "https://files.consumerfinance.gov/f/documents/cfpb_reportable-hmda-data_regulatory-and-reporting-overview-reference-chart_2023-02.pdf",
+          "page_or_section": "page 5",
+          "chunk_id": "cfpb_hmda_2023_reference:0009",
+          "citation_id": "[S8]"
+        },
+        {
+          "text": "Effective January 1, 2023 4 2023 REPORTABLE HMDA DATA: A REGULATORY AND REPORTING OVERVIEW REFERENCE CHART – VERSION 1, FEBRUARY 9, 2023 Data point Regulation C references Description Filing instructionsb Reporting “Not Applicable”c or “Exempt”d (5) Loan Purpose § 1003.4(a)(3), Comments 4(a)(3)- 1 through -6 Whether the transaction is for home purchase, home improvement, refinancing, cash-out refinancing, or another purpose Indicate the purpose of the covered loan or application by entering:  Code 1—Home purchase  Code 2—Home improvement  Code 31—Refinancing  Code 32—Cash-out refinancing  Code 4—Other purpose  Code 5—Not applicable To report not applicable, enter “Code 5” for purchased covered loans where origination took place prior to January 1, 2018, Comment 4(a)(3)-6. (6) Preapproval § 1003.4(a)(4), Comments 4(a)(4)- 1 and -2 Whether the transaction involved a preapproval request for a home purchase loan under a preapproval program Indicate preapproval for a covered loan or",
+          "score": 0.7523425962791753,
+          "source_id": "cfpb_hmda_2023_reference",
+          "source_title": "Reportable HMDA Data: 2023 Regulatory and Reporting Overview Reference Chart",
+          "institution": "Consumer Financial Protection Bureau (CFPB)",
+          "source_url": "https://files.consumerfinance.gov/f/documents/cfpb_reportable-hmda-data_regulatory-and-reporting-overview-reference-chart_2023-02.pdf",
+          "page_or_section": "page 4",
+          "chunk_id": "cfpb_hmda_2023_reference:0006",
+          "citation_id": "[S9]"
+        }
+      ]
+    },
+    {
+      "origin_feature": "loan_amount",
+      "query": "HMDA loan amount reporting requirements",
+      "results": [
+        {
+          "text": "of the loan or the amount applied for Enter, in dollars, the amount of the covered loan, or the amount applied for, as applicable. Example: If the loan amount is $110,500, enter 110500 or 110500.00. If the loan amount is $110,500.24, enter 110500.24.",
+          "score": 0.7553303549226899,
+          "source_id": "cfpb_hmda_2023_reference",
+          "source_title": "Reportable HMDA Data: 2023 Regulatory and Reporting Overview Reference Chart",
+          "institution": "Consumer Financial Protection Bureau (CFPB)",
+          "source_url": "https://files.consumerfinance.gov/f/documents/cfpb_reportable-hmda-data_regulatory-and-reporting-overview-reference-chart_2023-02.pdf",
+          "page_or_section": "page 4",
+          "chunk_id": "cfpb_hmda_2023_reference:0008",
+          "citation_id": "[S10]"
+        },
+        {
+          "text": "Effective January 1, 2023 28 2023 REPORTABLE HMDA DATA: A REGULATORY AND REPORTING OVERVIEW REFERENCE CHART – VERSION 1, FEBRUARY 9, 2023 Data point Regulation C references Description Filing instructionsb Reporting “Not Applicable”c or “Exempt”d (33) Debt-to- Income Ratio § 1003.4(a)(23), Comments 4(a)(23)-1 through - 7 Ratio of the applicant’s or borrower’s total monthly debt to total monthly income relied on Enter, as a percentage, the ratio of the applicant’s or borrower’s total monthly debt to the total monthly income relied on in making the credit decision. Use decimal places only if the ratio relied upon uses decimal places. The HMDA Platform can accept up to fifteen (15) decimal places and can accept negative numbers for Debt-to-Income Ratio. Example: If the relied upon debt-to-income ratio is 42.95, enter 42.95, not 43. If, however, your institution rounded the ratio up to 43% and relied on the rounded-up number, enter 43. Enter “NA” for:  Purchased covered loans, §",
+          "score": 0.7285307740709296,
+          "source_id": "cfpb_hmda_2023_reference",
+          "source_title": "Reportable HMDA Data: 2023 Regulatory and Reporting Overview Reference Chart",
+          "institution": "Consumer Financial Protection Bureau (CFPB)",
+          "source_url": "https://files.consumerfinance.gov/f/documents/cfpb_reportable-hmda-data_regulatory-and-reporting-overview-reference-chart_2023-02.pdf",
+          "page_or_section": "page 28",
+          "chunk_id": "cfpb_hmda_2023_reference:0068",
+          "citation_id": "[S11]"
+        },
+        {
+          "text": "Z, § 1026.19(f), § 1003.4(a)(19); Comment 4(a)(19)-1;  Purchased covered loans with applications that were received by the selling entity prior to the effective date of Regulation Z, § 1026.19(f), Comment 4(a)(19)-2. Enter “Exempt” if, pursuant to the 2018 HMDA Rule, your institution is not reporting Discount Points . (30) Lender Credits § 1003.4(a)(20), Comments 4(a)(20)-1 through - 3 Amount of lender credits Enter, in dollars, the amount of lender credits. If no lender credits were provided, leave this field blank. Example: If the amount is $1500.24, enter 1500.24. Enter “NA” for:  Applications, Comment 4(a)(20)-1;  Covered loans not subject to Regulation Z, § 1026.19(f), § 1003.4(a)(20); Comment 4(a)(20)-1;  Purchased covered loans with applications that were received by the selling entity prior to the",
+          "score": 0.7227075576006137,
+          "source_id": "cfpb_hmda_2023_reference",
+          "source_title": "Reportable HMDA Data: 2023 Regulatory and Reporting Overview Reference Chart",
+          "institution": "Consumer Financial Protection Bureau (CFPB)",
+          "source_url": "https://files.consumerfinance.gov/f/documents/cfpb_reportable-hmda-data_regulatory-and-reporting-overview-reference-chart_2023-02.pdf",
+          "page_or_section": "page 26",
+          "chunk_id": "cfpb_hmda_2023_reference:0065",
+          "citation_id": "[S12]"
+        }
+      ]
+    },
+    {
+      "origin_feature": "income",
+      "query": "mortgage underwriting stable predictable income documentation and continuance",
+      "results": [
+        {
+          "text": "A stable and predictable flow of income is a foundational element in loan underwriting. The lender must document income is stable, has a documented history of receipt, and is reasonably expected to continue.",
+          "score": 0.7151285485073162,
+          "source_id": "fannie_general_income",
+          "source_title": "B3-3.1-01, General Income Information",
+          "institution": "Fannie Mae",
+          "source_url": "https://selling-guide.fanniemae.com/sel/b3-3.1-01/general-income-information",
+          "page_or_section": "Stable and Predictable Income",
+          "chunk_id": "fannie_general_income:0001",
+          "citation_id": "[S13]"
+        },
+        {
+          "text": "Borrowers must be qualified with income the lender can reasonably expect to continue for the foreseeable future. The lender must evaluate the likelihood of continuance based on the nature of the income and supporting documentation. If the income does not have a defined expiration date and the applicable history of receipt of the income is documented (per the specific income type), the lender may conclude that the income is likely to continue and the lender is not expected to obtain additional documentation, unless there is information to the contrary. If the income source does have a defined expiration date or is dependent on the depletion of an asset account or other limited benefit, the lender must document that the income is expected to continue for at least three years from the note date. Additionally, when an asset account is the sole or majority source of qualifying income, the lender must assess the borrower’s ability to continue repaying the loan once the income source expires",
+          "score": 0.6027422239559266,
+          "source_id": "fannie_general_income",
+          "source_title": "B3-3.1-01, General Income Information",
+          "institution": "Fannie Mae",
+          "source_url": "https://selling-guide.fanniemae.com/sel/b3-3.1-01/general-income-information",
+          "page_or_section": "Continuance of Income",
+          "chunk_id": "fannie_general_income:0002",
+          "citation_id": "[S14]"
+        },
+        {
+          "text": "sole or majority source of qualifying income, the lender must assess the borrower’s ability to continue repaying the loan once the income source expires or the asset is depleted prior to loan maturity. If the lender is notified that the borrower is transitioning to a lower pay structure, for example due to pending retirement or a new job, the lender must use the lower income amount in qualifying, and must determine that the lower amount is stable and predictable. See Chapter B3-3, Income Assessment for topics with additional information and requirements for continuance of income.",
+          "score": 0.6019024832365734,
+          "source_id": "fannie_general_income",
+          "source_title": "B3-3.1-01, General Income Information",
+          "institution": "Fannie Mae",
+          "source_url": "https://selling-guide.fanniemae.com/sel/b3-3.1-01/general-income-information",
+          "page_or_section": "Continuance of Income",
+          "chunk_id": "fannie_general_income:0003",
+          "citation_id": "[S15]"
+        }
+      ]
+    }
+  ],
+  "evidence_sufficiency": {
+    "insufficient_evidence": false,
+    "guardrail_version": "official_sources_and_xai_coverage_v1",
+    "reasons": [],
+    "official_source_allowlist": [
+      "files.consumerfinance.gov",
+      "selling-guide.fanniemae.com"
+    ],
+    "xai_relevant_features": [
+      "combined_loan_to_value_ratio",
+      "dti_category",
+      "income",
+      "loan_amount",
+      "loan_purpose",
+      "property_value",
+      "submission_of_application"
+    ],
+    "covered_xai_features": [
+      "combined_loan_to_value_ratio",
+      "dti_category",
+      "income",
+      "loan_amount",
+      "loan_purpose"
+    ],
+    "retrieved_source_count": 15,
+    "numeric_score_threshold": null
+  },
+  "grounded_response": {
+    "prediction": "denied",
+    "probability": 0.20811161084150762,
+    "model_explanation": "El modelo credit-approval-v2 (configuracion catboost_tuned_02) genero una prediccion de denegacion para esta solicitud, con una probabilidad estimada de 0.208 y un margen base de 1.728 en escala de log-odds. Entre los factores que aumentan la puntuacion del modelo se encuentran la ausencia de bandas altas de DTI y la proporcion de endeudamiento combinado con un valor de 73.077. Por otro lado, factores como que el proposito del valor sea mejoramiento de hogar (presente), un valor de propiedad de 55,000 USD, un monto de prestamo solicitados de 35,000 USD y un ingreso anual de 28,000 USD contribuyen negativamente en el espacio de SHAP.",
+    "policy_context": "Las guias de suscripcion de Fannie Mae establecen que la relacion de deuda a ingresos (DTI) consiste en las obligaciones mensuales totales y el ingreso mensual total de los prestatarios [S3], y detallan criterios de recálculo cuando se descubren deudas adicionales [S2]. Respecto a los prestamos con financiamiento subordinado, la relacion de prestamo combinado a valor (CLTV) se determina dividiendo la suma de los montos aplicables entre el menor precio de venta o valor tasado [S5], con reglas especificas para verificar pasivos [S4] y matrices de elegibilidad [S6]. Asimismo, las pautas de HMDA definen los codigos de reporte para el proposito del prestamo (como mejoramiento de hogar o compra de vivienda) [S9], el monto del prestamo [S10] y la relacion de deuda a ingresos [S11]. Finalmente, en la evaluacion de ingresos, se considera fundamental contar con un flujo de ingresos estable, predecible y con historial documentado [S13], evaluando su probabilidad de continuidad para el futuro previsible [S14].",
+    "final_assessment": "La prediccion del modelo de aprendizaje automatico resulto en una denegacion (probabilidad de 0.208), impulsada por una combinación de factores positivos y negativos en el espacio de log-odds de SHAP. Por separado, la normativa hipotecaria y de cumplimiento proporciona directrices estandarizadas sobre el calculo del DTI [S1, S3], el calculo del CLTV ante financiamientos subordinados [S4, S5], los codigos de reporte HMDA [S9, S11] y la evaluacion de la estabilidad de ingresos [S13, S14]. Estas fuentes normativas no implican una relacion causal ni determinan de forma autonoma la decision de aprobacion o denegacion de la solicitud.",
+    "sources": [
+      {
+        "citation_id": "[S1]",
+        "source_id": "fannie_debt_to_income",
+        "source_title": "B3-6-02, Debt-to-Income Ratios",
+        "institution": "Fannie Mae",
+        "source_url": "https://selling-guide.fanniemae.com/sel/b3-6-02/debt-income-ratios",
+        "page_or_section": "B3-6-02, Debt-to-Income Ratios (04/02/2025)",
+        "chunk_id": "fannie_debt_to_income:0000"
+      },
+      {
+        "citation_id": "[S2]",
+        "source_id": "fannie_debt_to_income",
+        "source_title": "B3-6-02, Debt-to-Income Ratios",
+        "institution": "Fannie Mae",
+        "source_url": "https://selling-guide.fanniemae.com/sel/b3-6-02/debt-income-ratios",
+        "page_or_section": "Applying the Re-underwriting Criteria",
+        "chunk_id": "fannie_debt_to_income:0010"
+      },
+      {
+        "citation_id": "[S3]",
+        "source_id": "fannie_debt_to_income",
+        "source_title": "B3-6-02, Debt-to-Income Ratios",
+        "institution": "Fannie Mae",
+        "source_url": "https://selling-guide.fanniemae.com/sel/b3-6-02/debt-income-ratios",
+        "page_or_section": "DTI Ratios",
+        "chunk_id": "fannie_debt_to_income:0001"
+      },
+      {
+        "citation_id": "[S4]",
+        "source_id": "fannie_cltv",
+        "source_title": "B2-1.2-02, Combined Loan-to-Value (CLTV) Ratios",
+        "institution": "Fannie Mae",
+        "source_url": "https://selling-guide.fanniemae.com/sel/b2-1.2-02/combined-loan-value-cltv-ratios",
+        "page_or_section": "Calculation of the CLTV Ratio",
+        "chunk_id": "fannie_cltv:0002"
+      },
+      {
+        "citation_id": "[S5]",
+        "source_id": "fannie_cltv",
+        "source_title": "B2-1.2-02, Combined Loan-to-Value (CLTV) Ratios",
+        "institution": "Fannie Mae",
+        "source_url": "https://selling-guide.fanniemae.com/sel/b2-1.2-02/combined-loan-value-cltv-ratios",
+        "page_or_section": "Calculation of the CLTV Ratio",
+        "chunk_id": "fannie_cltv:0001"
+      },
+      {
+        "citation_id": "[S6]",
+        "source_id": "fannie_cltv",
+        "source_title": "B2-1.2-02, Combined Loan-to-Value (CLTV) Ratios",
+        "institution": "Fannie Mae",
+        "source_url": "https://selling-guide.fanniemae.com/sel/b2-1.2-02/combined-loan-value-cltv-ratios",
+        "page_or_section": "Calculation of the CLTV Ratio",
+        "chunk_id": "fannie_cltv:0004"
+      },
+      {
+        "citation_id": "[S9]",
+        "source_id": "cfpb_hmda_2023_reference",
+        "source_title": "Reportable HMDA Data: 2023 Regulatory and Reporting Overview Reference Chart",
+        "institution": "Consumer Financial Protection Bureau (CFPB)",
+        "source_url": "https://files.consumerfinance.gov/f/documents/cfpb_reportable-hmda-data_regulatory-and-reporting-overview-reference-chart_2023-02.pdf",
+        "page_or_section": "page 4",
+        "chunk_id": "cfpb_hmda_2023_reference:0006"
+      },
+      {
+        "citation_id": "[S10]",
+        "source_id": "cfpb_hmda_2023_reference",
+        "source_title": "Reportable HMDA Data: 2023 Regulatory and Reporting Overview Reference Chart",
+        "institution": "Consumer Financial Protection Bureau (CFPB)",
+        "source_url": "https://files.consumerfinance.gov/f/documents/cfpb_reportable-hmda-data_regulatory-and-reporting-overview-reference-chart_2023-02.pdf",
+        "page_or_section": "page 4",
+        "chunk_id": "cfpb_hmda_2023_reference:0008"
+      },
+      {
+        "citation_id": "[S11]",
+        "source_id": "cfpb_hmda_2023_reference",
+        "source_title": "Reportable HMDA Data: 2023 Regulatory and Reporting Overview Reference Chart",
+        "institution": "Consumer Financial Protection Bureau (CFPB)",
+        "source_url": "https://files.consumerfinance.gov/f/documents/cfpb_reportable-hmda-data_regulatory-and-reporting-overview-reference-chart_2023-02.pdf",
+        "page_or_section": "page 28",
+        "chunk_id": "cfpb_hmda_2023_reference:0068"
+      },
+      {
+        "citation_id": "[S13]",
+        "source_id": "fannie_general_income",
+        "source_title": "B3-3.1-01, General Income Information",
+        "institution": "Fannie Mae",
+        "source_url": "https://selling-guide.fanniemae.com/sel/b3-3.1-01/general-income-information",
+        "page_or_section": "Stable and Predictable Income",
+        "chunk_id": "fannie_general_income:0001"
+      },
+      {
+        "citation_id": "[S14]",
+        "source_id": "fannie_general_income",
+        "source_title": "B3-3.1-01, General Income Information",
+        "institution": "Fannie Mae",
+        "source_url": "https://selling-guide.fanniemae.com/sel/b3-3.1-01/general-income-information",
+        "page_or_section": "Continuance of Income",
+        "chunk_id": "fannie_general_income:0002"
+      }
+    ],
+    "warnings": [
+      "Retrieval scores are ranking signals, not calibrated confidence.",
+      "No numeric rejection threshold is configured."
+    ]
+  },
+  "final_response": "Prediccion del modelo: denied (probabilidad=0.208112)\n\nEvidencia del modelo:\nEl modelo credit-approval-v2 (configuracion catboost_tuned_02) genero una prediccion de denegacion para esta solicitud, con una probabilidad estimada de 0.208 y un margen base de 1.728 en escala de log-odds. Entre los factores que aumentan la puntuacion del modelo se encuentran la ausencia de bandas altas de DTI y la proporcion de endeudamiento combinado con un valor de 73.077. Por otro lado, factores como que el proposito del valor sea mejoramiento de hogar (presente), un valor de propiedad de 55,000 USD, un monto de prestamo solicitados de 35,000 USD y un ingreso anual de 28,000 USD contribuyen negativamente en el espacio de SHAP.\n\nContexto normativo:\nLas guias de suscripcion de Fannie Mae establecen que la relacion de deuda a ingresos (DTI) consiste en las obligaciones mensuales totales y el ingreso mensual total de los prestatarios [S3], y detallan criterios de recálculo cuando se descubren deudas adicionales [S2]. Respecto a los prestamos con financiamiento subordinado, la relacion de prestamo combinado a valor (CLTV) se determina dividiendo la suma de los montos aplicables entre el menor precio de venta o valor tasado [S5], con reglas especificas para verificar pasivos [S4] y matrices de elegibilidad [S6]. Asimismo, las pautas de HMDA definen los codigos de reporte para el proposito del prestamo (como mejoramiento de hogar o compra de vivienda) [S9], el monto del prestamo [S10] y la relacion de deuda a ingresos [S11]. Finalmente, en la evaluacion de ingresos, se considera fundamental contar con un flujo de ingresos estable, predecible y con historial documentado [S13], evaluando su probabilidad de continuidad para el futuro previsible [S14].\n\nEvaluacion final:\nLa prediccion del modelo de aprendizaje automatico resulto en una denegacion (probabilidad de 0.208), impulsada por una combinación de factores positivos y negativos en el espacio de log-odds de SHAP. Por separado, la normativa hipotecaria y de cumplimiento proporciona directrices estandarizadas sobre el calculo del DTI [S1, S3], el calculo del CLTV ante financiamientos subordinados [S4, S5], los codigos de reporte HMDA [S9, S11] y la evaluacion de la estabilidad de ingresos [S13, S14]. Estas fuentes normativas no implican una relacion causal ni determinan de forma autonoma la decision de aprobacion o denegacion de la solicitud.",
+  "sources": [
+    {
+      "citation_id": "[S1]",
+      "source_id": "fannie_debt_to_income",
+      "source_title": "B3-6-02, Debt-to-Income Ratios",
+      "institution": "Fannie Mae",
+      "source_url": "https://selling-guide.fanniemae.com/sel/b3-6-02/debt-income-ratios",
+      "page_or_section": "B3-6-02, Debt-to-Income Ratios (04/02/2025)",
+      "chunk_id": "fannie_debt_to_income:0000"
+    },
+    {
+      "citation_id": "[S2]",
+      "source_id": "fannie_debt_to_income",
+      "source_title": "B3-6-02, Debt-to-Income Ratios",
+      "institution": "Fannie Mae",
+      "source_url": "https://selling-guide.fanniemae.com/sel/b3-6-02/debt-income-ratios",
+      "page_or_section": "Applying the Re-underwriting Criteria",
+      "chunk_id": "fannie_debt_to_income:0010"
+    },
+    {
+      "citation_id": "[S3]",
+      "source_id": "fannie_debt_to_income",
+      "source_title": "B3-6-02, Debt-to-Income Ratios",
+      "institution": "Fannie Mae",
+      "source_url": "https://selling-guide.fanniemae.com/sel/b3-6-02/debt-income-ratios",
+      "page_or_section": "DTI Ratios",
+      "chunk_id": "fannie_debt_to_income:0001"
+    },
+    {
+      "citation_id": "[S4]",
+      "source_id": "fannie_cltv",
+      "source_title": "B2-1.2-02, Combined Loan-to-Value (CLTV) Ratios",
+      "institution": "Fannie Mae",
+      "source_url": "https://selling-guide.fanniemae.com/sel/b2-1.2-02/combined-loan-value-cltv-ratios",
+      "page_or_section": "Calculation of the CLTV Ratio",
+      "chunk_id": "fannie_cltv:0002"
+    },
+    {
+      "citation_id": "[S5]",
+      "source_id": "fannie_cltv",
+      "source_title": "B2-1.2-02, Combined Loan-to-Value (CLTV) Ratios",
+      "institution": "Fannie Mae",
+      "source_url": "https://selling-guide.fanniemae.com/sel/b2-1.2-02/combined-loan-value-cltv-ratios",
+      "page_or_section": "Calculation of the CLTV Ratio",
+      "chunk_id": "fannie_cltv:0001"
+    },
+    {
+      "citation_id": "[S6]",
+      "source_id": "fannie_cltv",
+      "source_title": "B2-1.2-02, Combined Loan-to-Value (CLTV) Ratios",
+      "institution": "Fannie Mae",
+      "source_url": "https://selling-guide.fanniemae.com/sel/b2-1.2-02/combined-loan-value-cltv-ratios",
+      "page_or_section": "Calculation of the CLTV Ratio",
+      "chunk_id": "fannie_cltv:0004"
+    },
+    {
+      "citation_id": "[S7]",
+      "source_id": "cfpb_hmda_2023_reference",
+      "source_title": "Reportable HMDA Data: 2023 Regulatory and Reporting Overview Reference Chart",
+      "institution": "Consumer Financial Protection Bureau (CFPB)",
+      "source_url": "https://files.consumerfinance.gov/f/documents/cfpb_reportable-hmda-data_regulatory-and-reporting-overview-reference-chart_2023-02.pdf",
+      "page_or_section": "page 2",
+      "chunk_id": "cfpb_hmda_2023_reference:0002"
+    },
+    {
+      "citation_id": "[S8]",
+      "source_id": "cfpb_hmda_2023_reference",
+      "source_title": "Reportable HMDA Data: 2023 Regulatory and Reporting Overview Reference Chart",
+      "institution": "Consumer Financial Protection Bureau (CFPB)",
+      "source_url": "https://files.consumerfinance.gov/f/documents/cfpb_reportable-hmda-data_regulatory-and-reporting-overview-reference-chart_2023-02.pdf",
+      "page_or_section": "page 5",
+      "chunk_id": "cfpb_hmda_2023_reference:0009"
+    },
+    {
+      "citation_id": "[S9]",
+      "source_id": "cfpb_hmda_2023_reference",
+      "source_title": "Reportable HMDA Data: 2023 Regulatory and Reporting Overview Reference Chart",
+      "institution": "Consumer Financial Protection Bureau (CFPB)",
+      "source_url": "https://files.consumerfinance.gov/f/documents/cfpb_reportable-hmda-data_regulatory-and-reporting-overview-reference-chart_2023-02.pdf",
+      "page_or_section": "page 4",
+      "chunk_id": "cfpb_hmda_2023_reference:0006"
+    },
+    {
+      "citation_id": "[S10]",
+      "source_id": "cfpb_hmda_2023_reference",
+      "source_title": "Reportable HMDA Data: 2023 Regulatory and Reporting Overview Reference Chart",
+      "institution": "Consumer Financial Protection Bureau (CFPB)",
+      "source_url": "https://files.consumerfinance.gov/f/documents/cfpb_reportable-hmda-data_regulatory-and-reporting-overview-reference-chart_2023-02.pdf",
+      "page_or_section": "page 4",
+      "chunk_id": "cfpb_hmda_2023_reference:0008"
+    },
+    {
+      "citation_id": "[S11]",
+      "source_id": "cfpb_hmda_2023_reference",
+      "source_title": "Reportable HMDA Data: 2023 Regulatory and Reporting Overview Reference Chart",
+      "institution": "Consumer Financial Protection Bureau (CFPB)",
+      "source_url": "https://files.consumerfinance.gov/f/documents/cfpb_reportable-hmda-data_regulatory-and-reporting-overview-reference-chart_2023-02.pdf",
+      "page_or_section": "page 28",
+      "chunk_id": "cfpb_hmda_2023_reference:0068"
+    },
+    {
+      "citation_id": "[S12]",
+      "source_id": "cfpb_hmda_2023_reference",
+      "source_title": "Reportable HMDA Data: 2023 Regulatory and Reporting Overview Reference Chart",
+      "institution": "Consumer Financial Protection Bureau (CFPB)",
+      "source_url": "https://files.consumerfinance.gov/f/documents/cfpb_reportable-hmda-data_regulatory-and-reporting-overview-reference-chart_2023-02.pdf",
+      "page_or_section": "page 26",
+      "chunk_id": "cfpb_hmda_2023_reference:0065"
+    },
+    {
+      "citation_id": "[S13]",
+      "source_id": "fannie_general_income",
+      "source_title": "B3-3.1-01, General Income Information",
+      "institution": "Fannie Mae",
+      "source_url": "https://selling-guide.fanniemae.com/sel/b3-3.1-01/general-income-information",
+      "page_or_section": "Stable and Predictable Income",
+      "chunk_id": "fannie_general_income:0001"
+    },
+    {
+      "citation_id": "[S14]",
+      "source_id": "fannie_general_income",
+      "source_title": "B3-3.1-01, General Income Information",
+      "institution": "Fannie Mae",
+      "source_url": "https://selling-guide.fanniemae.com/sel/b3-3.1-01/general-income-information",
+      "page_or_section": "Continuance of Income",
+      "chunk_id": "fannie_general_income:0002"
+    },
+    {
+      "citation_id": "[S15]",
+      "source_id": "fannie_general_income",
+      "source_title": "B3-3.1-01, General Income Information",
+      "institution": "Fannie Mae",
+      "source_url": "https://selling-guide.fanniemae.com/sel/b3-3.1-01/general-income-information",
+      "page_or_section": "Continuance of Income",
+      "chunk_id": "fannie_general_income:0003"
+    }
+  ],
+  "warnings": [
+    "Retrieval scores are ranking signals, not calibrated confidence.",
+    "No numeric rejection threshold is configured."
+  ],
+  "errors": [],
+  "node_trace": [
+    "validate_input",
+    "predict_ml",
+    "explain_with_shap",
+    "build_rag_queries",
+    "retrieve_policy_context",
+    "evidence_guardrail",
+    "generate_grounded_response"
+  ],
+  "gemini_called": true,
+  "generation_attempts": 1,
+  "generation_status": "success",
+  "provider_status": "success",
+  "citation_normalization_count": 0
+}
