@@ -25,9 +25,9 @@ La **Versión 1 (V1)**, basada en un dataset educativo de 5,000 filas y un basel
 | **DagsHub Experiments** | [DagsHub Experiments Dashboard](https://dagshub.com/jorgesialer/Proyecto-mle-riesgo/experiments) |
 | **MLflow UI** | [Servidor MLflow Tracking](https://dagshub.com/jorgesialer/Proyecto-mle-riesgo.mlflow) |
 | **Model Registry** | [Modelo registrado: `credit-approval-v2`](https://dagshub.com/jorgesialer/Proyecto-mle-riesgo.mlflow/#/models/credit-approval-v2) |
-| **Run: Benchmark ML Champion** | [Run `catboost_tuned_02` (5730ce9e)](https://dagshub.com/jorgesialer/Proyecto-mle-riesgo.mlflow/#/experiments/0/runs/5730ce9e2a44498396e9447e17424ea4) |
-| **Run: Explicabilidad SHAP** | [Run `xai_catboost_champion_v2` (74ad3286)](https://dagshub.com/jorgesialer/Proyecto-mle-riesgo.mlflow/#/experiments/0/runs/74ad3286f7a74070a311b5ffbe6ec39d) |
-| **Run: Recuperación RAG / Qdrant** | [Run `rag_qdrant_retrieval_v2` (8ff54da8)](https://dagshub.com/jorgesialer/Proyecto-mle-riesgo.mlflow/#/experiments/0/runs/8ff54da8efdf4ae6bb75c50ffc3cf0e9) |
+| **Run: Benchmark ML Champion** | [Run `champion_catboost_final` (94964b60)](https://dagshub.com/jorgesialer/Proyecto-mle-riesgo.mlflow/#/experiments/0/runs/94964b600522497a8cc306401c09fd79) |
+| **Run: Explicabilidad SHAP** | [Run `xai_catboost_champion_v2` (f8e8fc29)](https://dagshub.com/jorgesialer/Proyecto-mle-riesgo.mlflow/#/experiments/0/runs/f8e8fc291f8749a9b18634c5530ee054) |
+| **Run: Recuperación RAG / Qdrant** | [Run `rag_qdrant_retrieval_v2` (1e98c472)](https://dagshub.com/jorgesialer/Proyecto-mle-riesgo.mlflow/#/experiments/0/runs/1e98c47241ff449bb5bcb41cb79caf9c) |
 | **Run: LangGraph + Gemini Grounded** | [Run `langgraph_grounded_generation_v2` (3dc4691c)](https://dagshub.com/jorgesialer/Proyecto-mle-riesgo.mlflow/#/experiments/0/runs/3dc4691c60224b4ba59f3f1ed75b10c6) |
 
 ---
