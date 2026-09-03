@@ -400,6 +400,104 @@ Ejecucion sin generar respuestas ni invocar Gemini:
 uv run python -m src.rag_v2 --skip-mlflow
 ```
 
+### Orquestacion determinista y generacion grounded
+
+`src/langgraph_v2.py` compila un `StateGraph` lineal, sin agente ReAct ni
+seleccion autonoma de herramientas:
+
+```text
+validate_input -> predict_ml -> explain_with_shap -> build_rag_queries
+-> retrieve_policy_context -> evidence_guardrail
+-> generate_grounded_response -> END
+```
+
+El state tipado separa solicitud cruda/validada, prediccion y probabilidad,
+evidencia XAI, queries, evidencia documental, resultado del guardrail,
+respuesta estructurada, citas, warnings, errores y traza de nodos. Una sola
+instancia del embedder y del cliente Qdrant se reutiliza durante la ejecucion.
+El champion y `explicar_solicitud()` se cargan sin reentrenar; las queries
+proceden del helper determinista XAI->RAG existente.
+
+Antes de llamar a Gemini, el guardrail exige resultados, URLs HTTPS de la
+allowlist oficial, metadata completa y cobertura documental de al menos un
+factor XAI. No adopta un threshold numerico a partir de la unica query OOD. Si
+falla cualquier contrato, se devuelve una abstencion controlada y Gemini no se
+invoca. La generacion usa el SDK moderno `google.genai`, temperatura 0 y JSON
+schema. Provider y modelo se resuelven desde `GENAI_PROVIDER` y `GENAI_MODEL`;
+el default free-tier-oriented es `gemini` / `gemini-3.5-flash-lite`. El prompt separa evidencia del
+modelo, contexto normativo y warnings; prohibe causalidad, reglas o fuentes
+inventadas, y limita las citas a identificadores asignados por el guardrail.
+
+La capa de proveedor desactiva los retries internos del SDK y aplica como
+maximo tres intentos controlados. Solo reintenta `503/UNAVAILABLE`, respuestas
+no parseables y JSON truncado, con backoff exponencial de 1 y 2 segundos. Los
+errores permanentes —por ejemplo autenticacion 4xx o schema invalido— fallan en
+el primer intento. El state registra `generation_attempts`, un error tipado por
+intento, `provider_status` y `generation_status`. Agotar los retries produce
+`provider_unavailable`, sin citas ni explicacion grounded ficticia.
+
+La prueba real del 1 de septiembre de 2026 proceso una aplicacion completa,
+obtuvo prediccion `denied` con probabilidad positiva 0.208112, recupero 15
+fuentes/chunks y supero el guardrail. Gemini devolvio `503 UNAVAILABLE` en dos
+intentos por alta demanda, por lo que el artifact conserva honestamente una
+abstencion controlada, no una explicacion inventada. La run registrada es
+[`langgraph_grounded_generation_v1`](https://dagshub.com/jorgesialer/Proyecto-mle-riesgo.mlflow/#/experiments/0/runs/708a9858337b4d1f9bb7cdcfeccc3ecc).
+
+Tras incorporar resiliencia se hizo una unica ejecucion live adicional. ML,
+XAI, retrieval y guardrail finalizaron correctamente, pero los tres intentos
+del proveedor devolvieron el mismo JSON truncado. El resultado fue
+`generation_status=provider_unavailable`; no se creo un artifact de exito ni
+la run `langgraph_grounded_generation_v2`. Esto es un fallo temporal del
+proveedor, distinto de un fallo del workflow o de evidencia insuficiente.
+
+El modelo anterior `gemini-2.5-flash` se conserva solo como antecedente: las
+pruebas live presentaron `503 UNAVAILABLE` y JSON truncado por alta demanda.
+Una unica validacion posterior con el nuevo default Flash-Lite recibio
+`404 NOT_FOUND`: la API indico que el modelo ya no estaba disponible para
+usuarios nuevos. Al ser un error permanente, no hubo retry, cambio silencioso
+de modelo, artifact de exito ni run V2. La documentacion publica aun enumera
+structured output y free tier para ese ID, pero la disponibilidad efectiva
+depende de la cuenta/proyecto del proveedor.
+
+El default actual es `gemini-3.5-flash-lite`, documentado como estable,
+compatible con structured outputs y disponible en free tier. No cambia el
+schema, evidencia, retries ni guardrails.
+
+La unica validacion live con este default obtuvo JSON estructurado en el primer
+intento, pero el modelo declaro citations como `S10`, `S13`, etc. en vez del
+contrato exacto `[S#]`. El validador marco `output_validation_failed` y aplico
+abstencion sin fuentes. No se creo `grounded_success_example.json` ni la run
+`langgraph_grounded_generation_v2`; no se relajo el contrato ni se hizo otra
+llamada.
+
+La capa actual normaliza de forma determinista `S3`, `[S3]`, lowercase y
+espacios al formato `[S3]` antes del allowlist, tanto en la lista declarada como
+en texto libre. Strings que no son IDs `S` + digitos no se corrigen. La
+telemetria `citation_normalization_count` registra cada ajuste sin convertirlo
+en error cuando la fuente existe.
+
+La unica validacion live posterior fue exitosa en el primer intento. Publico 11
+fuentes, todas presentes en la evidencia recuperada, uso lenguaje no causal y
+guardo `artifacts/langgraph/grounded_success_example.json`. En esa respuesta el
+modelo ya emitio formato canonico, por lo que el contador fue 0. Run DagsHub:
+[`langgraph_grounded_generation_v2`](https://dagshub.com/jorgesialer/Proyecto-mle-riesgo.mlflow/#/experiments/0/runs/3dc4691c60224b4ba59f3f1ed75b10c6).
+
+Artifacts: `artifacts/langgraph/grounded_example.json`,
+`input_application.json`, `source_metadata.json`, `graph_config.json`,
+`prompt_template.txt`, `generation_metadata.json` y `run_metadata.json`.
+
+Configuracion local, sin guardar credenciales en artifacts ni tracking:
+
+```ini
+GENAI_PROVIDER=gemini
+GENAI_MODEL=gemini-3.5-flash-lite
+GOOGLE_API_KEY=<configurar solo en .env o environment>
+```
+
+Puede copiarse `.env.example`; un `GENAI_MODEL` del environment reemplaza el
+default. Solo Gemini esta habilitado en esta fase y nunca se hace fallback a
+otro proveedor o modelo.
+
 ## 6. Ejecucion
 
 Desde la raiz del repositorio y con el entorno del proyecto activo:
@@ -422,6 +520,9 @@ uv run python -m src.xai_v2 --sample-size 1000 --top-n 10
 
 # Adquirir, indexar y evaluar el corpus RAG oficial
 uv run python -m src.rag_v2
+
+# Ejecutar ML -> XAI -> RAG -> guardrail -> Gemini y registrar la run
+uv run python -m src.langgraph_v2 --backend dagshub
 
 # Simular inferencia con un perfil crudo (V1)
 uv run python -m src.prediccion
@@ -446,6 +547,7 @@ columnas one-hot ni un scaler externo.
 - `src/mlflow_utils.py`: configuracion MLflow local/DagsHub.
 - `src/xai_v2.py`: Tree SHAP global y evidencia local reusable del champion V2.
 - `src/rag_v2.py`: adquisicion, chunking, Qdrant, retrieval y evaluacion RAG.
+- `src/langgraph_v2.py`: orquestacion determinista y Gemini grounded fail-closed.
 - `data/rag_sources/`: snapshots oficiales y manifest criptografico del corpus.
 - `data/rag_eval_queries.json`: evaluation set manual de retrieval.
 - `docs/HMDA_V2_DATA_DICTIONARY.md`: contrato de variables del Dataset V2.
@@ -463,7 +565,7 @@ anteriores no deben atribuirse al artefacto saneado.
   repago.
 - El benchmark V2 realiza una comparacion y tuning acotados; no constituye una
   busqueda exhaustiva de hiperparametros.
-- La integracion Gemini existente es un componente legado de V1. No constituye
+- La integracion Gemini de `src/prediccion.py` es un componente legado de V1. No constituye
   explicabilidad basada en evidencia del modelo. Su prompt identifica que el
   resultado proviene de ML y prohibe atribuir causalidad sin evidencia.
 - El tracking del benchmark V2 y de XAI usa MLflow/DagsHub.
@@ -473,7 +575,12 @@ anteriores no deben atribuirse al artefacto saneado.
   la lectura de la fuente oficial; el corpus es deliberadamente acotado.
 - El retriever aun no tiene threshold de abstencion. La unica query OOD obtuvo
   menor score que todas las queries in-domain, pero no basta para calibrarlo.
-- Todavia no se implementan LangGraph, grounding con Gemini ni MCP.
+- LangGraph/Gemini V2 sintetiza evidencia, no toma decisiones crediticias. La
+  disponibilidad de Gemini es externa; `503` o JSON incompleto tras tres
+  intentos producen abstencion controlada.
+- Las citas pasan una validacion de pertenencia al retrieval, pero esto no
+  garantiza que la sintesis sea juridicamente correcta ni exhaustiva.
+- MCP y Docker todavia no estan implementados.
 - Los atributos demograficos pueden reproducir sesgos presentes en decisiones
   historicas y requieren una evaluacion de equidad separada.
 
