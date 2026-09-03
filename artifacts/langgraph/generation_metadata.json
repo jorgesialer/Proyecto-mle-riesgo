@@ -1,0 +1,12 @@
+{
+  "generation_attempts": 1,
+  "generation_errors": [],
+  "generation_status": "success",
+  "provider_status": "success",
+  "max_attempts": 3,
+  "initial_delay_seconds": 1.0,
+  "backoff_multiplier": 2,
+  "genai_provider": "gemini",
+  "genai_model": "gemini-3.5-flash-lite",
+  "citation_normalization_count": 0
+}

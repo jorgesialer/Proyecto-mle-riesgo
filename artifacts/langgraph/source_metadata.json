@@ -1,0 +1,137 @@
+[
+  {
+    "citation_id": "[S1]",
+    "source_id": "fannie_debt_to_income",
+    "source_title": "B3-6-02, Debt-to-Income Ratios",
+    "institution": "Fannie Mae",
+    "source_url": "https://selling-guide.fanniemae.com/sel/b3-6-02/debt-income-ratios",
+    "page_or_section": "B3-6-02, Debt-to-Income Ratios (04/02/2025)",
+    "chunk_id": "fannie_debt_to_income:0000"
+  },
+  {
+    "citation_id": "[S2]",
+    "source_id": "fannie_debt_to_income",
+    "source_title": "B3-6-02, Debt-to-Income Ratios",
+    "institution": "Fannie Mae",
+    "source_url": "https://selling-guide.fanniemae.com/sel/b3-6-02/debt-income-ratios",
+    "page_or_section": "Applying the Re-underwriting Criteria",
+    "chunk_id": "fannie_debt_to_income:0010"
+  },
+  {
+    "citation_id": "[S3]",
+    "source_id": "fannie_debt_to_income",
+    "source_title": "B3-6-02, Debt-to-Income Ratios",
+    "institution": "Fannie Mae",
+    "source_url": "https://selling-guide.fanniemae.com/sel/b3-6-02/debt-income-ratios",
+    "page_or_section": "DTI Ratios",
+    "chunk_id": "fannie_debt_to_income:0001"
+  },
+  {
+    "citation_id": "[S4]",
+    "source_id": "fannie_cltv",
+    "source_title": "B2-1.2-02, Combined Loan-to-Value (CLTV) Ratios",
+    "institution": "Fannie Mae",
+    "source_url": "https://selling-guide.fanniemae.com/sel/b2-1.2-02/combined-loan-value-cltv-ratios",
+    "page_or_section": "Calculation of the CLTV Ratio",
+    "chunk_id": "fannie_cltv:0002"
+  },
+  {
+    "citation_id": "[S5]",
+    "source_id": "fannie_cltv",
+    "source_title": "B2-1.2-02, Combined Loan-to-Value (CLTV) Ratios",
+    "institution": "Fannie Mae",
+    "source_url": "https://selling-guide.fanniemae.com/sel/b2-1.2-02/combined-loan-value-cltv-ratios",
+    "page_or_section": "Calculation of the CLTV Ratio",
+    "chunk_id": "fannie_cltv:0001"
+  },
+  {
+    "citation_id": "[S6]",
+    "source_id": "fannie_cltv",
+    "source_title": "B2-1.2-02, Combined Loan-to-Value (CLTV) Ratios",
+    "institution": "Fannie Mae",
+    "source_url": "https://selling-guide.fanniemae.com/sel/b2-1.2-02/combined-loan-value-cltv-ratios",
+    "page_or_section": "Calculation of the CLTV Ratio",
+    "chunk_id": "fannie_cltv:0004"
+  },
+  {
+    "citation_id": "[S7]",
+    "source_id": "cfpb_hmda_2023_reference",
+    "source_title": "Reportable HMDA Data: 2023 Regulatory and Reporting Overview Reference Chart",
+    "institution": "Consumer Financial Protection Bureau (CFPB)",
+    "source_url": "https://files.consumerfinance.gov/f/documents/cfpb_reportable-hmda-data_regulatory-and-reporting-overview-reference-chart_2023-02.pdf",
+    "page_or_section": "page 2",
+    "chunk_id": "cfpb_hmda_2023_reference:0002"
+  },
+  {
+    "citation_id": "[S8]",
+    "source_id": "cfpb_hmda_2023_reference",
+    "source_title": "Reportable HMDA Data: 2023 Regulatory and Reporting Overview Reference Chart",
+    "institution": "Consumer Financial Protection Bureau (CFPB)",
+    "source_url": "https://files.consumerfinance.gov/f/documents/cfpb_reportable-hmda-data_regulatory-and-reporting-overview-reference-chart_2023-02.pdf",
+    "page_or_section": "page 5",
+    "chunk_id": "cfpb_hmda_2023_reference:0009"
+  },
+  {
+    "citation_id": "[S9]",
+    "source_id": "cfpb_hmda_2023_reference",
+    "source_title": "Reportable HMDA Data: 2023 Regulatory and Reporting Overview Reference Chart",
+    "institution": "Consumer Financial Protection Bureau (CFPB)",
+    "source_url": "https://files.consumerfinance.gov/f/documents/cfpb_reportable-hmda-data_regulatory-and-reporting-overview-reference-chart_2023-02.pdf",
+    "page_or_section": "page 4",
+    "chunk_id": "cfpb_hmda_2023_reference:0006"
+  },
+  {
+    "citation_id": "[S10]",
+    "source_id": "cfpb_hmda_2023_reference",
+    "source_title": "Reportable HMDA Data: 2023 Regulatory and Reporting Overview Reference Chart",
+    "institution": "Consumer Financial Protection Bureau (CFPB)",
+    "source_url": "https://files.consumerfinance.gov/f/documents/cfpb_reportable-hmda-data_regulatory-and-reporting-overview-reference-chart_2023-02.pdf",
+    "page_or_section": "page 4",
+    "chunk_id": "cfpb_hmda_2023_reference:0008"
+  },
+  {
+    "citation_id": "[S11]",
+    "source_id": "cfpb_hmda_2023_reference",
+    "source_title": "Reportable HMDA Data: 2023 Regulatory and Reporting Overview Reference Chart",
+    "institution": "Consumer Financial Protection Bureau (CFPB)",
+    "source_url": "https://files.consumerfinance.gov/f/documents/cfpb_reportable-hmda-data_regulatory-and-reporting-overview-reference-chart_2023-02.pdf",
+    "page_or_section": "page 28",
+    "chunk_id": "cfpb_hmda_2023_reference:0068"
+  },
+  {
+    "citation_id": "[S12]",
+    "source_id": "cfpb_hmda_2023_reference",
+    "source_title": "Reportable HMDA Data: 2023 Regulatory and Reporting Overview Reference Chart",
+    "institution": "Consumer Financial Protection Bureau (CFPB)",
+    "source_url": "https://files.consumerfinance.gov/f/documents/cfpb_reportable-hmda-data_regulatory-and-reporting-overview-reference-chart_2023-02.pdf",
+    "page_or_section": "page 26",
+    "chunk_id": "cfpb_hmda_2023_reference:0065"
+  },
+  {
+    "citation_id": "[S13]",
+    "source_id": "fannie_general_income",
+    "source_title": "B3-3.1-01, General Income Information",
+    "institution": "Fannie Mae",
+    "source_url": "https://selling-guide.fanniemae.com/sel/b3-3.1-01/general-income-information",
+    "page_or_section": "Stable and Predictable Income",
+    "chunk_id": "fannie_general_income:0001"
+  },
+  {
+    "citation_id": "[S14]",
+    "source_id": "fannie_general_income",
+    "source_title": "B3-3.1-01, General Income Information",
+    "institution": "Fannie Mae",
+    "source_url": "https://selling-guide.fanniemae.com/sel/b3-3.1-01/general-income-information",
+    "page_or_section": "Continuance of Income",
+    "chunk_id": "fannie_general_income:0002"
+  },
+  {
+    "citation_id": "[S15]",
+    "source_id": "fannie_general_income",
+    "source_title": "B3-3.1-01, General Income Information",
+    "institution": "Fannie Mae",
+    "source_url": "https://selling-guide.fanniemae.com/sel/b3-3.1-01/general-income-information",
+    "page_or_section": "Continuance of Income",
+    "chunk_id": "fannie_general_income:0003"
+  }
+]

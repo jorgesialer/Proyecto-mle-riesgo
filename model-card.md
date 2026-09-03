@@ -107,8 +107,74 @@ disponible como artifact separado.
 
 Las contribuciones SHAP del CatBoost binario estan en raw margin/log-odds. No
 son cambios directos de probabilidad y no demuestran causalidad. El paquete de
-evidencia es independiente del LLM; Gemini, RAG y LangGraph no consumen todavia
-estas explicaciones.
+evidencia sigue siendo reusable e independiente; el workflow V2 lo consume sin
+recalcular ni reimplementar SHAP.
+
+## Orquestacion y explicacion grounded
+
+`src/langgraph_v2.py` ejecuta un grafo lineal: valida las 16 variables crudas,
+predice con el champion persistido, reutiliza XAI, genera queries deterministas,
+recupera contexto oficial, aplica guardrails y solo entonces llama a Gemini.
+No existe un agente ReAct ni seleccion autonoma de herramientas.
+
+El guardrail exige metadata completa, fuentes HTTPS de la allowlist y cobertura
+documental de al menos un factor XAI. No usa threshold numerico de similitud.
+Evidencia insuficiente, fallos externos o citas fuera del evidence package
+producen abstencion controlada. El prompt separa prediccion/evidencia del
+modelo y contexto normativo; prohibe afirmar causalidad, inventar reglas o
+fuentes y presentar SHAP como variacion directa de probabilidad.
+
+La llamada a Gemini tiene un maximo de tres intentos externos; los retries
+internos del SDK estan desactivados. Solo `503/UNAVAILABLE` y JSON incompleto o
+no parseable usan backoff exponencial de 1 y 2 segundos. Errores permanentes de
+autenticacion o schema no se reintentan. Intentos, errores tipados y estado
+final del proveedor permanecen en el state y en
+`artifacts/langgraph/generation_metadata.json`.
+
+La integracion usa `google.genai`, temperatura 0 y output JSON estructurado.
+`GENAI_PROVIDER` y `GENAI_MODEL` permiten configuracion por environment; los
+defaults free-tier-oriented son `gemini` y `gemini-3.5-flash-lite`. Las API
+keys no forman parte de esa configuracion ni del state/artifacts/tracking, y
+se redactan defensivamente de errores. En la prueba real del 2026-09-01, el champion predijo
+`denied` (probabilidad de `LoanApproved=1`: 0.208112), el retrieval aporto 15
+fuentes/chunks y el guardrail fue suficiente. Gemini respondio `503 UNAVAILABLE`
+en dos intentos; el resultado guardado es una abstencion controlada. No se
+reporta una explicacion exitosa ni se infiere calidad generativa de este caso.
+Una unica validacion posterior de la politica de retries recibio tres JSON
+truncados consecutivos. El workflow completo previo a generacion funciono, el
+proveedor quedo marcado `unavailable` y se mantuvo la abstencion. No se genero
+artifact de exito ni run V2. Un fallo del proveedor no implica fallo del modelo,
+XAI, retrieval o guardrail; tampoco autoriza a completar una respuesta parcial.
+
+`gemini-2.5-flash` queda documentado como intento historico afectado por alta
+demanda. La unica validacion live con el default Flash-Lite mantuvo el mismo
+schema, temperatura, evidencia y guardrails, pero la API devolvio un 404
+permanente indicando que el modelo no estaba disponible para usuarios nuevos.
+No hubo retry, fallback silencioso, artifact de exito ni run V2. Aunque la
+documentacion publica enumera structured output y free tier, la disponibilidad
+real depende de la cuenta/proyecto.
+
+El default actual `gemini-3.5-flash-lite` esta documentado como estable,
+compatible con structured outputs y disponible en free tier. El cambio no
+altera schema, evidencia, retries, fail-closed ni guardrails.
+
+La unica ejecucion live con este default devolvio JSON estructurado en el primer
+intento, pero sus identificadores de citation no respetaron el formato exacto
+`[S#]`. El output fue rechazado como `output_validation_failed`; no se
+publicaron fuentes, no se genero artifact de exito y no se creo la run V2.
+
+La implementacion actual normaliza exclusivamente IDs `S` + digitos, con
+corchetes, lowercase o espacios opcionales, antes de validar pertenencia a las
+fuentes recuperadas. La normalizacion se aplica tambien al texto libre y queda
+registrada en `citation_normalization_count`; IDs inexistentes siguen siendo
+rechazados.
+
+La validacion live posterior finalizo con `generation_status=success` en el
+primer intento. El JSON fue valido, las 11 fuentes publicadas pertenecian al
+evidence package y el texto nego atribucion causal. El modelo emitio formato
+canonico en esa ejecucion (`citation_normalization_count=0`). Artifact:
+`artifacts/langgraph/grounded_success_example.json`; run DagsHub
+`3dc4691c60224b4ba59f3f1ed75b10c6`.
 
 ## Fairness
 
@@ -131,7 +197,11 @@ No se ha implementado aun un fairness dashboard ni metricas por subgrupo.
 - La agregacion por feature permite cancelacion entre contribuciones one-hot de
   la misma fila, coherente con la aditividad SHAP. El detalle transformado se
   conserva para diagnosticar esas cancelaciones.
-- RAG, Qdrant, LangGraph, MCP, nueva UI y GenAI grounded no estan implementados.
+- RAG/Qdrant y LangGraph/Gemini grounded estan implementados, pero el corpus es
+  acotado y la generacion depende de un servicio externo no determinista.
+- Una respuesta grounded no valida legalidad, fairness ni correccion de la
+  decision; el sistema es apoyo analitico y no un decisor autonomo.
+- MCP, Docker y una nueva UI no estan implementados.
 
 ## Evidencia y reproducibilidad
 
@@ -141,3 +211,6 @@ No se ha implementado aun un fairness dashboard ni metricas por subgrupo.
   <https://dagshub.com/jorgesialer/Proyecto-mle-riesgo.mlflow/#/experiments/0/runs/f8e8fc291f8749a9b18634c5530ee054>.
 - La run registra metodo, modelo/version, muestra, semilla, top N, checksum y
   todos los artifacts XAI.
+- Ejemplo LangGraph: `artifacts/langgraph/grounded_example.json`.
+- Run LangGraph/Gemini:
+  <https://dagshub.com/jorgesialer/Proyecto-mle-riesgo.mlflow/#/experiments/0/runs/708a9858337b4d1f9bb7cdcfeccc3ecc>.

@@ -397,10 +397,104 @@ threshold is adopted from a single OOD observation; abstention requires a
 larger calibration set. These figures are not evidence of broad regulatory
 coverage or answer-generation quality. XAI factors are converted to queries by
 deterministic templates; audit-only attributes are excluded. This phase does
-not call Gemini and does not implement LangGraph.
+not call Gemini by itself; its APIs are reused by Phase 7.
 
 ### Phase 7
-LangGraph agent with ML and RAG tools.
+Deterministic LangGraph orchestration with grounded Gemini generation.
+**Implemented:** `src/langgraph_v2.py` executes the fixed sequence
+`validate_input -> predict_ml -> explain_with_shap -> build_rag_queries ->
+retrieve_policy_context -> evidence_guardrail -> generate_grounded_response`.
+It is a compiled linear `StateGraph`, not a ReAct agent. The typed state keeps
+raw and validated applications, prediction/probability, XAI evidence, RAG
+queries, retrieved policy evidence, sufficiency status, structured/final
+responses, citations, warnings, errors and node trace.
+
+The persisted CatBoost champion, `explicar_solicitud()` and
+`construir_queries_desde_evidence()` are reused without retraining or
+reimplementation. One local embedder and Qdrant client are reused per workflow
+execution. Audit-only fields fail schema validation and cannot reach ML, XAI,
+retrieval or the prompt.
+
+The evidence guardrail is fail-closed. It requires non-empty retrieval,
+complete source metadata, official HTTPS hosts and policy evidence for at
+least one relevant XAI factor. It deliberately has no numeric score threshold
+because the retrieval evaluation contains only one OOD query. Insufficient or
+invalid evidence produces a controlled abstention without calling Gemini.
+Generated citation identifiers are also checked against retrieved evidence;
+unknown citations cause abstention.
+
+Grounded synthesis uses the modern `google.genai` SDK, temperature zero and a
+JSON schema. Provider and model are resolved from `GENAI_PROVIDER` and
+`GENAI_MODEL`; the documented free-tier-oriented defaults are `gemini` and
+`gemini-3.5-flash-lite`. Environment values override those defaults. Model evidence, policy
+evidence and warnings are separate prompt sections. The prompt forbids causal
+claims, invented rules/thresholds/sources, treating SHAP as direct probability
+change, or attributing a historical model decision to retrieved policy.
+
+Provider resilience is explicit and bounded. SDK-internal retries are disabled
+and the workflow performs at most three calls, retrying only HTTP
+`503/UNAVAILABLE`, unparseable responses and truncated JSON. Retry delays are
+1 and 2 seconds (exponential factor 2). Permanent 4xx authentication errors
+and schema validation errors are not retried. State records attempt count,
+typed error details per attempt, final provider status and generation status.
+Exhaustion produces `generation_status=provider_unavailable` and a fail-closed
+response with no citations or fabricated grounded explanation.
+
+The real integration on 2026-09-01 predicted `denied` with positive-class
+probability 0.208112, retrieved 15 source chunks and passed the evidence
+guardrail. Gemini returned `503 UNAVAILABLE` twice due temporary high demand;
+the persisted sample therefore records the expected controlled abstention.
+This validates the live failure path, not successful answer quality. DagsHub
+run: `langgraph_grounded_generation_v1`, id
+`708a9858337b4d1f9bb7cdcfeccc3ecc`.
+
+One live validation was executed after adding retries. The deterministic ML,
+XAI, RAG and guardrail stages succeeded, but all three provider responses were
+truncated at the same JSON position. The workflow recorded
+`provider_unavailable` and abstained. No `grounded_success_example.json` and no
+`langgraph_grounded_generation_v2` run were created. This is classified as
+provider unavailability, not workflow failure or insufficient policy evidence.
+
+`gemini-2.5-flash` remains historical evidence: its live calls produced high
+demand `503` responses and truncated JSON. One subsequent end-to-end execution
+used the configured Flash-Lite default. The model's public documentation lists
+structured outputs and the existing JSON-schema/temperature configuration is
+compatible, but this account received permanent `404 NOT_FOUND` stating that
+the model was unavailable to new users. The workflow correctly made one call,
+did not retry, did not switch models, abstained and created neither a success
+artifact nor the V2 DagsHub run. Public capability and free-tier listing do not
+guarantee account-level availability.
+
+API keys are read only by the Gemini SDK from the process environment. They are
+not part of `GenAIConfig`, workflow state, prompts, artifacts or MLflow params;
+known key values are defensively redacted from provider error messages.
+
+The current default is `gemini-3.5-flash-lite`, which official model and
+pricing documentation list as stable, structured-output capable and available
+on the free tier. Provider, JSON schema, temperature, evidence contract,
+retries and fail-closed behavior remain unchanged.
+
+The single live validation with this default returned schema-valid JSON on the
+first provider call. It nevertheless declared citation identifiers as `S10`,
+`S13`, etc. rather than the exact `[S#]` evidence contract. Citation validation
+therefore produced `output_validation_failed` and a controlled abstention with
+no sources. No success artifact or V2 DagsHub run was created, and the contract
+was not weakened or retried.
+
+Citation syntax is now normalized deterministically before allowlist
+validation. `S3`, `[S3]`, lowercase and surrounding spaces become `[S3]` in
+both declared IDs and free text. Only the restricted `S` plus digits grammar is
+accepted for normalization; other strings remain unchanged and fail normally.
+`citation_normalization_count` is stored in state, artifacts and MLflow.
+
+The single post-fix live validation succeeded on its first provider call. JSON
+and citations passed validation, all 11 published sources existed in retrieved
+policy evidence, and the response explicitly separated model association from
+policy context and denied causal attribution. The model emitted canonical IDs
+in this run, so the normalization count was 0. Artifact:
+`artifacts/langgraph/grounded_success_example.json`. DagsHub run:
+`langgraph_grounded_generation_v2`, id
+`3dc4691c60224b4ba59f3f1ed75b10c6`.
 
 ### Phase 8
 FastMCP integration.

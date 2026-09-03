@@ -1,0 +1,18 @@
+{
+  "income": 28.0,
+  "loan_amount": 35000.0,
+  "loan_term": null,
+  "loan_purpose": 2,
+  "loan_type": 1,
+  "lien_status": 1,
+  "preapproval": 2,
+  "debt_to_income_ratio": null,
+  "combined_loan_to_value_ratio": 73.077,
+  "property_value": 55000.0,
+  "occupancy_type": 1,
+  "construction_method": 1,
+  "total_units": 1,
+  "submission_of_application": 1,
+  "interest_only_payment": 2,
+  "balloon_payment": 2
+}
